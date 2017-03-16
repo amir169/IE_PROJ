@@ -1,0 +1,8 @@
+body{
+	background-color:#303c42;
+	background-image: url(../elements/full-circle-logo-animated.gif);
+	background-position: 1200px 500px;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: 450px 450px;
+}
