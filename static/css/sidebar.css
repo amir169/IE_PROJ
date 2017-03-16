@@ -1,0 +1,36 @@
+.sidebar{
+	background-color: #303c42;
+	border-radius: 5px
+	
+}
+
+.sidebar .selected{
+	background-image:url(../elements/sideSelected.png);
+	background-position: left ;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color: #4f595e
+}
+
+.sidebar li{
+	height: 30px;
+	list-style-type: none;
+	margin-right: -40px;
+	padding-top: 5px
+}
+
+.sidebar a:link{
+	color: #eeeeee ;
+	margin-right: 20px
+}
+
+.sidebar li:hover{
+	background-color: #4f595e;
+	border-radius: 5px;
+}
+
+
+.sidebar a:hover{
+	text-decoration: none
+}
+
