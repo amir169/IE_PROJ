@@ -1,5 +1,5 @@
 body{
-	background-color:#303c42;
+	background-color:#161f24;
 }
 
 @media screen and (min-width: 900px) and (min-height: 700px) {
@@ -10,4 +10,10 @@ body{
 		background-repeat: no-repeat;
 		background-size: 450px 450px;
 	}
+}
+
+
+.repeated-bg{
+	background-image: url(../elements/repeated-bg.png);
+	background-attachment: fixed;
 }
