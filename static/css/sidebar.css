@@ -1,6 +1,7 @@
 .sidebar{
 	background-color: #303c42;
-	border-radius: 5px
+	border-radius: 5px;
+	color:#eeeeee
 	
 }
 
@@ -21,7 +22,10 @@
 
 .sidebar a:link{
 	color: #eeeeee ;
-	margin-right: 20px
+}
+
+.sidebar li a:link{
+	margin-right: 20px	
 }
 
 .sidebar li:hover{
@@ -31,6 +35,20 @@
 
 
 .sidebar a:hover{
-	text-decoration: none
+	text-decoration: underline;
 }
 
+.sidebar li a:hover{
+	text-decoration: none;
+}
+
+.sidebar .profile-picture{
+	max-width: 100%;
+	max-height: auto;
+
+}
+
+.sidebar .profile-pic-place{
+	margin-right: 30px;
+	margin-left: 30px;
+}
