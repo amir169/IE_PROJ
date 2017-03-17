@@ -11,10 +11,13 @@
     <link href="bootstrap/css/bootstrap-rtl.min.css" rel="stylesheet">
     <link href="css/customized.css" rel="stylesheet">
     <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/sticky-footer.css" rel="stylesheet">
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="bootstrap/customized-bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 
   </head>
   <body class="yekan-font" >
@@ -50,8 +53,8 @@
 
         <div class="collapse navbar-collapse" id="index-navbar">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">لیست مسابقات</a></li>
-            <li><a href="#">رکورد ها و نتیاج</a></li>
+            <li id="cmpt-list-selector-nav"><a href="#">لیست مسابقات</a></li>
+            <li class="active"><a href="#">رکورد ها و نتیاج</a></li>
             <li><a href="#">تیم ها</a></li> 
             <li><a href="#">اطلاعیه ها</a></li> 
           </ul>
@@ -78,19 +81,22 @@
             </div>
             <br/>
             <ul>
-              <li><a href="#">لیست مسابقات</a></li>
-              <li class="selected" ><a href="#">رکورد ها و نتایج </a></li>
+              <li id="cmpt-list-selector-sidebar"><a href="#">لیست مسابقات</a></li>
+              <li class="sidebar-selected" ><a href="#">رکورد ها و نتایج </a></li>
               <li><a href="#">تیم ها</a></li>
               <li><a href="#">اطلاعیه ها</a></li>
             </ul>
           </div>
         </div>
         <div class="col-md-10 col-sm-9 col-xs-12 main" >
-          <div id="main-content">
-          سلام
-          </div>
+          <div id="main-content" class=" container-fluid">
+            
+          </div><!-- main content -->
         </div>
-
-
+      </div> <!-- row -->
+    </div><!-- container-->
+    <footer class="footer main-footer" ><div class="container">
+                <div class="text-center" style="margin-top:5px" >کلیه حقوق این مسابقه آزاد است.</div>
+    </div></footer>
   </body>
 </html>
