@@ -21,8 +21,38 @@ $(document).ready(function(){
 			}
 		});
 	}
-
 	$("#cmpt-list-selector-sidebar").click(cmptListSelect);
 	$("#cmpt-list-selector-nav").click(cmptListSelect);
+
+
+	function recordsListSelect(){
+		$("#records-selector-sidebar").addClass("sidebar-selected").siblings().removeClass("sidebar-selected");
+		$("#records-selector-nav").addClass("active").siblings().removeClass("active");
+
+		$("#main-content").empty();
+		$("#main-content").load("htmlok/total-records.html");
+	}
+	$("#records-selector-sidebar").click(recordsListSelect);
+	$("#records-selector-nav").click(recordsListSelect);
+
+	function userTeamsSelect(){
+		$("#user-teams-sidebar").addClass("sidebar-selected").siblings().removeClass("sidebar-selected");
+		$("#user-teams-nav").addClass("active").siblings().removeClass("active");
+
+		$("#main-content").empty();
+		$("#main-content").load("htmlok/user-teams-panel.html");
+	}
+	$("#user-teams-sidebar").click(userTeamsSelect);
+	$("#user-teams-nav").click(userTeamsSelect);
+
+	function mainAnnouncmentSelect(){
+		$("#main-announcment-sidebar").addClass("sidebar-selected").siblings().removeClass("sidebar-selected");
+		$("#main-announcment-nav").addClass("active").siblings().removeClass("active");
+
+		$("#main-content").empty();
+		//$("#main-content").load("htmlok/main-announcment.html");
+	}
+	$("#main-announcment-sidebar").click(mainAnnouncmentSelect);
+	$("#main-announcment-nav").click(mainAnnouncmentSelect);
 
 });

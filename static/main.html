@@ -7,16 +7,15 @@
     <title>چالش هوش مصنوعی دانشگاه شهید بهشتی</title>
 
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="bootstrap/customized-bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-rtl.min.css" rel="stylesheet">
-    <link href="css/customized.css" rel="stylesheet">
+    <link href="css/fonts.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
     <link href="css/sidebar.css" rel="stylesheet">
     <link href="css/sticky-footer.css" rel="stylesheet">
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="bootstrap/customized-bootstrap/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 
   </head>
@@ -31,16 +30,16 @@
         </div>
 
         <div class="collapse navbar-collapse" id="">
-          <ul class="nav navbar-nav navbar-left">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> ثبت نام</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> ورود</a></li>
+          <ul class="nav navbar-nav navbar-left ">
+            <li style="margin-top: 25px;"><a href="#"><span class="glyphicon glyphicon-user"></span> ثبت نام</a></li>
+            <li style="margin-top: 25px;"><a href="#"><span class="glyphicon glyphicon-log-in"></span> ورود</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
 
-    <nav class="hidden-lg hidden-sm hidden-md navbar navbar-inverse ">
+    <nav class="hidden-lg hidden-sm hidden-md navbar navbar-inverse " style="min-height: 50px" >
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand " href="#">  چالش هوش مصنوعی </a>
@@ -54,9 +53,9 @@
         <div class="collapse navbar-collapse" id="index-navbar">
           <ul class="nav navbar-nav">
             <li id="cmpt-list-selector-nav"><a href="#">لیست مسابقات</a></li>
-            <li class="active"><a href="#">رکورد ها و نتیاج</a></li>
-            <li><a href="#">تیم ها</a></li> 
-            <li><a href="#">اطلاعیه ها</a></li> 
+            <li id="records-selector-nav"><a href="#">رکورد ها و نتیاج</a></li>
+            <li id="user-teams-nav"><a href="#">تیم ها</a></li> 
+            <li id="main-announcment-nav"><a href="#">اطلاعیه ها</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-left">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> ثبت نام</a></li>
@@ -82,20 +81,19 @@
             <br/>
             <ul>
               <li id="cmpt-list-selector-sidebar"><a href="#">لیست مسابقات</a></li>
-              <li class="sidebar-selected" ><a href="#">رکورد ها و نتایج </a></li>
-              <li><a href="#">تیم ها</a></li>
-              <li><a href="#">اطلاعیه ها</a></li>
+              <li id="records-selector-sidebar"><a href="#">رکورد ها و نتایج </a></li>
+              <li id="user-teams-sidebar"><a href="#">تیم ها</a></li>
+              <li id="main-announcment-sidebar"><a href="#">اطلاعیه ها</a></li>
             </ul>
           </div>
         </div>
         <div class="col-md-10 col-sm-9 col-xs-12 main" >
-          <div id="main-content" class=" container-fluid">
-            
-          </div><!-- main content -->
+         <div id="main-content" class=" container-fluid">
+		</div><!-- main content -->
         </div>
       </div> <!-- row -->
     </div><!-- container-->
-    <footer class="footer main-footer" ><div class="container">
+    <footer class="footer dark-gray" ><div class="container">
                 <div class="text-center" style="margin-top:5px" >کلیه حقوق این مسابقه آزاد است.</div>
     </div></footer>
   </body>
