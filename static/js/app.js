@@ -8,7 +8,7 @@ function main_controller($scope,$http) {
     $scope.getNumberOfPages = function () {
         return new Array(5);
     };
-    $scope.page_numbering = "templates/page_numbering.html";
+    $scope.page_numbering = "templates/page-numbering.html";
     $scope.records = function() {
         $scope.template = "templates/scores.html";
         $scope.data =[];
