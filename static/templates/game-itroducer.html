@@ -1,4 +1,4 @@
-<div ng-if="show == 'game'" class=" container-fluid">
+<div class=" container-fluid">
     <h3 class="page-header" style=" margin-top:0px"  > لیست مسابقلات</h3>
 
     <div ng-repeat="record in data" class="col-md-6 col-sm-12" id="game-intoducer">
@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-md-6 col-xs-6">
                     <!--fix it: the image address should be taken as a field of record variable-->
-                    <img src="elements/Game_Logo.png" class="img-rounded" style=" max-width:  100% ; max-height:  auto"  >
+                    <img src="{{record.logo_address}}" class="img-rounded" style=" max-width:  100% ; max-height:  auto"  >
                 </div>
             </div>
             <div class="panel-footer">
