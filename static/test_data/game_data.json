@@ -1,5 +1,6 @@
 [
   {
+    "name" : "مسابقه 1",
     "conductor" : "دانشگاه شهید بهشتی",
     "max_members" : "3 نفره",
     "time" : "نا محدود",
@@ -8,6 +9,7 @@
     "logo_address" : "elements/Game_logo.png"
   },
   {
+    "name" : "مسابقه 2",
     "conductor" : "دانشگاه شهید بهشتی",
     "max_members" : "3 نفره",
     "time" : "نا محدود",
@@ -16,6 +18,7 @@
     "logo_address" : "elements/Game_logo.png"
   },
   {
+    "name" : "مسابقه 3",
     "conductor" : "دانشگاه شهید بهشتی",
     "max_members" : "3 نفره",
     "time" : "نا محدود",
@@ -24,6 +27,7 @@
     "logo_address" : "elements/Game_logo.png"
   },
   {
+    "name" : "مسابقه 4",
     "conductor" : "دانشگاه شهید بهشتی",
     "max_members" : "3 نفره",
     "time" : "نا محدود",
@@ -32,6 +36,7 @@
     "logo_address" : "elements/Game_logo.png"
   },
   {
+    "name" : "مسابقه 5",
     "conductor" : "دانشگاه شهید بهشتی",
     "max_members" : "3 نفره",
     "time" : "نا محدود",
