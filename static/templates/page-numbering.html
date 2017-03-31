@@ -1,9 +1,11 @@
 <div ng-if="data.length > 0" class="text-center">
 <ul class="pagination pagination-sm">
 <li class="page-info"><span>صفحه {{current_page}} از {{page_count}}</span></li>
-<li class="previous disabled"><a>→</a></li>
-<!--<li ng-repeat="i in getNumberOfPages()" class="active"><a href="?page=1">1</a></li>-->
+<li ng-class="current_page == 1 ? 'previous disabled' : ''"><a ng-click="change_page(current_page-1)">→</a></li>
 
-<li class="next"><a href="?page=2">←</a></li>
+<li ng-class="$index + 1 == current_page ? 'active' : ''" ng-repeat="_ in ((_ = []) && (_.length=page_count) && _) track by $index"><a ng-click="change_page($index + 1)">{{$index + 1}}</a></li>
+
+<li ng-class="current_page == page_count ? 'next disabled' : ''" class="next"><a ng-click="change_page(current_page+1)">←</a></li>
+
 </ul>
 </div>

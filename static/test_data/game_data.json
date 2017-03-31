@@ -43,5 +43,23 @@
     "place" : "آنلاین",
     "price" : "تیمی 100 هزار تومان",
     "logo_address" : "elements/favlogo.png"
+  },
+  {
+    "name" : "مسابقه 6",
+    "conductor" : "دانشگاه شهید بهشتی",
+    "max_members" : "3 نفره",
+    "time" : "نا محدود",
+    "place" : "آنلاین",
+    "price" : "تیمی 100 هزار تومان",
+    "logo_address" : "elements/favlogo.png"
+  },
+  {
+    "name" : "مسابقه 7",
+    "conductor" : "دانشگاه شهید بهشتی",
+    "max_members" : "3 نفره",
+    "time" : "نا محدود",
+    "place" : "آنلاین",
+    "price" : "تیمی 100 هزار تومان",
+    "logo_address" : "elements/favlogo.png"
   }
 ]

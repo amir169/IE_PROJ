@@ -1,0 +1,30 @@
+{
+  "games" :
+  {
+    "template_url" : "templates/game-introducer.html",
+    "data_url" : "test_data/game_data.json",
+    "sidebar_selector_id" : "games-selector-sidebar",
+    "navbar_selector_id" : "games-selector-nav"
+  },
+  "scores" :
+  {
+    "template_url" : "templates/scores.html",
+    "data_url" : "test_data/score_data.json",
+    "sidebar_selector_id" : "scores-selector-sidebar",
+    "navbar_selector_id" : "scores-selector-nav"
+  },
+  "teams" :
+  {
+    "template_url" : "templates/teams.html",
+    "data_url" : "test_data/team_data.json",
+    "sidebar_selector_id" : "teams-selector-sidebar",
+    "navbar_selector_id" : "teams-selector-nav"
+  },
+  "announcements" :
+  {
+    "template_url" : "templates/announcements.html",
+    "data_url" : "test_data/announcement_data .json",
+    "sidebar_selector_id" : "announcements-selector-sidebar",
+    "navbar_selector_id" : "announcements-selector-nav"
+  }
+}
