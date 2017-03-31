@@ -5,12 +5,10 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="col-md-6 col-xs-6">
-                    <!--fix it: the image address should be taken as a field of record variable-->
                     <img src="{{record.logo_address}}" class="img-rounded" style=" max-width:  100% ; max-height:  auto"  >
                 </div>
-
                 <div class="col-md-6 col-xs-6">
-                    <h4 class=" page-header" style=" margin-top:0px; margin-right:-10px;"><span id="compt-name">مسابقه 1</span></h4>
+                    <h4 class=" page-header" style=" margin-top:0px; margin-right:-10px;"><span id="compt-name">{{record.name}}</span></h4>
                     <span id="other-info">
                     برگزار کننده: {{record.conductor}}<br/>
                     تیمی: {{record.max_members}}<br/>
@@ -20,12 +18,9 @@
                     </span>
                 </div>
             </div>
-            <div class="panel-footer">
-            <div class="text-left">
+            <div class="panel-footer text-left">
                 <button class="btn btn-link">صورت سوال</button>
                 <button class="btn btn-primary">شرکت در مسابقه</button>
-
-            </div>
             </div>
         </div> <!-- panel -->
     </div>
