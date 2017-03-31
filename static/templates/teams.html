@@ -1,0 +1,29 @@
+<div ng-if="show == 'team'" class=" container-fluid">
+    <h3 class="page-header" style=" margin-top:0px">تیم&nbspها</h3>
+    <div class="panel panel-default col-md-12">
+        <div class="panel-body">
+            <span class="pull-left"><button class="btn btn-primary">تیم جدید +</button></span>
+            <p>لطفا قبل از ثبت تیم جدید <a href="#">شرایط ثبت تیم</a> را مطالعه نمایید.</p>
+        </div>
+    </div><!-- panel -->
+    <table class="table col-md-12 table-hover">
+        <thead>
+        <tr>
+            <th>نام تیم</th>
+            <th>تاریخ ثبت</th>
+            <th>اعضا</th>
+            <th>ویرایش</th>
+            <th>حذف</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="record in data">
+            <td>{{record.name}}</td>
+            <td>{{record.registration_time}}</td>
+            <td>{{record.members}}</td>
+            <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
