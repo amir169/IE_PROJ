@@ -4,25 +4,22 @@
 }
 
 .main-announcment{
-    border-radius: 0px;
 }
 
 .ma-footer{
-	background-color: #008e77;
 	max-height: 30px;
-	border-radius: 0px;
 	padding-top: 5px;
-	color: white;
+	color: #008e77;
 	text-decoration: none;
 }
 
 .ma-footer a,.ma-footer a:hover,.ma-footer a:active,.ma-footer a:visited,.ma-footer a:focus {
     text-decoration:none;
-	color: white;
+	color: #008e77;
 }
 
 .ma-footer a:hover{
-	color: #dddddd
+	color: #00594c
 }
 
 a.collapse-header{
@@ -32,4 +29,8 @@ a.collapse-header{
 .profile-pic-place{
 	margin-right: 30px;
 	margin-left: 30px;
+}
+
+.modal{
+	margin-top: 100px
 }
