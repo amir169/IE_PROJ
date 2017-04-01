@@ -3,6 +3,8 @@
  */
 angular.module("app").controller("team_modal",function($scope,$http) {
 
+    $scope.sequence=['اول','دوم','سوم','چهارم','پنجم','ششم'];   //a temporary spit
+
     $http.get("test_data/user.json").then(function (response) {
         $scope.user = response.data;
     });
