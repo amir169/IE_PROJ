@@ -24,7 +24,7 @@
 	color: #eeeeee ;
 }
 
-.sidebar a, a:hover, a:active, a:visited, a:focus {
+.sidebar a,.sidebar a:hover,.sidebar a:active,.sidebar a:visited,.sidebar a:focus {
     text-decoration:none;
 }
 
@@ -47,12 +47,11 @@
 	text-decoration: none;
 }
 
-.sidebar .profile-picture{
+.profile-picture{
 	max-width: 100%;
 	max-height: auto;
 
 }
-
 .sidebar .profile-pic-place{
 	margin-right: 30px;
 	margin-left: 30px;

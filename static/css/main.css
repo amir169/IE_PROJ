@@ -16,11 +16,20 @@
 	text-decoration: none;
 }
 
-.ma-footer a, a:hover, a:active, a:visited, a:focus {
+.ma-footer a,.ma-footer a:hover,.ma-footer a:active,.ma-footer a:visited,.ma-footer a:focus {
     text-decoration:none;
 	color: white;
 }
 
 .ma-footer a:hover{
 	color: #dddddd
+}
+
+a.collapse-header{
+	text-decoration: none;
+}
+
+.profile-pic-place{
+	margin-right: 30px;
+	margin-left: 30px;
 }
