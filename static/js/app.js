@@ -7,6 +7,10 @@ function main_controller($scope,$http) {
     init($http,$scope);
 
     $scope.change_page = function (page_number) {
+
+        if(page_number < 1 || page_number > $scope.page_count)
+            return;
+
         $scope.current_page = page_number;
         $scope.data = [];
         $http.get(context.data_url).then( function(response) {
@@ -47,6 +51,7 @@ function init($http,$scope) {
 
     $http.get("js/context_dictionary.json").then(function (response) {
         dict = response.data;
+        $scope.change_context('games');
     });
 }
 function change_style(sidebar,navbar) {
