@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <div ng-repeat="team_member in selected_team.members_array track by $index">
                                     <label> ایمیل نفر
-                                        {{$index + 1}}
+                                        {{sequence[$index]}}
                                     </label>
                                     <input type="email" class="form-control" value="{{selected_team.members_array[$index].email}}">
                                     <br/>
