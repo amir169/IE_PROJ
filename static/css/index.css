@@ -1,0 +1,12 @@
+body {
+	background-color: #313d43;
+	background-image: url("../elements/full-circle-logo-animated.gif");
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-size:500px  auto;
+	background-position: 50% -300px;
+}
+
+.modal{
+	margin-top: 100px
+}
