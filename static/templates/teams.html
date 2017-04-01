@@ -2,7 +2,9 @@
     <h3 class="page-header" style=" margin-top:0px">تیم&nbspها</h3>
     <div class="panel panel-default col-md-12">
         <div class="panel-body">
-            <span class="pull-left"><button class="btn btn-primary">تیم جدید +</button></span>
+            <span class="pull-left">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#registerTeamModal">تیم جدید +</button>
+            </span>
             <p>لطفا قبل از ثبت تیم جدید <a href="#">شرایط ثبت تیم</a> را مطالعه نمایید.</p>
         </div>
     </div><!-- panel -->
@@ -27,3 +29,49 @@
         </tbody>
     </table>
 </div>
+
+
+<div class="modal fade"  id="registerTeamModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="container-fluid">
+            <div class="col-md-6 col-xs-12">
+                <h4>قوانین</h4>
+                <p>
+                    <ul>    
+                    <li>قبل از اقدام به ثبت تیم حتما قوانین مسابقه ای که قصذ شرکت در آن دارید را مطالعه فرمایید</li>
+                    <li>در صورتی که تیم خود را برای مسابقه ای ثبت میکنید که نیاز به اطلاعات تحصیلی شما دارد، تمامی افراد ملزم هستند اطلاعات تحصیلی خود را در بخش اکانت کاربری خود تکمیل کنند</li>
+                    <li>در صورتی که تعداد افراد تیم با محدودیت مسابقه مورد نظر همخوانی نداشته باشد تیم شما اجازه شرکت در آن مسابقعه را نخواهد داشت</li>
+                    <li>در صورتی که نام تیم شما بر خلاف قوانین مسابقه و نامانساب باشد تیم شما حذف خواهد شد و تمام اطلاعات آن دست خواهد رفت </li>
+                    <li>حداکثر 5 تیمی که در یک روز میتواند ثبت کنید</li>
+                    </ul>
+                </p>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                    <label> اسم تیم</label>
+                    <input type="text" class="form-control" value="">
+                </div>
+                    <p>
+                      <label> سرگروه:</label>
+                      صالح جعفریزاده <!-- اینجا اسم کاربری بیاد که لاگینه -->
+                    </p>
+                <div class="form-group">
+                    <!-- این دوتا تیکه زیر بعد از زدن "اضافه کردن نفر جدید" اضافه شن اول یکی باشه البته -->
+                    <label> ایمیل نفر اول</label><!-- بجای تیم اول شماره تیم اضافه شده را بنویسه -->
+                    <input type="email" class="form-control" value="email@example.com">
+                    <!-- تهش -->
+                    <br/>
+                    <a href="#">اضافه کردن نفر جدید +</a>
+                </div>
+                <div class="text-center">
+                        <button class="btn btn-primary">ثبت تیم</button>
+                </div>
+            </div>
+
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
