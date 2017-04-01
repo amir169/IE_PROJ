@@ -17,7 +17,7 @@ function main_controller($scope,$http) {
             $scope.data = response.data.slice(($scope.current_page - 1) * page_capacity, $scope.current_page * page_capacity);
         });
     };
-    
+    $scope.something = "test_data/announcement_post.html";
     $scope.change_context = function (context_name) {
         context = dict[context_name];
         $scope.data = [];

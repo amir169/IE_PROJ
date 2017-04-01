@@ -22,8 +22,8 @@
   },
   "announcements" :
   {
-    "template_url" : "templates/announcements.html",
-    "data_url" : "test_data/announcement_data .json",
+    "template_url" : "templates/main-announcement.html",
+    "data_url" : "test_data/announcement_data.json",
     "sidebar_selector_id" : "announcements-selector-sidebar",
     "navbar_selector_id" : "announcements-selector-nav"
   }
