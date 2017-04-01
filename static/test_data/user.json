@@ -1,4 +1,10 @@
 {
   "name" : "صالح جعفریزاده",
-  "score" : 5
+  "profile_image" : "elements/default_profile_picture.png",
+  "score" : 5,
+  "email" : "saleh.jafarizade@gmail.com",
+  "university":"شهید بهشتی",
+  "student_number":"92213061",
+  "st_level" : "کارشناسی",
+  "st_major" : "آبیاری گیاهان دریایی"
 }

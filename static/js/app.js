@@ -31,6 +31,12 @@ function main_controller($scope,$http) {
             $scope.page_count = Math.ceil(response.data.length / page_capacity);
         });
     };
+
+    $scope.profile = function() {
+        $scope.data = [];
+        $scope.context = dict['profile'];
+        $scope.template = $scope.context.template_url;
+    };
 }
 var page_capacity;
 var dict;
