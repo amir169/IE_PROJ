@@ -22,5 +22,11 @@
     "name" : "announcements",
     "template_url" : "templates/main-announcement.html",
     "data_url" : "test_data/announcement_data.json"
+  },
+  "profile" :
+  {
+    "name" : "profile",
+    "template_url" : "templates/profile.html",
+    "data_url" : "test_data/user.json"
   }
 }

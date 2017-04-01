@@ -32,7 +32,7 @@
 
         <div class="collapse navbar-collapse" id="">
           <ul class="nav navbar-nav navbar-left ">
-            <li style="margin-top: 25px;"><a href="#"><span class="glyphicon glyphicon-user"></span> {{user.name}}</a></li>
+            <li style="margin-top: 25px;"><a ng-click="profile()" href="#"><span class="glyphicon glyphicon-user"></span> {{user.name}}</a></li>
             <li style="margin-top: 25px;"><a href="#"><span class="glyphicon glyphicon-log-out"></span> خروج</a></li>
           </ul>
         </div>
@@ -59,7 +59,7 @@
             <li ng-class="context.name=='announcements'?'active':''" ng-click="change_context('announcements')"><a href="#">اطلاعیه ها</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-left">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{user.name}}</a></li>
+            <li ng-class="context.name=='profile'?'active':''" ng-click="profile()"><a href="#"><span class="glyphicon glyphicon-user"></span> {{user.name}}</a></li>
             <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> خروج</a></li>
           </ul>
         </div>
@@ -73,10 +73,10 @@
           <div class="sidebar">
             &nbsp
             <div class="profile-pic-place">
-              <img src="elements/default_profile_picture.png" alt="profile-pic" id="profile-picture" class="profile-picture img-circle">
+              <img src="{{user.profile_image}}" alt="profile-pic" id="profile-picture" class="profile-picture img-circle">
             </div>
             <div class="container-fluid">
-                <a href="#" id="user-name"><div class="text-center">{{user.name}}</div></a>
+                <a ng-class="context.name=='profile'?'active':''" ng-click="profile()" href="#" id="user-name"><div class="text-center">{{user.name}}</div></a>
                 <div class="text-center" id="user-score"> امتیاز: {{user.score}}</div>
             </div>
             <br/>
