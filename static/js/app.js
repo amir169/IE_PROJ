@@ -2,7 +2,7 @@
  * Created by Amir Shams on 3/30/2017.
  */
 angular.module("app", []);
-function main_controller($scope,$http) {
+angular.module("app").controller("main_controller",function($scope,$http) {
 
     init($http,$scope);
 
@@ -37,7 +37,17 @@ function main_controller($scope,$http) {
         $scope.context = dict['profile'];
         $scope.template = $scope.context.template_url;
     };
-}
+    
+    $scope.open_team_panel = function () {
+        $http.get("test_data/user_team.json").then(function (response) {
+            $scope.members_count = response.members.length;
+        })
+    }
+
+    $scope.team_modal = function (n) {
+        console.log(n);
+    }
+});
 var page_capacity;
 var dict;
 function init($http,$scope) {
@@ -57,3 +67,4 @@ function init($http,$scope) {
         $scope.change_context('games');
     });
 }
+

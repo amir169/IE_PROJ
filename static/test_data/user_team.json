@@ -1,0 +1,18 @@
+{
+  "manager" :
+  {
+    "name" : "صالح جعفریزاده",
+    "email" : "saleh.jafarizade@gmail.com",
+  },
+  "members":
+  [
+    {
+      "name" : "امیر شمس",
+      "email" : "amirshams169@gmail.com"
+    },
+    {
+      "name" : "علیرضا معین فر",
+      "email" : "abm1391@gmail.com"
+    }
+  ]
+}

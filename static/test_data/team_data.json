@@ -2,16 +2,64 @@
   {
     "name": "چموش ها",
     "registration_date": "22/10/1373",
-    "members": "صالح جعفریزاده، امیر شمس، علیرضا معین فر"
+    "manager":
+    {
+      "name":"امیر شمس",
+      "email":"amirshams169@gmail.com"
+    },
+    "members": "صالح جعفریزاده، امیر شمس، علیرضا معین فر",
+    "members_array":
+    [
+      {
+        "name":"امیر شمس",
+        "email":"amirshams169@gmail.com"
+      },
+      {
+        "name":"صالح جعفریزاده",
+        "email":"salehjafarizadeh@gmail.com"
+      },
+      {
+        "name":"علیرضا معین فر",
+        "email":"abm1391@gmail.com"
+      }
+    ]
   },
   {
     "name": "خرگوش ها",
     "registration_date": "22/10/1373",
-    "members": "اردشیر شجاعی نسب، حمیدرضا مطلبی زاده، محمد برخوری"
+    "manager":
+    {
+      "name":"امیر شمس",
+      "email":"amirshams169@gmail.com"
+    },
+    "members": "اردشیر شجاعی نسب، حمیدرضا مطلبی زاده، محمد برخوری",
+    "members_array":
+    [
+      {
+        "name":"امیر شمس",
+        "email":"amirshams169@gmail.com"
+      }
+    ]
   },
   {
     "name": "بچه موش ها",
     "registration_date": "22/10/1373",
-    "members": "پویا پاینده، طه اقتصاد، حمیدرضا صحرایی"
+    "manager":
+    {
+      "name":"امیر شمس",
+      "email":"amirshams169@gmail.com"
+    },
+    "members": "پویا پاینده، طه اقتصاد، حمیدرضا صحرایی",
+    "members_array":
+    [
+      {
+        "name":"امیر شمس",
+        "email":"amirshams169@gmail.com"
+      },
+      {
+        "name":"علیرضا معین فر",
+        "email":"abm1391@gmail.com"
+      }
+    ]
   }
 ]
