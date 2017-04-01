@@ -15,7 +15,7 @@ angular.module("app").controller("team_modal",function($scope,$http) {
 
     $scope.init_modal = function (index) {
         $scope.selected_team = $scope.teams[index];
-    }
+    };
 
     $scope.create_team = function () {
         var new_team = new Object();
