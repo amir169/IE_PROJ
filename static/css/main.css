@@ -2,3 +2,25 @@
     background-color:#303c42 !important;
     color:  #eeeeee !important  ;
 }
+
+.main-announcment{
+    border-radius: 0px;
+}
+
+.ma-footer{
+	background-color: #008e77;
+	max-height: 30px;
+	border-radius: 0px;
+	padding-top: 5px;
+	color: white;
+	text-decoration: none;
+}
+
+.ma-footer a, a:hover, a:active, a:visited, a:focus {
+    text-decoration:none;
+	color: white;
+}
+
+.ma-footer a:hover{
+	color: #dddddd
+}
