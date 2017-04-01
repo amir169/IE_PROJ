@@ -1,0 +1,17 @@
+.date{
+    text-align:right;
+}
+.like-btn{
+    padding:10px;
+    color:green;
+}
+.dislike-btn{
+    padding:5px;
+    color:red;
+}
+
+.read-more{
+    position: absolute;
+    left: 3px;
+    bottom:3px;
+}
