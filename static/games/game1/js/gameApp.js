@@ -1,8 +1,8 @@
 /**
- * Created by Amir Shams on 3/30/2017.
+ * Created by Amir Shams on 4/2/2017.
  */
-angular.module("app", []);
-angular.module("app").controller("main_controller",function($scope,$http) {
+angular.module("gameApp", []);
+angular.module("gameApp").controller("game_controller",function($scope,$http) {
 
     init($http,$scope);
 
@@ -27,16 +27,22 @@ angular.module("app").controller("main_controller",function($scope,$http) {
         $http.get($scope.context.data_url).then( function(response) {
 
             // console.log(response.data);
-            $scope.data = response.data.slice(($scope.current_page - 1) * page_capacity, $scope.current_page * page_capacity);
-            $scope.page_count = Math.ceil(response.data.length / page_capacity);
+            if(context.name == 'sch_ranking')       //a temporary spit. fix it later
+                $scope.data = response.data;
+            else {
+                $scope.data = response.data.slice(($scope.current_page - 1) * page_capacity, $scope.current_page * page_capacity);
+                $scope.page_count = Math.ceil(response.data.length / page_capacity);
+            }
         });
     };
-
-    $scope.profile = function() {
-        $scope.data = [];
-        $scope.context = dict['profile'];
+    
+    $scope.game_document = function () {
+        $scope.context = dict['document'];
         $scope.template = $scope.context.template_url;
     };
+        
+
+
 });
 var page_capacity;
 var dict;
@@ -44,17 +50,14 @@ function init($http,$scope) {
 
     $scope.page_count = 0;
     $scope.current_page= 0;
-    page_capacity = 6;
+    page_capacity = 8;
 
-    $scope.pagination = "templates/pagination.html";
-
-    $http.get("test_data/user.json").then(function (response) {
-        $scope.user = response.data;
-    });
-
+    $scope.pagination = "../../templates/pagination.html";
     $http.get("js/context_dictionary.json").then(function (response) {
         dict = response.data;
-        $scope.change_context('games');
+        $scope.game_document();
+    });
+    $http.get("test_data/game_document.json").then( function(response) {
+        $scope.game = response.data;
     });
 }
-
