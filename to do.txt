@@ -1,3 +1,0 @@
-
-game register modal (rules,cchoose team if needed,pay if needed)
-team invitation alert
