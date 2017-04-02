@@ -20,7 +20,7 @@
             </div>
             <div class="panel-footer text-left">
                 <button class="btn btn-link">توضیجات بیشتر</button>
-                <button class="btn btn-primary"  data-toggle="modal" data-target="#registerComptModal">شرکت در مسابقه</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#registerComptModal">شرکت در مسابقه</button>
             </div>
         </div> <!-- panel -->
     </div>
@@ -28,7 +28,7 @@
 
 
 
-<div class="modal fade"  id="registerComptModal">
+<div ng-controller="game_modal as game" class="modal fade"  id="registerComptModal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
@@ -36,7 +36,7 @@
             <div class="col-md-6 col-xs-12">
                 <h4>قوانین</h4>
                 <p>
-                    <ul>    
+                    <ul>
                     <li>قانون ها را حسش نبود بینوسم مال همون تیمه</li>
                     <li>در صورتی که تیم خود را برای مسابقه ای ثبت میکنید که نیاز به اطلاعات تحصیلی شما دارد، تمامی افراد ملزم هستند اطلاعات تحصیلی خود را در بخش اکانت کاربری خود تکمیل کنند</li>
                     <li>در صورتی که تعداد افراد تیم با محدودیت مسابقه مورد نظر همخوانی نداشته باشد تیم شما اجازه شرکت در آن مسابقعه را نخواهد داشت</li>
@@ -51,8 +51,7 @@
                     <label> انتخاب تیم</label>
                     <select class="form-control">
                         <option>-شما تیمی ثبت نکردید-</option><!-- این برای وقتی هست که طرف تیمی ثبت نکرده -->
-                        <option>چموش ها</option>
-                        <option>خرگوش ها</option>
+                        <option ng-repeat="record in teams">{{record.name}}</option>
                     </select>
                 </div>
                 <div class="form-group" style="margin-top: 10px"  >
@@ -61,7 +60,9 @@
                 </div>
                 <br/>
                 <br/>
-                <button class="btn btn-primary form-control"  >ثبت نام در مسابقه</button>
+                <a href="games/game1/index.html">
+                    <button class="btn btn-primary form-control"  >ثبت نام در مسابقه</button>
+                </a>
             </div>
 
         </div>

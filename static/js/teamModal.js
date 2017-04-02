@@ -5,15 +5,9 @@ angular.module("app").controller("team_modal",function($scope,$http) {
 
     $scope.sequence=['اول','دوم','سوم','چهارم','پنجم','ششم'];   //a temporary spit
 
-    $http.get("test_data/user.json").then(function (response) {
-        $scope.user = response.data;
-    });
+    $scope.selected_team = $scope.data[0];
+    $scope.teams = $scope.data;
 
-    $http.get('test_data/team_data.json').then( function(response) {
-        console.log(response.data[0]);
-        $scope.selected_team = response.data[0];
-        $scope.teams = response.data;
-    });
 
     $scope.init_modal = function (index) {
         $scope.selected_team = $scope.teams[index];
