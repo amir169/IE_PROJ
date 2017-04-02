@@ -19,7 +19,7 @@
                         <select class="form-control">
                             <option>Java</option>
                             <option>C++</option>
-                            <option>verilog</option>
+                            <option>Python</option>
                             <option>JFZ--</option>
                         </select>
                       </div>
@@ -38,23 +38,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr ng-repeat="record in data">
                         <td><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked></td>
-                        <td>client.zip</td>
-                        <td>1394/1/12</td>
+                        <td>{{record.file_name}}</td>
+                        <td>{{record.submission_data}}</td>
                         <td><a href="#"><span class="glyphicon glyphicon-cog"></span></a></td>
                         <td><a href="#"><span class="glyphicon glyphicon-download-alt"></span></a></td>
                         <td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
                     </tr>
-                    <tr>
-                        <td><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"></td>
-                        <td>client.zip</td>
-                        <td>1394/1/12</td>
-                        <td><a href="#"><span class="glyphicon glyphicon-cog"></span></a></td>
-                        <td><a href="#"><span class="glyphicon glyphicon-download-alt"></span></a></td>
-                        <td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
-                    </tr>
-                    
                     </tbody>    
                     </table>
 

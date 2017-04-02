@@ -15,7 +15,7 @@
   {
     "name" : "upload_code",
     "template_url" : "templates/upload_code.html",
-    "data_url" : "test_data/upload_code.json"
+    "data_url" : "test_data/uploaded_codes.json"
   },
   "games" :
   {

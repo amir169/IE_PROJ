@@ -27,7 +27,7 @@ angular.module("gameApp").controller("game_controller",function($scope,$http) {
         $http.get($scope.context.data_url).then( function(response) {
 
             // console.log(response.data);
-            if(context.name == 'sch_ranking')       //a temporary spit. fix it later
+            if($scope.context.name == 'sch_ranking')       //a temporary spit. fix it later
                 $scope.data = response.data;
             else {
                 $scope.data = response.data.slice(($scope.current_page - 1) * page_capacity, $scope.current_page * page_capacity);
@@ -40,8 +40,6 @@ angular.module("gameApp").controller("game_controller",function($scope,$http) {
         $scope.context = dict['document'];
         $scope.template = $scope.context.template_url;
     };
-        
-
 
 });
 var page_capacity;

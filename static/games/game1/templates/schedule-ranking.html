@@ -8,32 +8,12 @@
                                     <th>برد</th>
                                     <th>امتیاز</th>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>chamoosh ha</td>
-                                    <td>3</td>
-                                    <td>143</td>
+                                <tr ng-repeat="record in data.ranking">
+                                    <td>{{record.rank}}</td>
+                                    <td>{{record.team}}</td>
+                                    <td>{{record.winning_count}}</td>
+                                    <td>{{record.score}}</td>
                                 </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>chamoosh ha</td>
-                                    <td>3</td>
-                                    <td>143</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>chamoosh ha</td>
-                                    <td>3</td>
-                                    <td>143</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>chamoosh ha</td>
-                                    <td>3</td>
-                                    <td>143</td>
-                                </tr>
-
-
                             </table>
                         </div>
                     </div>
@@ -46,25 +26,10 @@
                                         <th>روز</th>
                                         <th>ساعت</th>
                                     </tr>
-                                    <tr>
-                                        <td style=" text-align: center"> chamoosh ha - هوش مصنوعی </td>
-                                        <td>پنجشنبه (2/17)</td>
-                                        <td>16:00</td>   
-                                        <td style=" text-align: center"> chamoosh ha - هوش مصنوعی </td>
-                                        <td>پنجشنبه (2/17)</td>
-                                        <td>16:00</td>   
-                                        <td style=" text-align: center"> chamoosh ha - هوش مصنوعی </td>
-                                        <td>پنجشنبه (2/17)</td>
-                                        <td>16:00</td>   
-                                        <td style=" text-align: center"> chamoosh ha - هوش مصنوعی </td>
-                                        <td>پنجشنبه (2/17)</td>
-                                        <td>16:00</td>   
-                                        <td style=" text-align: center"> chamoosh ha - هوش مصنوعی </td>
-                                        <td>پنجشنبه (2/17)</td>
-                                        <td>16:00</td>   
-                                        <td style=" text-align: center"> chamoosh ha - هوش مصنوعی </td>
-                                        <td>پنجشنبه (2/17)</td>
-                                        <td>16:00</td>  
+                                    <tr ng-repeat="record in data.sch">
+                                        <td style=" text-align: center"> {{record.challengers}} </td>
+                                        <td>{{record.date}}</td>
+                                        <td>{{record.time}}</td>
                                     </tr>
                             </table>
                         </div>

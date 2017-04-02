@@ -11,37 +11,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="text-left">چموش ها</td>
-                        <td class="text-center">13-91</td>
-                        <td class="text-right">هوش مصنوعی</td>
-                        <td class="text-center">جزیره</td>
-                        <td class="text-center">1394/2/1 14:30</span></a></td>
-                        <td class="text-center"><a href="#"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">چموش ها</td>
-                        <td class="text-center">35-64</td>
-                        <td class="text-right">هوش مصنوعی</td>
-                        <td class="text-center">دنیا</td>
-                        <td class="text-center">1394/2/1 14:30</span></a></td>
-                        <td class="text-center"><a href="#"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">چموش ها</td>
-                        <td class="text-center">20-12</td>
-                        <td class="text-right">هوش مصنوعی</td>
-                        <td class="text-center">یک تکه</td>
-                        <td class="text-center">1394/2/1 14:30</span></a></td>
-                        <td class="text-center"><a href="#"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                    </tr>    
-                    <tr>
-                        <td class="text-left">چموش ها</td>
-                        <td class="text-center">17-25</td>
-                        <td class="text-right">هوش مصنوعی</td>
-                        <td class="text-center">جزیره 2</td>
-                        <td class="text-center">1394/2/1 14:30</span></a></td>
-                        <td class="text-center"><a href="#"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                    <tr ng-repeat="record in data">
+                        <td class="text-left">{{record.team1}}</td>
+                        <td class="text-center">{{record.result}}</td>
+                        <td class="text-right">{{record.team2}}</td>
+                        <td class="text-center">{{record.map}}</td>
+                        <td class="text-center">{{record.time}}</span></a></td>
+                        <td class="text-center"><a href="{{record.observation_link}}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                     </tr>
                     </tbody>    
                     </table>
