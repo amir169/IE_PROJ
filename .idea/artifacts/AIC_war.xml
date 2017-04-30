@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="AIC:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="AIC-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="AIC:war exploded" />
-    </root>
-  </artifact>
-</component>
