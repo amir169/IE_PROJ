@@ -2,137 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46721cf7-550c-4db1-848c-c552a8b949e7" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/MavenWebApp.iml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/blog.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.1.1-rc1/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.1.1-rc1/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.1.1-rc2/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.1.1-rc2/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.1.1/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.1.1/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.1.2/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.1.2/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.2.0-rc1/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.2.0-rc1/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.2.0-rc2/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.2.0-rc2/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.2.0-rc3/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.2.0-rc3/css/bootstrap-rtl.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.2.0-rc3/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.2.0-rc4/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.2.0-rc4/css/bootstrap-rtl.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.2.0-rc4/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.1-rc1/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.1-rc1/css/bootstrap-rtl.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.1-rc1/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.1-rc2/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.1-rc2/css/bootstrap-rtl.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.1-rc2/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.1/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.1/css/bootstrap-rtl.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.1/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.4/css/bootstrap-flipped.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.4/css/bootstrap-flipped.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.4/css/bootstrap-flipped.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.4/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.4/css/bootstrap-rtl.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/cdnjs/3.3.4/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-flipped.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-flipped.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-flipped.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-rtl.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-rtl.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/customized-bootstrap/config.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/customized-bootstrap/css/bootstrap-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/customized-bootstrap/css/bootstrap-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/customized-bootstrap/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/customized-bootstrap/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/customized-bootstrap/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/customized-bootstrap/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/js/holder.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/js/html5shiv.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/js/jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/js/npm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/bootstrap/js/respond.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/blog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/customized.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/fonts.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/game.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/index.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/main.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/sidebar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/sticky-footer.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/elements/Game_logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/elements/SBUAIC LOG.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/elements/default_profile_Picture.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/elements/favlogo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/elements/full-circle-logo-animated.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/elements/game-banner.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/elements/game-bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/elements/login-bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/elements/login-bg2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/elements/repeated-bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/elements/sideSelected.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/fonts/MyriadArabic-Bold.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/fonts/MyriadArabic-BoldIt.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/fonts/MyriadArabic-It.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/fonts/MyriadArabic-Regular.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/fonts/W_ohod_SoftGozar.CoM.TTF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/fonts/W_yekan_Bold_SoftGozar.CoM.TTF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/fonts/W_yekan_SoftGozar.CoM.TTF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/css/game.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/elements/Game_logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/elements/full-circle-logo-animated.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/elements/game-banner.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/elements/game-bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/elements/game-player.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/elements/repeated-bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/js/context_dictionary.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/js/gameApp.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/templates/game-document.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/templates/games_list.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/templates/schedule-ranking.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/templates/upload_code.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/test_data/game_document.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/test_data/games.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/test_data/sample_doc.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/test_data/sch_ranking.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/games/game1/test_data/uploaded_codes.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/context_dictionary.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/gameModal.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/teamModal.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/login.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/templates/game-introducer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/templates/main-announcement.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/templates/pagination.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/templates/profile.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/templates/scores.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/templates/teams.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/test_data/announcement_data.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/test_data/announcement_post.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/test_data/game_data.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/test_data/score_data.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/test_data/team_data.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/test_data/user.json" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -161,7 +32,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AIC.iml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AIC.iml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AIC.iml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="320">
@@ -191,7 +62,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="blog.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="blog.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/static/blog.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -953,16 +824,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1493548081573</updated>
-      <workItem from="1493548084649" duration="479000" />
+      <workItem from="1493548084649" duration="689000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="479000" />
+    <option name="totallyTimeSpent" value="689000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1369" height="772" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -988,7 +859,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24981523" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24981523" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -1024,14 +895,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AIC.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nb-configuration.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1052,6 +915,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AIC.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
           <folding />
         </state>
       </provider>
