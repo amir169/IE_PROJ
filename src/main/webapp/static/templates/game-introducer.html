@@ -1,0 +1,72 @@
+<div class=" container-fluid">
+    <h3 class="page-header" style=" margin-top:0px"  > لیست مسابقلات</h3>
+
+    <div ng-repeat="record in data" class="col-md-6 col-sm-12" id="game-intoducer">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-6 col-xs-6">
+                    <img src="{{record.logo_address}}" class="img-rounded" style=" max-width:  100% ; max-height:  auto"  >
+                </div>
+                <div class="col-md-6 col-xs-6">
+                    <h4 class=" page-header" style=" margin-top:0px; margin-right:-10px;"><span id="compt-name">{{record.name}}</span></h4>
+                    <span id="other-info">
+                    برگزار کننده: {{record.conductor}}<br/>
+                    تیمی: {{record.max_members}}<br/>
+                    زمان:{{record.time}}<br/>
+                    مکان: {{record.place}}<br/>
+                    هزینه: {{record.price}}
+                    </span>
+                </div>
+            </div>
+            <div class="panel-footer text-left">
+                <button class="btn btn-link">توضیجات بیشتر</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#registerComptModal">شرکت در مسابقه</button>
+            </div>
+        </div> <!-- panel -->
+    </div>
+</div>
+
+
+
+<div ng-controller="game_modal as game" class="modal fade"  id="registerComptModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="container-fluid">
+            <div class="col-md-6 col-xs-12">
+                <h4>قوانین</h4>
+                <p>
+                    <ul>
+                    <li>قانون ها را حسش نبود بینوسم مال همون تیمه</li>
+                    <li>در صورتی که تیم خود را برای مسابقه ای ثبت میکنید که نیاز به اطلاعات تحصیلی شما دارد، تمامی افراد ملزم هستند اطلاعات تحصیلی خود را در بخش اکانت کاربری خود تکمیل کنند</li>
+                    <li>در صورتی که تعداد افراد تیم با محدودیت مسابقه مورد نظر همخوانی نداشته باشد تیم شما اجازه شرکت در آن مسابقعه را نخواهد داشت</li>
+                    <li>در صورتی که نام تیم شما بر خلاف قوانین مسابقه و نامانساب باشد تیم شما حذف خواهد شد و تمام اطلاعات آن دست خواهد رفت </li>
+                    <li>حداکثر 5 تیمی که در یک روز میتواند ثبت کنید</li>
+                    </ul>
+                </p>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <br/>
+                <div class="form-group">
+                    <label> انتخاب تیم</label>
+                    <select class="form-control">
+                        <option>-شما تیمی ثبت نکردید-</option><!-- این برای وقتی هست که طرف تیمی ثبت نکرده -->
+                        <option ng-repeat="record in teams">{{record.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-top: 10px"  >
+                    <h5><span>هزینه ی ثبت نام</span><span class="pull-left">100 هزار تومان</span></h5>
+                    <button class="btn btn-default form-control" style="border-color: #008e77;color: #008e77" >پرداخت هزینه</button>
+                </div>
+                <br/>
+                <br/>
+                <a href="games/game1/index.html">
+                    <button class="btn btn-primary form-control"  >ثبت نام در مسابقه</button>
+                </a>
+            </div>
+
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

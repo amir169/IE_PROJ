@@ -1,0 +1,58 @@
+@font-face{
+	 font-family: "ohod";
+  	 src: url(../fonts/W_ohod_SoftGozar.CoM.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: "my-riad";
+    src: url("../fonts/MyriadArabic-Regular.otf");
+}
+
+@font-face {
+    font-family: "my-riad";
+    src: url("../fonts/MyriadArabic-It.otf");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "my-riad";
+    src: url("../fonts/MyriadArabic-BoldIt.otf");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "my-riad";
+    src: url("../fonts/MyriadArabic-Bold.otf");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "yekan";
+    src: url("../fonts/W_yekan_SoftGozar.CoM.ttf") format("truetype")
+
+}
+
+@font-face {
+    font-family: "yekan";
+    src: url("../fonts/W_yekan_Bold_SoftGozar.CoM.ttf") format("truetype");
+    font-weight: bold;
+}
+
+.ohod-font{
+	font-family: "ohod"
+}
+
+.my-riad-font{
+	font-family: "my-riad"
+}
+
+.yekan-font{
+	font-family: yekan
+}
+
+.main-footer{
+    background-color:#303c42 !important;
+    color:  #eeeeee !important  ;
+}
+
