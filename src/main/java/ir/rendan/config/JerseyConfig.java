@@ -1,7 +1,5 @@
 package ir.rendan.config;
 
-//import ir.rendan.services.TestService;
-import ir.rendan.services.TestService;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletProperties;
 import org.springframework.stereotype.Component;
@@ -15,7 +13,8 @@ public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
 
         register(CORSResponseFilter.class);
-        register(TestService.class);
+
+        packages("ir.rendan.services");
 
         property(ServletProperties.FILTER_FORWARD_ON_404, true);
     }
