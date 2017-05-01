@@ -1,0 +1,27 @@
+<div class=" container-fluid">
+    <h3 class="page-header" style=" margin-top:0px"  > نتایج</h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <!-- این جدول فعلا انجوریه بعدش باید محتویاتش با آنگولار داینامیک با شمارنده پایین صفحه عوض شه-->
+            <thead>
+            <tr>
+                <th>چالش هوش بهشتی</th>
+                <th>تاریح برگزاری</th>
+                <th>تیم</th>
+                <th>امتیاز</th>
+                <th>رتبه</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat = "record in data">
+                <td>{{ record.challenge_name }}</td>
+                <td>{{ record.date }}</td>
+                <td>{{ record.team }}</td>
+                <td>{{ record.score }}</td>
+                <td>{{ record.rating }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="alert alert-info">این پیجینیشنم هم وقتیه تعداد کمه نباس باشه مثل الان :)</div>
+</div>

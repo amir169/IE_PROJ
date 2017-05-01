@@ -1,0 +1,26 @@
+
+.like-btn{
+    color:green;
+}
+.dislike-btn{
+    color:red;
+}
+
+body{
+	background-color: #313d43;
+}
+
+.navbar-blog{
+	 color:white;
+	 background-color: #008e77;
+	 border-color: 	#008e77;
+}
+
+.navbar-blog a,.navbar-blog a:active,.navbar-blog a:visited,.navbar-blog a:focus {
+    text-decoration:none;
+    color:white !important;
+}
+.navbar-blog a:hover{
+    text-decoration:none;
+    color:#cccccc !important;	
+}

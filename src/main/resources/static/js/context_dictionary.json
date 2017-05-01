@@ -1,0 +1,32 @@
+{
+  "games" :
+  {
+    "name" : "games",
+    "template_url" : "templates/game-introducer.html",
+    "data_url" : "test_data/game_data.json"
+  },
+  "scores" :
+  {
+    "name" : "scores",
+    "template_url" : "templates/scores.html",
+    "data_url" : "test_data/score_data.json"
+  },
+  "teams" :
+  {
+    "name" : "teams",
+    "template_url" : "templates/teams.html",
+    "data_url" : "test_data/team_data.json"
+  },
+  "announcements" :
+  {
+    "name" : "announcements",
+    "template_url" : "templates/main-announcement.html",
+    "data_url" : "test_data/announcement_data.json"
+  },
+  "profile" :
+  {
+    "name" : "profile",
+    "template_url" : "templates/profile.html",
+    "data_url" : "test_data/user.json"
+  }
+}

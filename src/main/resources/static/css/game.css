@@ -1,0 +1,19 @@
+body{
+	background-color:#161f24;
+}
+
+@media screen and (min-width: 900px) and (min-height: 700px) {
+	.bg-animated-element{
+		background-image: url(../elements/full-circle-logo-animated.gif);
+		background-position: 110% 160%;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-size: 450px 450px;
+	}
+}
+
+
+.repeated-bg{
+	background-image: url(../elements/repeated-bg.png);
+	background-attachment: fixed;
+}
