@@ -1,7 +1,7 @@
 package ir.rendan.config;
 
-//import ir.rendan.TestService;
-import ir.rendan.TestService;
+//import ir.rendan.services.TestService;
+import ir.rendan.services.TestService;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletProperties;
 import org.springframework.stereotype.Component;
