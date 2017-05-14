@@ -3,6 +3,8 @@ package ir.rendan.dao;
 import ir.rendan.config.HibernateUtils;
 import ir.rendan.model.UserInfo;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,4 +28,17 @@ public class UserDAO {
 		}
 		return activeUserInfo;
 	}
+
+	public void insert(UserInfo u){
+        Session session = HibernateUtils.getSession();
+        Transaction tx = session.beginTransaction();
+        String out =  session.save(u).toString();
+        System.out.println("###########"+out);
+        tx.commit();
+    }
+
+    public UserInfo getByUserName(String name){
+        return HibernateUtils.getSession().get(UserInfo.class,name);
+    }
+
 }

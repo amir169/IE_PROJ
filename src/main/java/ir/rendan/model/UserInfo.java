@@ -20,6 +20,16 @@ public class UserInfo implements Serializable {
 	@Column
 	private String role;
 
+	public UserInfo(String username, String password, short enabled, String role) {
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.role = role;
+	}
+
+	public UserInfo() {
+	}
+
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}
