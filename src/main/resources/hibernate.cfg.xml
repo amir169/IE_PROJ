@@ -26,6 +26,11 @@
         <mapping class="ir.rendan.model.TestEntity"/>
         <mapping class="ir.rendan.model.UserInfo"/>
         <mapping class="ir.rendan.model.Team"/>
+        <mapping class="ir.rendan.model.TeamGame"/>
+        <mapping class="ir.rendan.model.Code"/>
+        <mapping class="ir.rendan.model.Game"/>
+        <mapping class="ir.rendan.model.League"/>
+        <mapping class="ir.rendan.model.Match"/>
 
         <!--<property name="show_sql">true</property>-->
         <!-- <property title="connection.username"/> -->

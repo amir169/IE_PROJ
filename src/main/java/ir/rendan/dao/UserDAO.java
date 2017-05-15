@@ -15,7 +15,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class UserDAO {
+public class UserDAO extends GenericDAO {
 	@PersistenceContext	
 	private EntityManager entityManager;
 	public UserInfo getActiveUser(String userName) {
@@ -31,13 +31,6 @@ public class UserDAO {
 		return activeUserInfo;
 */
 	}
-
-	public void insert(UserInfo u){
-        Session session = HibernateUtils.getSession();
-        Transaction tx = session.beginTransaction();
-        String out =  session.save(u).toString();
-        tx.commit();
-    }
 
     public UserInfo getByUserName(String name){
         return HibernateUtils.getSession().get(UserInfo.class,name);
