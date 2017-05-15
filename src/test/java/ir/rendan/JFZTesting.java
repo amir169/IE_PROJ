@@ -2,7 +2,7 @@ package ir.rendan;
 
 import ir.rendan.dao.TeamDAO;
 import ir.rendan.dao.UserDAO;
-import ir.rendan.model.TeamInfo;
+import ir.rendan.model.Team;
 import ir.rendan.model.UserInfo;
 
 /**
@@ -16,10 +16,10 @@ public class JFZTesting {
         UserInfo ui = UD.getByUserName("user0");
 
         TeamDAO TD = new TeamDAO();
-        TeamInfo ti1= new TeamInfo("چموش ها",ui);
+        Team ti1= new Team("چموش ها",ui);
         TD.insert(ti1);
 
-        TeamInfo ti = TD.getByName("چموش ها");
+        Team ti = TD.getByName("چموش ها");
 
         ti.addMember(UD.getByUserName("user1"));
         TD.update(ti);

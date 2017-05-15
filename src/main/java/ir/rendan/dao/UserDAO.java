@@ -19,6 +19,8 @@ public class UserDAO {
 	@PersistenceContext	
 	private EntityManager entityManager;
 	public UserInfo getActiveUser(String userName) {
+		return getByUserName(userName);
+		/*
 		UserInfo activeUserInfo = new UserInfo();
 		Criteria c = HibernateUtils.getSession().createCriteria(UserInfo.class);
 		c.add(Restrictions.eq("username",userName));
@@ -27,13 +29,13 @@ public class UserDAO {
 			activeUserInfo = (UserInfo)list.get(0);
 		}
 		return activeUserInfo;
+*/
 	}
 
 	public void insert(UserInfo u){
         Session session = HibernateUtils.getSession();
         Transaction tx = session.beginTransaction();
         String out =  session.save(u).toString();
-        System.out.println("###########"+out);
         tx.commit();
     }
 

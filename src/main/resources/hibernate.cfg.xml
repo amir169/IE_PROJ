@@ -25,7 +25,7 @@
 
         <mapping class="ir.rendan.model.TestEntity"/>
         <mapping class="ir.rendan.model.UserInfo"/>
-        <mapping class="ir.rendan.model.TeamInfo"/>
+        <mapping class="ir.rendan.model.Team"/>
 
         <!--<property name="show_sql">true</property>-->
         <!-- <property title="connection.username"/> -->

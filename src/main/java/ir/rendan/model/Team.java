@@ -10,7 +10,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "TEAM")
-public class TeamInfo {
+public class Team {
     @Id
     String teamname;
 
@@ -26,10 +26,10 @@ public class TeamInfo {
     )
     Set<UserInfo> members;
 
-    public TeamInfo() {
+    public Team() {
     }
 
-    public TeamInfo(String teamname, UserInfo headUSer) {
+    public Team(String teamname, UserInfo headUSer) {
         this.teamname = teamname;
         HeadUSer = headUSer;
         this.members = new HashSet<>();

@@ -16,9 +16,20 @@ public class UserInfo implements Serializable {
 	@Column
 	private String password;
 	@Column
+	private String email;
+	@Column
 	private short enabled;
 	@Column
 	private String role;
+
+
+	public UserInfo(String username, String password, String email, short enabled, String role) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.enabled = enabled;
+		this.role = role;
+	}
 
 	public UserInfo(String username, String password, short enabled, String role) {
 		this.username = username;
