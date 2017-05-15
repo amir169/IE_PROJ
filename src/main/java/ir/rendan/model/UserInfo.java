@@ -1,5 +1,8 @@
 package ir.rendan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,6 +17,7 @@ public class UserInfo implements Serializable {
 	@Column
 	private String username;
 	@Column
+	@JsonIgnore
 	private String password;
 	@Column
 	private String email;
