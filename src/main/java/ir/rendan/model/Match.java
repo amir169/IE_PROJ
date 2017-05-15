@@ -12,10 +12,19 @@ public class Match {
     @Id @GeneratedValue int id;
 
     @Column
+    short played;
+
+    @Column
     long date;// the date fo running
 
-    @OneToMany//must test
-    Map<Team,Float> scores;
+    @ElementCollection
+    @JoinTable(name = "MATCH_SCORE",joinColumns = @JoinColumn(name = "id"))
+    @MapKeyColumn(name = "TM_GAME_ID")
+    @Column(name = "SCORES")
+    Map<Integer,Float> scores;
+
+    @ManyToOne
+    public League leagueOwner;
 
 
 }

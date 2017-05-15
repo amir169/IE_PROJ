@@ -23,7 +23,6 @@
         <property name="hibernate.c3p0.idle_test_period">5</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
 
-        <mapping class="ir.rendan.model.TestEntity"/>
         <mapping class="ir.rendan.model.UserInfo"/>
         <mapping class="ir.rendan.model.Team"/>
         <mapping class="ir.rendan.model.TeamGame"/>

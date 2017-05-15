@@ -23,6 +23,9 @@ public class Code {
         return id;
     }
 
+    @ManyToOne
+    TeamGame teamGame;
+
     public void setId(int id) {
         this.id = id;
     }

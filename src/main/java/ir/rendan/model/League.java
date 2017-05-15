@@ -12,15 +12,35 @@ import java.util.Set;
 public class League {
     @Id @GeneratedValue int id;
 
+    @ManyToOne
+    Game game;
+
     @Column
     String Name;
 
     @OneToMany
-    Set<Match> played;
+    public Set<Match> matches;
 
-    @OneToMany
-    Set<Match> toPlay;
+    @ElementCollection
+    @JoinTable(name = "TM_GAME_SCORE",joinColumns = @JoinColumn(name = "id"))
+    @MapKeyColumn(name = "TM_GAME_ID")
+    @Column(name = "SCORES")
+    public Map<Integer,Float> scores;
 
-    @OneToMany
-    Map<TeamGame,Float> scores;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
 }

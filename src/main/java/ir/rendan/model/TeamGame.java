@@ -12,10 +12,10 @@ import java.util.Set;
 public class TeamGame {
     @Id @GeneratedValue int id;
 
-    @OneToMany
+    @ManyToOne
     Team team;
 
-    @OneToMany
+    @ManyToOne
     Game game;
 
     @OneToMany

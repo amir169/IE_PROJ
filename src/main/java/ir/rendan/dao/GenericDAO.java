@@ -15,25 +15,25 @@ public class GenericDAO {
     }
 
 
-    public void insert(Object team)
+    public void insert( Object ob)
     {
         Session se = HibernateUtils.getSession();
         Transaction tx = se.beginTransaction();
-        se.save(team);
+        se.save(ob);
         tx.commit();
     }
 
-    public void deleet(Object team){
+    public void deleet(Object ob){
         Session se = HibernateUtils.getSession();
         Transaction tx = se.beginTransaction();
-        se.delete(team);
+        se.delete(ob);
         tx.commit();
 
     }
 
-    public void update(Object team){
+    public void update(Object ob){
         Session se = HibernateUtils.getSession();
         Transaction tx = se.beginTransaction();
-        se.update(team);
+        se.update(ob);
         tx.commit();}
 }
