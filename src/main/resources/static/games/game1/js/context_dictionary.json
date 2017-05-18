@@ -22,5 +22,12 @@
     "name" : "games",
     "template_url" : "templates/games_list.html",
     "data_url" : "test_data/games.json"
+  },
+  "comment" :
+  {
+    "name":"comment",
+    "template_url" : "templates/comment.html",
+    "data_url" : "test_data/commentsData.json"
   }
+
 }

@@ -1,54 +1,54 @@
 
-                <div class="col-sm-6 col-xs-12">
-                <h3 class="page header" style="margin-top: 0px">قوانین</h3>
-                <p>
-                    <ul>
-                        <li>فایل فلان را از پوشه بهمان زیپ کنید و راسال نمیید</li>
-                        <li>کد های خود را از روز شنبه تا چهارشنبه هر فهته میتوانید تغییر دهید</li>
-                        <li>برای اجرای مسابقه آخرین کد انتخاب شده توسط شما میتواند در نظر گرفته خواهد شد</li>
-                        <li>قبل از اجرای کد از کامپایل صحیح آن اطمینان حاصل کنید</li>
-                    </ul>
-                </p>
-                </div>
+<div class="col-sm-6 col-xs-12">
+    <h3 class="page header" style="margin-top: 0px">قوانین</h3>
+    <p>
+    <ul>
+        <li>فایل فلان را از پوشه بهمان زیپ کنید و راسال نمیید</li>
+        <li>کد های خود را از روز شنبه تا چهارشنبه هر فهته میتوانید تغییر دهید</li>
+        <li>برای اجرای مسابقه آخرین کد انتخاب شده توسط شما میتواند در نظر گرفته خواهد شد</li>
+        <li>قبل از اجرای کد از کامپایل صحیح آن اطمینان حاصل کنید</li>
+    </ul>
+    </p>
+</div>
 
-                <div class="col-sm-6 col-xs-12">
-                    <h4 class="page-header" style="margin-top:0px">ارسال کد</h4>
-                    <form class="form-inline">
-                      <div class="form-group">
-                        <label >انتخاب زبان:&nbsp</label>
-                        <select class="form-control">
-                            <option>Java</option>
-                            <option>C++</option>
-                            <option>Python</option>
-                            <option>JFZ--</option>
-                        </select>
-                      </div>
-                      &nbsp
-                      <button class="btn btn-primary">ارسال کد</button>
-                    </form>
-                    <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th><span class="glyphicon glyphicon-ok"></span></th>
-                        <th>اسم فایل</th>
-                        <th>تاریخ ارسال</th>
-                        <th>کامپایل</th>
-                        <th>دانلود</th>
-                        <td>حذف</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="record in data">
-                        <td><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked></td>
-                        <td>{{record.file_name}}</td>
-                        <td>{{record.submission_data}}</td>
-                        <td><a href="#"><span class="glyphicon glyphicon-cog"></span></a></td>
-                        <td><a href="#"><span class="glyphicon glyphicon-download-alt"></span></a></td>
-                        <td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
-                    </tr>
-                    </tbody>    
-                    </table>
+<div class="col-sm-6 col-xs-12">
+    <h4 class="page-header" style="margin-top:0px">ارسال کد</h4>
+    <form class="form-inline">
+        <div class="form-group">
+            <label >انتخاب زبان:&nbsp</label>
+            <select class="form-control">
+                <option>Java</option>
+                <option>C++</option>
+                <option>Python</option>
+            </select>
+        </div>
+        &nbsp
+        <button class="btn btn-primary">ارسال کد</button>
+    </form>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th><span class="glyphicon glyphicon-ok"></span></th>
+            <th>اسم فایل</th>
+            <th>تاریخ ارسال</th>
+            <!--<th>کامپایل</th>-->
+            <th>دانلود</th>
+            <th>حذف</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="record in data">
+            <td><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked></td>
+            <td>{{record.file_name}}</td>
+            <td>{{record.submission_data}}</td>
+            <!--<td><a href="#"><span class="glyphicon glyphicon-cog"></span></a></td>-->
+            <td><a href="#"><span class="glyphicon glyphicon-download-alt"></span></a></td>
+            <td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary pull-left">ذخیره</button>
 
-                </div>
+</div>
 
         

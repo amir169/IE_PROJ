@@ -1,0 +1,22 @@
+                <div class="col-sm-6 col-xs-12">
+                    <h3 class="page header" style="margin-top: 0px">ارسال پرسش</h3>
+                    <form>
+                        <textarea class="form-control" rows="5">  </textarea>
+                        <br/>
+                        <button type="submit" class="btn btn-primary pull-left">ارسال</button> 
+                    </form>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <h3 class="page-header" style="margin-top:0px">پرسش ها</h3>
+                    <div ng-repeat="record in data" class="panel panel-default"  >
+                        <div class="panel-body" style="margin-top:  -15px;margin-bottom: -15px" >
+                            <h4>{{record.username}} :</h4>
+                            <p>{{record.question}}</p>
+                            <h4>پاسخ :</h4>
+                            <p>{{record.ans}}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+        
