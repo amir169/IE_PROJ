@@ -21,7 +21,7 @@
         <property name="hibernate.connection.useUnicode">true</property>
         <property name="hibernate.c3p0.max_statements">50</property>
         <property name="hibernate.c3p0.idle_test_period">5</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
         <mapping class="ir.rendan.model.UserInfo"/>
         <mapping class="ir.rendan.model.Team"/>
