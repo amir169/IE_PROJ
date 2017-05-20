@@ -23,7 +23,7 @@ public class GenericDAO {
         tx.commit();
     }
 
-    public void deleet(Object ob){
+    public void delete(Object ob){
         Session se = HibernateUtils.getSession();
         Transaction tx = se.beginTransaction();
         se.delete(ob);

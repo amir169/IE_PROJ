@@ -27,6 +27,7 @@ public class MyAppUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("username and password did not matched");
 
 			GrantedAuthority authority = new SimpleGrantedAuthority(activeUserInfo.getRole());
+
 		return new User(activeUserInfo.getUserName(),
 				activeUserInfo.getPassword(), Collections.singletonList(authority));
 	}
