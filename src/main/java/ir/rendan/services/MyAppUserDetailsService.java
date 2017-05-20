@@ -11,19 +11,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 @Service
 public class MyAppUserDetailsService implements UserDetailsService {
 	@Autowired
 	private UserDAO userDAO;
+
 	@Override
 	public UserDetails loadUserByUsername(String userName)
 			throws UsernameNotFoundException {
 		UserInfo activeUserInfo = userDAO.getActiveUser(userName);
+
+		if(activeUserInfo == null)
+			throw new UsernameNotFoundException("username and password did not matched");
+
 			GrantedAuthority authority = new SimpleGrantedAuthority(activeUserInfo.getRole());
-		UserDetails userDetails = (UserDetails)new User(activeUserInfo.getUserName(),
-				activeUserInfo.getPassword(), Arrays.asList(authority));
-		return userDetails;
+		return new User(activeUserInfo.getUserName(),
+				activeUserInfo.getPassword(), Collections.singletonList(authority));
 	}
 }

@@ -14,22 +14,11 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-@Transactional
 public class UserDAO extends GenericDAO {
 	@PersistenceContext	
 	private EntityManager entityManager;
 	public UserInfo getActiveUser(String userName) {
 		return getByUserName(userName);
-		/*
-		UserInfo activeUserInfo = new UserInfo();
-		Criteria c = HibernateUtils.getSession().createCriteria(UserInfo.class);
-		c.add(Restrictions.eq("username",userName));
-		List<?> list = c.list();
-		if(!list.isEmpty()) {
-			activeUserInfo = (UserInfo)list.get(0);
-		}
-		return activeUserInfo;
-*/
 	}
 
     public UserInfo getByUserName(String name){
