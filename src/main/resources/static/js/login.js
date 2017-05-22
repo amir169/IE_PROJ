@@ -21,7 +21,7 @@ angular.module("login").controller("login_controller",function($scope,$http,$win
             }
         })
             .then(function() {
-                    login($scope,$http,$window);
+                    // login($scope,$http,$window);
                 },
                 function() {
                     console.log("bye");

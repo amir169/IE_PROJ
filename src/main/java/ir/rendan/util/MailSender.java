@@ -1,4 +1,4 @@
-package ir.rendan;
+package ir.rendan.util;
 
 import java.util.Properties;
 import javax.mail.*;
@@ -37,11 +37,12 @@ class Mailer{
 
     }
 }
-public class MailTest {
-    public static void main(String[] args) {
-        //from,password,to,subject,message
+public class MailSender {
+
+    public static void sendEmail(String address,String subject,String message)
+    {
+        System.out.println(address);
         Mailer.send("username@gmail.com","password"
-                ,"to@example.com","test","this is a test");
-        //change from, password and to
+                ,address,subject,message);
     }
 }    
