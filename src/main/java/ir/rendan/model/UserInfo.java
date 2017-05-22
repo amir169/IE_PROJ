@@ -19,7 +19,7 @@ public class UserInfo implements Serializable {
 	@Column
 	@JsonIgnore
 	private String password;
-	@Column
+	@Column(unique = true)
 	private String email;
 	@Column
 	private short enabled;
