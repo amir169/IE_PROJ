@@ -52,16 +52,21 @@ public class UserService extends AbstractService{
         user.setEmail(dto.getEmailAddress());
         user.setActivationCode(StringGenerator.generateValidationCode());
 
+        try {
+            String link = "http://localhost:8080/api/user/validate/" + user.getActivationCode();
+            MailSender.sendEmail(user.getEmail(),"Validation Link",link);
+        }
+        catch (Exception e)
+        {
+            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.email.invalid")).build();
+        }
 
         try{
             userDAO.insert(user);
         }catch (Exception e)
         {
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.failed")).build();
         }
-
-        String link = "http://localhost:8080/api/user/validate/" + user.getActivationCode();
-        MailSender.sendEmail(user.getEmail(),"Validation Link",link);
 
         return Response.ok(translate("user.validation.sent")).build();
     }
@@ -76,7 +81,7 @@ public class UserService extends AbstractService{
         UserInfo user = userDAO.getByUserName(username);
         if(user == null || !user.getPassword().equals(password))
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.login.failed")).build();
-        
+
         if(user.getEnabled() == 0)
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.account.not_activated")).build();
 

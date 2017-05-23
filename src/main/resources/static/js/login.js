@@ -17,7 +17,8 @@ angular.module("login").controller("login_controller",function($scope,$http,$win
 
     $scope.register = function () {
 
-        $scope.message.text=null;
+        $scope.message.text="لطفا صبر کنید!";
+        $scope.message.type="info";
         $http({
             url: 'api/user/register',
             method: "POST",
@@ -30,8 +31,9 @@ angular.module("login").controller("login_controller",function($scope,$http,$win
                     $scope.message.text=response.data;
                     $scope.message.type="info";
                 },
-                function() {
-                    // console.log("bye");
+                function(response) {
+                    $scope.message.text=response.data;
+                    $scope.message.type="error";
                 });
     };
 
