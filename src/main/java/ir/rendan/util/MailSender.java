@@ -32,7 +32,6 @@ class Mailer{
             message.setFrom(new InternetAddress(from));
             //send message
             Transport.send(message);
-            System.out.println("message sent successfully");
         } catch (MessagingException e) {throw new RuntimeException(e);}
 
     }
@@ -41,7 +40,6 @@ public class MailSender {
 
     public static void sendEmail(String address,String subject,String message)
     {
-        System.out.println(address);
         Mailer.send("username@gmail.com","password"
                 ,address,subject,message);
     }
