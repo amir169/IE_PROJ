@@ -6,10 +6,18 @@ import ir.rendan.services.dto.RegistrationDTO;
 import ir.rendan.util.MailSender;
 import ir.rendan.util.StringGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Amir Shams on 5/20/2017.
@@ -53,7 +61,25 @@ public class UserService {
         String link = "http://localhost:8080/api/user/validate/" + user.getActivationCode();
         MailSender.sendEmail(user.getEmail(),"Validation Link",link);
 
-        return Response.ok("user successfully added").build();
+        return Response.ok("user successfully added. clink on validation link we've just sent").build();
+    }
+
+    @POST
+    @Path("login")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response login(@FormParam("username") String username,
+                          @FormParam("password") String password)
+    {
+        UserInfo user = userDAO.getByUserName(username);
+        if(user == null || !user.getPassword().equals(password))
+            return Response.status(Response.Status.BAD_REQUEST).entity("username not found").build();
+
+        if(user.getEnabled() == 0)
+            return Response.status(Response.Status.BAD_REQUEST).entity("user not activated. check your email").build();
+
+        loginUser(username,password);
+
+        return Response.ok("successful").build();
     }
 
     @GET
@@ -63,13 +89,27 @@ public class UserService {
         UserInfo user = userDAO.getByActivationCode(code);
 
         if(user == null)
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
 
         user.setEnabled(new Short("1"));
         userDAO.update(user);
 
+        loginUser(user.getUsername(),user.getPassword());
 
+        try {
+            return Response.seeOther(new URI("/")).build();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
         return Response.ok("Your account is successfully enabled!\nPlease Login!").build();
+    }
+
+    private void loginUser(String username,String password){
+
+        List<GrantedAuthority> grantedAuths = new ArrayList<>();
+        Authentication a =  new UsernamePasswordAuthenticationToken(username, password, grantedAuths);
+        SecurityContextHolder.getContext().setAuthentication(a);
+
     }
 }

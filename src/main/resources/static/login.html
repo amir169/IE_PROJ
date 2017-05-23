@@ -32,7 +32,7 @@
                         <button class="btn btn-default" style="border-color: #313d43;color: #313d43 ;width: 150px"> بلاگ</button>
                     </a>
                 </div>
-                <form name='f' action='login.html' method='POST'>
+                <!--<form name='f' action='login.html' method='POST'>-->
                     <div class="col-sm-6 col-xs-12">
                         <br/>
                         <div class="form-group">
@@ -43,10 +43,10 @@
                             <label> رمز ورود</label>
                             <input type="password" name="password" class="form-control">
                         </div>
-                        <div><button name="submit" type="submit" class="btn btn-primary form-control" value="submit"  >ورود</button></div>
+                        <div><button ng-click="login()" name="submit" type="submit" class="btn btn-primary form-control" value="submit"  >ورود</button></div>
                         <br/>
                     </div>
-                </form>
+                <!--</form>-->
                 <div class="text-center"><button name="modal" value="modal" class="btn btn-link" data-toggle=modal data-target="#registerModal">ثبت نام</button></div>
 
             </div>

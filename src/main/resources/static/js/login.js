@@ -28,14 +28,31 @@ angular.module("login").controller("login_controller",function($scope,$http,$win
                 });
     };
 
+    $scope.login = function () {
+        var data = "username=".concat($scope.credentials.username,"&password=",$scope.credentials.password);
+        $http({
+            url: '/api/user/login',
+            method: "POST",
+            data: data,
+            headers : {
+                'Content-Type':'application/x-www-form-urlencoded'
+            }
+        })
+            .then(function() {
+                    $window.location.href = "/";
+                },
+                function(response) {
+                    console.log(response.data);
+                });
+    }
 });
 
 function login($scope,$http,$window) {
 
-    var data = "username=".concat($scope.credentials.username,"&password=",$scope.credentials.password,"&submit=submit");
+    var data = "username=".concat($scope.credentials.username,"&password=",$scope.credentials.password);
     console.log(data);
     $http({
-        url: '/login.html',
+        url: '/api/user/login',
         method: "POST",
         data: data,
         headers : {
@@ -45,8 +62,8 @@ function login($scope,$http,$window) {
         .then(function() {
             $window.location.href = "/";
         },
-        function() {
-            console.log("bye2");
+        function(response) {
+            console.log(response.data);
         });
 }
 
