@@ -2,6 +2,7 @@ package ir.rendan.services;
 
 import ir.rendan.dao.UserDAO;
 import ir.rendan.model.UserInfo;
+import ir.rendan.services.base.AbstractService;
 import ir.rendan.services.dto.RegistrationDTO;
 import ir.rendan.util.MailSender;
 import ir.rendan.util.StringGenerator;
@@ -19,11 +20,12 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Created by Amir Shams on 5/20/2017.
  */
 @Path("api/user")
-public class UserService {
+public class UserService extends AbstractService{
 
     @Autowired
     private UserDAO userDAO;
@@ -61,7 +63,7 @@ public class UserService {
         String link = "http://localhost:8080/api/user/validate/" + user.getActivationCode();
         MailSender.sendEmail(user.getEmail(),"Validation Link",link);
 
-        return Response.ok("user successfully added. clink on validation link we've just sent").build();
+        return Response.ok("user.validation.sent").build();
     }
 
     @POST
@@ -72,14 +74,14 @@ public class UserService {
     {
         UserInfo user = userDAO.getByUserName(username);
         if(user == null || !user.getPassword().equals(password))
-            return Response.status(Response.Status.BAD_REQUEST).entity("username not found").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.login.failed")).build();
 
         if(user.getEnabled() == 0)
-            return Response.status(Response.Status.BAD_REQUEST).entity("user not activated. check your email").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.account.not_activated")).build();
 
         loginUser(username,password);
 
-        return Response.ok("successful").build();
+        return Response.ok(translate("user.login.successful")).build();
     }
 
     @GET
@@ -102,7 +104,7 @@ public class UserService {
             e.printStackTrace();
         }
 
-        return Response.ok("Your account is successfully enabled!\nPlease Login!").build();
+        return Response.ok(translate("user.account.activated")).build();
     }
 
     private void loginUser(String username,String password){
@@ -112,4 +114,5 @@ public class UserService {
         SecurityContextHolder.getContext().setAuthentication(a);
 
     }
+
 }
