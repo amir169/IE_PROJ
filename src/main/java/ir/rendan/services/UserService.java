@@ -63,7 +63,7 @@ public class UserService extends AbstractService{
         String link = "http://localhost:8080/api/user/validate/" + user.getActivationCode();
         MailSender.sendEmail(user.getEmail(),"Validation Link",link);
 
-        return Response.ok("user.validation.sent").build();
+        return Response.ok(translate("user.validation.sent")).build();
     }
 
     @POST
@@ -72,15 +72,22 @@ public class UserService extends AbstractService{
     public Response login(@FormParam("username") String username,
                           @FormParam("password") String password)
     {
+
+        System.out.println(username);
+        System.out.println(password);
+
         UserInfo user = userDAO.getByUserName(username);
         if(user == null || !user.getPassword().equals(password))
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.login.failed")).build();
 
+        System.out.println(1);
+
         if(user.getEnabled() == 0)
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.account.not_activated")).build();
 
+        System.out.println(2);
         loginUser(username,password);
-
+        System.out.println(3);
         return Response.ok(translate("user.login.successful")).build();
     }
 

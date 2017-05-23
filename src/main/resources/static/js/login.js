@@ -10,8 +10,14 @@ angular.module("login").controller("login_controller",function($scope,$http,$win
         'email_address' : ''
     };
 
+    $scope.message = {
+        text : null,
+        type : null
+    };
+
     $scope.register = function () {
 
+        $scope.message.text=null;
         $http({
             url: 'api/user/register',
             method: "POST",
@@ -20,16 +26,18 @@ angular.module("login").controller("login_controller",function($scope,$http,$win
             'Content-Type': 'application/json'
             }
         })
-            .then(function() {
-                    // login($scope,$http,$window);
+            .then(function(response) {
+                    $scope.message.text=response.data;
+                    $scope.message.type="info";
                 },
                 function() {
-                    console.log("bye");
+                    // console.log("bye");
                 });
     };
 
     $scope.login = function () {
-        var data = "username=".concat($scope.credentials.username,"&password=",$scope.credentials.password);
+        $scope.message.text=null;
+        var data = "username=".concat($scope.username,"&password=",$scope.password);
         $http({
             url: '/api/user/login',
             method: "POST",
@@ -42,29 +50,31 @@ angular.module("login").controller("login_controller",function($scope,$http,$win
                     $window.location.href = "/";
                 },
                 function(response) {
-                    console.log(response.data);
+                    $scope.message.text=response.data;
+                    $scope.message.type="error";
+                    // console.log(response.data);
                 });
     }
 });
 
-function login($scope,$http,$window) {
-
-    var data = "username=".concat($scope.credentials.username,"&password=",$scope.credentials.password);
-    console.log(data);
-    $http({
-        url: '/api/user/login',
-        method: "POST",
-        data: data,
-        headers : {
-            'Content-Type':'application/x-www-form-urlencoded'
-        }
-    })
-        .then(function() {
-            $window.location.href = "/";
-        },
-        function(response) {
-            console.log(response.data);
-        });
-}
+// function login($scope,$http,$window) {
+//
+//     var data = "username=".concat($scope.credentials.username,"&password=",$scope.credentials.password);
+//     console.log(data);
+//     $http({
+//         url: '/api/user/login',
+//         method: "POST",
+//         data: data,
+//         headers : {
+//             'Content-Type':'application/x-www-form-urlencoded'
+//         }
+//     })
+//         .then(function() {
+//             $window.location.href = "/";
+//         },
+//         function(response) {
+//             console.log(response.data);
+//         });
+// }
 
 

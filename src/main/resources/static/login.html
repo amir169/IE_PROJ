@@ -37,17 +37,21 @@
                         <br/>
                         <div class="form-group">
                             <label> ایمیل</label>
-                            <input type="text" name="username" class="form-control">
+                            <input type="text" name="username" ng-model="username" class="form-control">
                         </div>
                         <div class="form-group">
                             <label> رمز ورود</label>
-                            <input type="password" name="password" class="form-control">
+                            <input type="password" name="password" ng-model="password" class="form-control">
                         </div>
                         <div><button ng-click="login()" name="submit" type="submit" class="btn btn-primary form-control" value="submit"  >ورود</button></div>
                         <br/>
                     </div>
                 <!--</form>-->
                 <div class="text-center"><button name="modal" value="modal" class="btn btn-link" data-toggle=modal data-target="#registerModal">ثبت نام</button></div>
+                <br>
+                <div ng-if="message.text!=null"
+                     ng-class="message.type=='error'?'alert alert-danger':'alert alert-success'"
+                     style="text-align: center">{{message.text}}</div>
 
             </div>
         </div>
