@@ -37,7 +37,7 @@ class Mailer{
 public class MailSender {
 
     public static void sendEmail(String address,String subject,String message) throws MessagingException {
-        Mailer.send("username@gmail.com","password"
+        Mailer.send("sbu.aichallenge@gmail.com","aic123456"
                 ,address,subject,message);
     }
 }    
