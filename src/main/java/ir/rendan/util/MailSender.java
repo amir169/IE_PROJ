@@ -4,7 +4,7 @@ import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
 class Mailer{
-    public static void send(String from,String password,String to,String sub,String msg){
+    public static void send(String from,String password,String to,String sub,String msg) throws MessagingException {
         //Get properties object
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -23,23 +23,20 @@ class Mailer{
                     }
                 });
         //compose message
-        try {
 
-            MimeMessage message = new MimeMessage(session);
-            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
-            message.setSubject(sub);
-            message.setText(msg);
-            message.setFrom(new InternetAddress(from));
-            //send message
-            Transport.send(message);
-        } catch (MessagingException e) {throw new RuntimeException(e);}
+        MimeMessage message = new MimeMessage(session);
+        message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
+        message.setSubject(sub);
+        message.setText(msg);
+        message.setFrom(new InternetAddress(from));
+        //send message
+        Transport.send(message);
 
     }
 }
 public class MailSender {
 
-    public static void sendEmail(String address,String subject,String message)
-    {
+    public static void sendEmail(String address,String subject,String message) throws MessagingException {
         Mailer.send("username@gmail.com","password"
                 ,address,subject,message);
     }

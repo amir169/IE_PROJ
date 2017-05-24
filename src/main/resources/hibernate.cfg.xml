@@ -31,6 +31,8 @@
         <mapping class="ir.rendan.model.League"/>
         <mapping class="ir.rendan.model.Match"/>
 
+
+
         <!--<property name="show_sql">true</property>-->
         <!-- <property title="connection.username"/> -->
         <!-- <property title="connection.password"/> -->

@@ -11,7 +11,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.mail.MessagingException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -53,19 +55,18 @@ public class UserService extends AbstractService{
         user.setActivationCode(StringGenerator.generateValidationCode());
 
         try {
-            String link = "http://localhost:8080/api/user/validate/" + user.getActivationCode();
-            MailSender.sendEmail(user.getEmail(),"Validation Link",link);
-        }
-        catch (Exception e)
-        {
-            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.email.invalid")).build();
-        }
-
-        try{
             userDAO.insert(user);
         }catch (Exception e)
         {
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.failed")).build();
+        }
+
+        try {
+            String link = "http://localhost:8080/api/user/validate/" + user.getActivationCode();
+            MailSender.sendEmail(user.getEmail(),"Validation Link",link);
+        } catch (MessagingException e) {
+            userDAO.delete(user);
+            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.email.invalid")).build();
         }
 
         return Response.ok(translate("user.validation.sent")).build();
@@ -99,7 +100,9 @@ public class UserService extends AbstractService{
         if(user == null)
             return Response.status(Response.Status.NOT_FOUND).build();
 
+        user.setActivationCode(null);
         user.setEnabled(new Short("1"));
+
         userDAO.update(user);
 
         loginUser(user.getUsername(),user.getPassword());
