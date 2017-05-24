@@ -30,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
                         ,"/test/**"
                         ,"/api/user/**"
                         ,"/js/login.js"
+                        ,"/js/registerModal.js"
                         ,"/blog.html"
                         ,"/bootstrap/**"
                         ,"/css/**"

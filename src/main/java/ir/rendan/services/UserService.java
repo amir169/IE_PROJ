@@ -11,7 +11,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import javax.ws.rs.*;
@@ -46,12 +45,18 @@ public class UserService extends AbstractService{
     @Produces(MediaType.APPLICATION_JSON)
     public Response register(RegistrationDTO dto)
     {
+        System.out.println(dto.getUsername());
+        System.out.println(dto.getEmail());
+        System.out.println(dto.getPassword());
+        if(!validateDTO(dto))
+            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.incomplete")).build();
+
         UserInfo user = new UserInfo();
         user.setEnabled(new Short("0"));
         user.setPassword(dto.getPassword());
         user.setRole("USER");
         user.setUserName(dto.getUsername());
-        user.setEmail(dto.getEmailAddress());
+        user.setEmail(dto.getEmail());
         user.setActivationCode(StringGenerator.generateValidationCode());
 
         try {
@@ -70,6 +75,12 @@ public class UserService extends AbstractService{
         }
 
         return Response.ok(translate("user.validation.sent")).build();
+    }
+
+    private boolean validateDTO(RegistrationDTO dto) {
+        return (dto.getUsername() != null || dto.getUsername().isEmpty()) &&
+               (dto.getPassword() != null || dto.getPassword().isEmpty()) &&
+               (dto.getEmail() != null || dto.getEmail().isEmpty());
     }
 
     @POST

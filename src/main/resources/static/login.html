@@ -16,6 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/registerModal.js"></script>
 
 </head>
 <body ng-app="login" ng-controller="login_controller as main" class="yekan-font">
@@ -58,40 +59,48 @@
     </div>
 
 
-    <div class="modal fade"  id="registerModal">
+    <div ng-controller="register_modal as registerCtrl" class="modal fade"  id="registerModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="col-md-6 col-xs-12">
-                            <h4>قوانین</h4>
-                            <p>
-                            <ul>
-                                <li>قانون ها را حسش نبود بینوسم مال همون تیمه</li>
-                                <li>در صورتی که تیم خود را برای مسابقه ای ثبت میکنید که نیاز به اطلاعات تحصیلی شما دارد، تمامی افراد ملزم هستند اطلاعات تحصیلی خود را در        بخش اکانت کاربری خود تکمیل کنند</li>
-                                <li>در صورتی که تعداد افراد تیم با محدو     دیت مسابقه مورد نظر همخوانی نداشته باشد تیم شما اجازه شرکت در آن مسابقعه را نخواهد داشت</li>
-                                <li>در صورتی که نام تیم شما بر خلاف ق       وانین مسابقه و نامانساب باشد تیم شما حذف خواهد شد و تمام اطلاعات آن دست خواهد رفت </li>
-                                <li>حداکثر 5 تیمی که در یک روز میتواند      ثبت کنید</li>
-                            </ul>
-                            </p>
+                            <div>
+                                <h4>قوانین</h4>
+                                <p>
+                                <ul>
+                                    <li>قانون ها را حسش نبود بینوسم مال همون تیمه</li>
+                                    <li>در صورتی که تیم خود را برای مسابقه ای ثبت میکنید که نیاز به اطلاعات تحصیلی شما دارد، تمامی افراد ملزم هستند اطلاعات تحصیلی خود را در        بخش اکانت کاربری خود تکمیل کنند</li>
+                                    <li>در صورتی که تعداد افراد تیم با محدو     دیت مسابقه مورد نظر همخوانی نداشته باشد تیم شما اجازه شرکت در آن مسابقعه را نخواهد داشت</li>
+                                    <li>در صورتی که نام تیم شما بر خلاف ق       وانین مسابقه و نامانساب باشد تیم شما حذف خواهد شد و تمام اطلاعات آن دست خواهد رفت </li>
+                                    <li>حداکثر 5 تیمی که در یک روز میتواند      ثبت کنید</li>
+                                </ul>
+                                </p>
+                            </div>
+                            <br>
+                            <div>
+                                <div ng-if="validation.strong_pass=='invalid'" style=" text-align: center" class="text-danger">رمز ورود ضعیف است.</div>
+                                <div ng-if="validation.re_pass=='invalid'" style="text-align: center" class="text-danger">تکرار رمز ورود اشتباه است.</div>
+                                <div ng-if="validation.email=='invalid'" style="text-align: center" class="text-danger">ایمبل نا معتبر است.</div>
+                            </div>
                         </div>
                         <div class="col-md-6 col-xs-12">
                             <br/>
                             <div class="form-group">
                                 <label> نام</label>
-                                <input type="text" class="form-control" ng-model="credentials.username">
+                                <input ng-change="username_changed()" type="text" class="form-control" ng-model="credentials.username">
                             </div>
-                            <div class="form-group">
+                            <div ng-class="validation.email=='invalid'?'form-group has-error has-feedback':'form-group'">
                                 <label> ایمیل</label>
-                                <input type="email" class="form-control" ng-model="credentials.email_address">
+                                <input ng-change="email_changed()" type="text" class="form-control" ng-model="credentials.email">
                             </div>
-                            <div class="form-group">
+                            <div ng-class="validation.strong_pass=='invalid'?'form-group has-error has-feedback':'form-group'">
                                 <label> رمز ورود</label>
-                                <input type="password" class="form-control" ng-model="credentials.password">
+                                <input ng-change="password_changed()" type="password" class="form-control" ng-model="credentials.password">
                             </div>
-                            <div class="form-group">
+                            <div ng-class="validation.re_pass=='invalid'?'form-group has-error has-feedback':'form-group'">
                                 <label> تکرار رمز ورود</label>
-                                <input type="password" class="form-control" ng-model="re_password">
+                                <input ng-change="re_password_changed()" type="password" class="form-control" ng-model="re_password">
                             </div>
 
                             <button ng-click="register()" class="btn btn-primary form-control" data-dismiss="modal" >ثبت نام</button>

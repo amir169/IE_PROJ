@@ -11,8 +11,8 @@ public class RegistrationDTO {
     private String username;
     @JsonProperty
     private String password;
-    @JsonProperty("email_address")
-    private String emailAddress;
+    @JsonProperty
+    private String email;
 
     public String getUsername() {
         return username;
@@ -30,11 +30,11 @@ public class RegistrationDTO {
         this.password = password;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
