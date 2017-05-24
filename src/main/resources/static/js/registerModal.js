@@ -74,7 +74,6 @@ angular.module("login").controller("register_modal",function($scope,$http) {
         else
             $scope.validation.re_pass = 'valid';
 
-        console.log($scope.credentials.password.length);
         if($scope.credentials.password.length < 8 && $scope.credentials.password.length > 0)
             $scope.validation.strong_pass = 'invalid';
         else

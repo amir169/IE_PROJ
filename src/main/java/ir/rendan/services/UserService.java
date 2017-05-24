@@ -45,9 +45,6 @@ public class UserService extends AbstractService{
     @Produces(MediaType.APPLICATION_JSON)
     public Response register(RegistrationDTO dto)
     {
-        System.out.println(dto.getUsername());
-        System.out.println(dto.getEmail());
-        System.out.println(dto.getPassword());
         if(!validateDTO(dto))
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.incomplete")).build();
 
