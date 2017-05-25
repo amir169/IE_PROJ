@@ -1,6 +1,6 @@
 package ir.rendan.services;
 
-import ir.rendan.dao.UserDAO;
+import ir.rendan.repository.UserInfoRepository;
 import ir.rendan.model.UserInfo;
 import ir.rendan.services.base.AbstractService;
 import ir.rendan.services.dto.RegistrationDTO;
@@ -29,7 +29,7 @@ import java.util.List;
 public class UserService extends AbstractService{
 
     @Autowired
-    private UserDAO userDAO;
+    private UserInfoRepository repository;
 
     @GET
     @Path("test_user")
@@ -57,7 +57,7 @@ public class UserService extends AbstractService{
         user.setActivationCode(StringGenerator.generateValidationCode());
 
         try {
-            userDAO.insert(user);
+            repository.save(user);
         }catch (Exception e)
         {
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.failed")).build();
@@ -67,7 +67,7 @@ public class UserService extends AbstractService{
             String link = "http://localhost:8080/api/user/validate/" + user.getActivationCode();
             MailSender.sendEmail(user.getEmail(),"Validation Link",link);
         } catch (MessagingException e) {
-            userDAO.delete(user);
+            repository.delete(user);
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.email.invalid")).build();
         }
 
@@ -87,7 +87,7 @@ public class UserService extends AbstractService{
                           @FormParam("password") String password)
     {
 
-        UserInfo user = userDAO.getByUserName(username);
+        UserInfo user = repository.findOne(username);
         if(user == null || !user.getPassword().equals(password))
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.login.failed")).build();
 
@@ -103,7 +103,7 @@ public class UserService extends AbstractService{
     @Path("validate/{code}")
     public Response validate(@PathParam("code") String code)
     {
-        UserInfo user = userDAO.getByActivationCode(code);
+        UserInfo user = repository.findByActivationCode(code);
 
         if(user == null)
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -111,7 +111,7 @@ public class UserService extends AbstractService{
         user.setActivationCode(null);
         user.setEnabled(new Short("1"));
 
-        userDAO.update(user);
+        repository.save(user);
 
         loginUser(user.getUsername(),user.getPassword());
 

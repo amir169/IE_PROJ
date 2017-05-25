@@ -1,6 +1,6 @@
 package ir.rendan.services;
 
-import ir.rendan.dao.UserDAO;
+import ir.rendan.repository.UserInfoRepository;
 import ir.rendan.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,12 +16,12 @@ import java.util.Collections;
 @Service
 public class MyAppUserDetailsService implements UserDetailsService {
 	@Autowired
-	private UserDAO userDAO;
+	private UserInfoRepository repository;
 
 	@Override
 	public UserDetails loadUserByUsername(String userName)
 			throws UsernameNotFoundException {
-		UserInfo activeUserInfo = userDAO.getActiveUser(userName);
+		UserInfo activeUserInfo = repository.getActiveUser(userName);
 
 		if(activeUserInfo == null)
 			throw new UsernameNotFoundException("username and password did not matched");
