@@ -48,6 +48,9 @@ public class UserService extends AbstractService{
         if(!validateDTO(dto))
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.incomplete")).build();
 
+        if(repository.exists(dto.getUsername()))
+            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.username_exists")).build();
+
         UserInfo user = new UserInfo();
         user.setEnabled(new Short("0"));
         user.setPassword(dto.getPassword());
@@ -60,7 +63,7 @@ public class UserService extends AbstractService{
             repository.save(user);
         }catch (Exception e)
         {
-            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.failed")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.email_exists")).build();
         }
 
         try {
