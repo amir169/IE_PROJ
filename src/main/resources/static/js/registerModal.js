@@ -24,7 +24,8 @@ angular.module("login").controller("register_modal",function($scope,$http) {
             || $scope.validation.email == 'invalid'
             || $scope.validation.strong_pass == 'invalid'
             || $scope.credentials.email.length == 0
-            || $scope.re_password == 0)
+            || $scope.re_password == 0
+            || $scope.credentials.password.length == 0)
         {
             $scope.message.text = "اطلاعات را اصلاح کنید و دوباره تلاش کنید."
             $scope.message.type="error";

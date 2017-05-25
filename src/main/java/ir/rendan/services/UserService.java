@@ -67,7 +67,7 @@ public class UserService extends AbstractService{
         }
 
         try {
-            String link = "http://localhost:8080/api/user/validate/" + user.getActivationCode();
+            String link = "http://78.46.12.156:8080/api/user/validate/" + user.getActivationCode();
             MailSender.sendEmail(user.getEmail(),"Validation Link",link);
         } catch (MessagingException e) {
             repository.delete(user);
