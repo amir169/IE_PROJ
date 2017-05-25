@@ -1,7 +1,7 @@
 package ir.rendan.services;
 
-import ir.rendan.repository.UserInfoRepository;
-import ir.rendan.model.UserInfo;
+import ir.rendan.model.User;
+import ir.rendan.repository.UserRepository;
 import ir.rendan.services.base.AbstractService;
 import ir.rendan.services.dto.RegistrationDTO;
 import ir.rendan.util.MailSender;
@@ -29,7 +29,7 @@ import java.util.List;
 public class UserService extends AbstractService{
 
     @Autowired
-    private UserInfoRepository repository;
+    private UserRepository repository;
 
     @GET
     @Path("test_user")
@@ -51,7 +51,7 @@ public class UserService extends AbstractService{
         if(repository.exists(dto.getUsername()))
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.username_exists")).build();
 
-        UserInfo user = new UserInfo();
+        User user = new User();
         user.setEnabled(new Short("0"));
         user.setPassword(dto.getPassword());
         user.setRole("USER");
@@ -90,7 +90,7 @@ public class UserService extends AbstractService{
                           @FormParam("password") String password)
     {
 
-        UserInfo user = repository.findOne(username);
+        User user = repository.findOne(username);
         if(user == null || !user.getPassword().equals(password))
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.login.failed")).build();
 
@@ -106,7 +106,7 @@ public class UserService extends AbstractService{
     @Path("validate/{code}")
     public Response validate(@PathParam("code") String code)
     {
-        UserInfo user = repository.findByActivationCode(code);
+        User user = repository.findByActivationCode(code);
 
         if(user == null)
             return Response.status(Response.Status.NOT_FOUND).build();

@@ -1,7 +1,6 @@
 package ir.rendan.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="users")
-public class UserInfo implements Serializable {
+public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column
@@ -53,7 +52,7 @@ public class UserInfo implements Serializable {
 		this.activationCode = activationCode;
 	}
 
-	public UserInfo(String username, String password, String email, short enabled, String role) {
+	public User(String username, String password, String email, short enabled, String role) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -61,14 +60,14 @@ public class UserInfo implements Serializable {
 		this.role = role;
 	}
 
-	public UserInfo(String username, String password, short enabled, String role) {
+	public User(String username, String password, short enabled, String role) {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
 		this.role = role;
 	}
 
-	public UserInfo() {
+	public User() {
 	}
 
 	public static long getSerialVersionUID() {

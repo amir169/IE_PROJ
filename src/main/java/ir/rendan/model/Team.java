@@ -16,7 +16,7 @@ public class Team {
 
     @ManyToOne
     @JoinColumn(name = "USR_Name")
-    UserInfo HeadUSer;
+    User HeadUSer;
 
     @ManyToMany
     @JoinTable(
@@ -24,28 +24,28 @@ public class Team {
         joinColumns = @JoinColumn(name = "TM_Name",referencedColumnName = "teamname"),
         inverseJoinColumns = @JoinColumn(name = "USR_Name",referencedColumnName = "username")
     )
-    Set<UserInfo> members;
+    Set<User> members;
 
     public Team() {
     }
 
-    public Team(String teamname, UserInfo headUSer) {
+    public Team(String teamname, User headUSer) {
         this.teamname = teamname;
         HeadUSer = headUSer;
         this.members = new HashSet<>();
     }
 
-    public int addMembers(Set<UserInfo> newMembers){
+    public int addMembers(Set<User> newMembers){
         members.addAll(members);
         return members.size();
     }
 
-    public int addMember(UserInfo newMember){
+    public int addMember(User newMember){
         members.add(newMember);
         return members.size();
     }
 
-    public int deleteMember(UserInfo member){
+    public int deleteMember(User member){
         members.remove(member);
         return members.size();
     }
