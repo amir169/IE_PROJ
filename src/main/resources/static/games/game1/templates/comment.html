@@ -1,9 +1,9 @@
                 <div class="col-sm-6 col-xs-12">
                     <h3 class="page header" style="margin-top: 0px">ارسال پرسش</h3>
                     <form>
-                        <textarea class="form-control" rows="5">  </textarea>
+                        <textarea class="form-control" rows="5" ng-model="$parent.qMessage">  </textarea>
                         <br/>
-                        <button type="submit" class="btn btn-primary pull-left">ارسال</button> 
+                        <button type="submit" class="btn btn-primary pull-left" ng-click="submitComment()">ارسال</button>
                     </form>
                 </div>
                 <div class="col-sm-6 col-xs-12">

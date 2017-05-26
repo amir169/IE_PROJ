@@ -66,7 +66,7 @@ public class UserService extends AbstractService{
         }
 
         try {
-            String link = "http://78.46.12.156/api/user/validate/" + user.getActivationCode();
+            String link = "http://localhost/api/user/validate/" + user.getActivationCode();
             MailSender.sendEmail(user.getEmail(),"Validation Link",link);
         } catch (MessagingException e) {
             userRepository.delete(user);
@@ -108,6 +108,7 @@ public class UserService extends AbstractService{
         user.setEnabled(new Short("1"));
 
         userRepository.save(user);
+
 
         loginUser(user.getUsername(),user.getPassword());
 
