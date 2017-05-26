@@ -158,10 +158,7 @@ public class UserService extends AbstractService{
     @Path("/get-comment")
     @POST
     public Response getComment(){
-//        CommentDAO commentDAO = new CommentDAO();
-//        List<Comment> comments = commentDAO.getAllComment();
-//
-//        return Response.ok().entity(comments).build();
+
         return Response.ok().build();
 
     }
