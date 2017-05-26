@@ -1,3 +1,4 @@
+
 package ir.rendan.services;
 
 import ir.rendan.repository.UserRepository;
@@ -31,3 +32,4 @@ public class MyAppUserDetailsService implements UserDetailsService {
 				activeUserInfo.getPassword(), Collections.singletonList(authority));
 	}
 }
+

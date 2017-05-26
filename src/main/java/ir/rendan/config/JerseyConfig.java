@@ -1,5 +1,5 @@
 package ir.rendan.config;
-
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletProperties;
 import org.springframework.stereotype.Component;
@@ -13,6 +13,7 @@ public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
 
         register(CORSResponseFilter.class);
+        register(MultiPartFeature.class);
 
 //        packages("ir.rendan.services");
 

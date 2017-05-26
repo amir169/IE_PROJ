@@ -1,5 +1,5 @@
 package ir.rendan.services;
-
+import ir.rendan.model.Comment;
 import ir.rendan.model.User;
 import ir.rendan.repository.UserRepository;
 import ir.rendan.services.base.AbstractService;
@@ -30,6 +30,26 @@ public class UserService extends AbstractService{
 
     @Autowired
     private UserRepository repository;
+
+    @Path("/submit-comment")
+    @POST
+    public Response submitComment(String comment){
+        System.out.println(comment);
+
+        // find the user
+        //
+
+        // create comment and user
+//        UserInfo userInfo = new UserInfo();
+//        ir.rendan.model.Comment comment1 = new ir.rendan.model.Comment(comment , null , userInfo);
+//
+//        // save comment
+//        GenericDAO genericDAO = new GenericDAO();
+//        genericDAO.insert(comment1);
+
+        return Response.ok().build();
+    }
+
 
     @GET
     @Path("test_user")
@@ -132,6 +152,17 @@ public class UserService extends AbstractService{
         List<GrantedAuthority> grantedAuths = new ArrayList<>();
         Authentication a =  new UsernamePasswordAuthenticationToken(username, password, grantedAuths);
         SecurityContextHolder.getContext().setAuthentication(a);
+
+    }
+
+    @Path("/get-comment")
+    @POST
+    public Response getComment(){
+//        CommentDAO commentDAO = new CommentDAO();
+//        List<Comment> comments = commentDAO.getAllComment();
+//
+//        return Response.ok().entity(comments).build();
+        return Response.ok().build();
 
     }
 
