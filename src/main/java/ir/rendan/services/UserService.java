@@ -6,7 +6,6 @@ import ir.rendan.services.dto.RegistrationDTO;
 import ir.rendan.util.MailSender;
 import ir.rendan.util.StringGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

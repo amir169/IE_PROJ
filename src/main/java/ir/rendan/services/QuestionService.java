@@ -5,6 +5,7 @@ import ir.rendan.model.User;
 import ir.rendan.repository.QuestionRepository;
 import ir.rendan.repository.UserRepository;
 import ir.rendan.services.base.AbstractService;
+import ir.rendan.services.dto.QuestionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -49,11 +50,11 @@ public class QuestionService extends AbstractService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getQuestions(){
 
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<Question> questions = questionRepository.findAll();
 
-        List<Question> questions = questionRepository.getCommentsByUser(userRepository.getOne(username));
+        List<QuestionDTO> result = QuestionDTO.loadFrom(questions);
 
-        return Response.ok(questions).build();
+        return Response.ok(result).build();
     }
 
 }
