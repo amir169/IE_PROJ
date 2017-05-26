@@ -27,7 +27,7 @@
   {
     "name":"comment",
     "template_url" : "templates/comment.html",
-    "data_url" : "api/question/list"
+    "data_url" : "../../api/question/list"
   }
 
 }

@@ -5,13 +5,13 @@ angular.module("gameApp", []);
 angular.module("gameApp").controller("game_controller",function($scope,$http) {
 
     $scope.submitComment = function () {
-        $scope.message.text=null;
         var data = ""+$scope.qMessage;
         $http({
             url: '/api/question/submit',
             method: "POST",
             data: data
         });
+        $scope.change_context("comment");
     };
 
 
