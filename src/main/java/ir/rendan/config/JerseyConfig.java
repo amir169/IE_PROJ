@@ -14,7 +14,9 @@ public class JerseyConfig extends ResourceConfig {
 
         register(CORSResponseFilter.class);
 
-        packages("ir.rendan.services");
+//        packages("ir.rendan.services");
+
+        register(ir.rendan.services.UserService.class);
 
         property(ServletProperties.FILTER_FORWARD_ON_404, true);
     }
