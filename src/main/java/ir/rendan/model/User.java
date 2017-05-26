@@ -1,6 +1,7 @@
 package ir.rendan.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,11 +10,12 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
+@Proxy(lazy = false)
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	@Id
-	@Column
 	private String username;
 	@Column
 	@JsonIgnore
@@ -21,6 +23,7 @@ public class User implements Serializable {
 	@Column(unique = true)
 	private String email;
 	@Column
+	@JsonIgnore
 	private short enabled;
 	@Column
 	private String role;
@@ -52,28 +55,6 @@ public class User implements Serializable {
 		this.activationCode = activationCode;
 	}
 
-	public User(String username, String password, String email, short enabled, String role) {
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.enabled = enabled;
-		this.role = role;
-	}
-
-	public User(String username, String password, short enabled, String role) {
-		this.username = username;
-		this.password = password;
-		this.enabled = enabled;
-		this.role = role;
-	}
-
-	public User() {
-	}
-
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
-	}
-
 	public String getRole() {
 		return role;
 	}
@@ -82,12 +63,6 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-	public String getUserName() {
-		return username;
-	}
-	public void setUserName(String username) {
-		this.username = username;
-	}
 	public String getPassword() {
 		return password;
 	}

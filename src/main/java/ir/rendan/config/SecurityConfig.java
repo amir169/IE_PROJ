@@ -29,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/login.html"
+                        ,"/test/**"
                         ,"/api/user/**"
                         ,"/js/login.js"
                         ,"/js/registerModal.js"

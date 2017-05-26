@@ -1,5 +1,4 @@
 package ir.rendan.services;
-import ir.rendan.model.Comment;
 import ir.rendan.model.User;
 import ir.rendan.repository.UserRepository;
 import ir.rendan.services.base.AbstractService;
@@ -29,27 +28,7 @@ import java.util.List;
 public class UserService extends AbstractService{
 
     @Autowired
-    private UserRepository repository;
-
-    @Path("/submit-comment")
-    @POST
-    public Response submitComment(String comment){
-        System.out.println(comment);
-
-        // find the user
-        //
-
-        // create comment and user
-//        UserInfo userInfo = new UserInfo();
-//        ir.rendan.model.Comment comment1 = new ir.rendan.model.Comment(comment , null , userInfo);
-//
-//        // save comment
-//        GenericDAO genericDAO = new GenericDAO();
-//        genericDAO.insert(comment1);
-
-        return Response.ok().build();
-    }
-
+    private UserRepository userRepository;
 
     @GET
     @Path("test_user")
@@ -68,19 +47,19 @@ public class UserService extends AbstractService{
         if(!validateDTO(dto))
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.incomplete")).build();
 
-        if(repository.exists(dto.getUsername()))
+        if(userRepository.exists(dto.getUsername()))
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.username_exists")).build();
 
         User user = new User();
         user.setEnabled(new Short("0"));
         user.setPassword(dto.getPassword());
         user.setRole("USER");
-        user.setUserName(dto.getUsername());
+        user.setUsername(dto.getUsername());
         user.setEmail(dto.getEmail());
         user.setActivationCode(StringGenerator.generateValidationCode());
 
         try {
-            repository.save(user);
+            userRepository.save(user);
         }catch (Exception e)
         {
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.email_exists")).build();
@@ -90,17 +69,11 @@ public class UserService extends AbstractService{
             String link = "http://78.46.12.156/api/user/validate/" + user.getActivationCode();
             MailSender.sendEmail(user.getEmail(),"Validation Link",link);
         } catch (MessagingException e) {
-            repository.delete(user);
+            userRepository.delete(user);
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.email.invalid")).build();
         }
 
         return Response.ok(translate("user.validation.sent")).build();
-    }
-
-    private boolean validateDTO(RegistrationDTO dto) {
-        return (dto.getUsername() != null || dto.getUsername().isEmpty()) &&
-               (dto.getPassword() != null || dto.getPassword().isEmpty()) &&
-               (dto.getEmail() != null || dto.getEmail().isEmpty());
     }
 
     @POST
@@ -110,7 +83,7 @@ public class UserService extends AbstractService{
                           @FormParam("password") String password)
     {
 
-        User user = repository.findOne(username);
+        User user = userRepository.findOne(username);
         if(user == null || !user.getPassword().equals(password))
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.login.failed")).build();
 
@@ -126,7 +99,7 @@ public class UserService extends AbstractService{
     @Path("validate/{code}")
     public Response validate(@PathParam("code") String code)
     {
-        User user = repository.findByActivationCode(code);
+        User user = userRepository.findByActivationCode(code);
 
         if(user == null)
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -134,7 +107,7 @@ public class UserService extends AbstractService{
         user.setActivationCode(null);
         user.setEnabled(new Short("1"));
 
-        repository.save(user);
+        userRepository.save(user);
 
         loginUser(user.getUsername(),user.getPassword());
 
@@ -147,22 +120,17 @@ public class UserService extends AbstractService{
         return Response.ok(translate("user.account.activated")).build();
     }
 
+    private boolean validateDTO(RegistrationDTO dto) {
+        return (dto.getUsername() != null || dto.getUsername().isEmpty()) &&
+                (dto.getPassword() != null || dto.getPassword().isEmpty()) &&
+                (dto.getEmail() != null || dto.getEmail().isEmpty());
+    }
+
     private void loginUser(String username,String password){
 
         List<GrantedAuthority> grantedAuths = new ArrayList<>();
         Authentication a =  new UsernamePasswordAuthenticationToken(username, password, grantedAuths);
         SecurityContextHolder.getContext().setAuthentication(a);
-
-    }
-
-    @Path("/get-comment")
-    @POST
-    public Response getComment(){
-//        CommentDAO commentDAO = new CommentDAO();
-//        List<Comment> comments = commentDAO.getAllComment();
-//
-//        return Response.ok().entity(comments).build();
-        return Response.ok().build();
 
     }
 
