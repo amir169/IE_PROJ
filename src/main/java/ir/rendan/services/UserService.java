@@ -6,6 +6,7 @@ import ir.rendan.services.dto.RegistrationDTO;
 import ir.rendan.util.MailSender;
 import ir.rendan.util.StringGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,6 +27,9 @@ import java.util.List;
  */
 @Path("api/user")
 public class UserService extends AbstractService{
+
+    @Autowired
+    private MailSender mailSender;
 
     @Autowired
     private UserRepository userRepository;
@@ -66,8 +70,8 @@ public class UserService extends AbstractService{
         }
 
         try {
-            String link = "http://localhost/api/user/validate/" + user.getActivationCode();
-            MailSender.sendEmail(user.getEmail(),"Validation Link",link);
+            String link = "http://" + constants.getServerAddress() + ":" + constants.getServerPort() +"/api/user/validate/" + user.getActivationCode();
+            mailSender.sendEmail(user.getEmail(),"Validation Link",link);
         } catch (MessagingException e) {
             userRepository.delete(user);
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.email.invalid")).build();
@@ -108,7 +112,6 @@ public class UserService extends AbstractService{
         user.setEnabled(new Short("1"));
 
         userRepository.save(user);
-
 
         loginUser(user.getUsername(),user.getPassword());
 

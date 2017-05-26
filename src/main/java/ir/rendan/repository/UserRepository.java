@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by Amir Shams on 5/25/2017.
  */
-@Repository
 public interface UserRepository extends JpaRepository<User, String>
 {
     @Query("select u from User u where u.activationCode = ?1")

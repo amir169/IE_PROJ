@@ -1,5 +1,8 @@
 package ir.rendan.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -34,10 +37,13 @@ class Mailer{
 
     }
 }
+@Component
 public class MailSender {
 
-    public static void sendEmail(String address,String subject,String message) throws MessagingException {
-        Mailer.send("sbu.aichallenge@gmail.com","aic123456"
+    @Autowired
+    private ConstantReader constants;
+    public void sendEmail(String address,String subject,String message) throws MessagingException {
+        Mailer.send(constants.getEmailAddress(),constants.getEmailPassword()
                 ,address,subject,message);
     }
 }    
