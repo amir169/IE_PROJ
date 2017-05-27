@@ -1,10 +1,14 @@
 package ir.rendan.services;
+import com.google.common.collect.Lists;
 import ir.rendan.model.User;
 import ir.rendan.repository.UserRepository;
 import ir.rendan.services.base.AbstractService;
 import ir.rendan.services.dto.RegistrationDTO;
-import ir.rendan.util.MailSender;
+import ir.rendan.util.EmailSender;
 import ir.rendan.util.StringGenerator;
+import it.ozimov.springboot.mail.model.Email;
+import it.ozimov.springboot.mail.model.defaultimpl.DefaultEmail;
+import it.ozimov.springboot.mail.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,9 +16,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -28,7 +34,7 @@ import java.util.List;
 public class UserService extends AbstractService{
 
     @Autowired
-    private MailSender mailSender;
+    private EmailSender emailSender;
 
     @Autowired
     private UserRepository userRepository;
@@ -70,8 +76,10 @@ public class UserService extends AbstractService{
 
         try {
             String link = "http://" + constants.getServerAddress() + ":" + constants.getServerPort() +"/api/user/validate/" + user.getActivationCode();
-            mailSender.sendEmail(user.getEmail(),"Validation Link",link);
-        } catch (MessagingException e) {
+            emailSender.send("Validation Link",link,user.getEmail());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(e);
             userRepository.delete(user);
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.email.invalid")).build();
         }
@@ -122,6 +130,7 @@ public class UserService extends AbstractService{
 
         return Response.ok(translate("user.account.activated")).build();
     }
+
 
     private boolean validateDTO(RegistrationDTO dto) {
         return (dto.getUsername() != null || dto.getUsername().isEmpty()) &&

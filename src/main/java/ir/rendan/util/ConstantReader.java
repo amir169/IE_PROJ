@@ -15,20 +15,13 @@ public class ConstantReader {
     @Value("${server.port}")
     private String serverPort;
 
-    @Value("${email.address}")
+    @Value("${spring.mail.username}")
     private String emailAddress;
 
-    @Value("${email.password}")
-    private String emailPassword;
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
-
-    public void setEmailPassword(String emailPassword) {
-        this.emailPassword = emailPassword;
-    }
-
 
     public String getServerAddress() {
         return serverAddress;
@@ -48,9 +41,5 @@ public class ConstantReader {
 
     public String getEmailAddress() {
         return this.emailAddress;
-    }
-
-    public String getEmailPassword() {
-        return this.emailPassword;
     }
 }
