@@ -10,10 +10,10 @@
                     <h3 class="page-header" style="margin-top:0px">پرسش ها</h3>
                     <div ng-repeat="record in data" class="panel panel-default"  >
                         <div class="panel-body" style="margin-top:  -15px;margin-bottom: -15px" >
-                            <h4>{{record.username}} :</h4>
+                            <h6 style="color: #00594c">{{record.username}} :</h6>
                             <p>{{record.body}}</p>
-                            <h4>پاسخ :</h4>
-                            <p>{{record.ans}}</p>
+                            <h6 style="color: #00594c"> پاسخ :</h6>
+                            <p>{{record.ans? record.ans : "در حال بررسی..."}}</p>
                         </div>
                     </div>
 
