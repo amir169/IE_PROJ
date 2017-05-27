@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by ABM on 5/18/2017.
@@ -28,6 +29,17 @@ public class Question implements Serializable{
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
+
+    @Column
+    private Date submissionDate;
+
+    public Date getSubmissionDate() {
+        return submissionDate;
+    }
+
+    public void setSubmissionDate(Date submissionDate) {
+        this.submissionDate = submissionDate;
+    }
 
     public Long getId() {
         return id;
@@ -66,9 +78,10 @@ public class Question implements Serializable{
 
     }
 
-    public Question(String body, String ans, User user) {
+    public Question(String body, String ans, User user, Date date) {
         this.body = body;
         this.ans = ans;
         this.user = user;
+        this.submissionDate = date;
     }
 }
