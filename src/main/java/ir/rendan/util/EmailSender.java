@@ -33,8 +33,6 @@ public class EmailSender {
                 .body(body)
                 .build();
 
-        System.out.println("hi");
-
         emailService.send(email);
 
     }

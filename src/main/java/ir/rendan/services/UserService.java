@@ -78,8 +78,6 @@ public class UserService extends AbstractService{
             String link = "http://" + constants.getServerAddress() + ":" + constants.getServerPort() +"/api/user/validate/" + user.getActivationCode();
             emailSender.send("Validation Link",link,user.getEmail());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println(e);
             userRepository.delete(user);
             return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.email.invalid")).build();
         }
