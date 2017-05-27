@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>اسم مسابقه</title>
+    <title>مسابقات هوش مصنوعی دانشگاه شهید بهشتی</title>
 
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/bootstrap/css/bootstrap-rtl.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
                     <img src="elements/favlogo.png">
                     <br/>
                     <h3 class=" ohod-font" style="color: #303c42;margin-top:0px">چالش هوش مصنوعی </h3>
-                    <p> این مسابقات در سال با هدف برای شروع به کار مرده و تا کنون نزدیک به شرکت ککنند رد این مسابقات شرکت کرده اند امید است که انشالله </p>
+                    <p>این مسابقات تحت نظر گروه دانشجویی هوش مصنوعی دانشگاه شهید بهشتی برگزار می شود.</p>
                     <a href="blog.html">
                         <button class="btn btn-default" style="border-color: #313d43;color: #313d43 ;width: 150px"> بلاگ</button>
                     </a>
@@ -49,7 +49,7 @@
                     </div>
                 <!--</form>-->
                 <div class="text-center"><button name="modal" value="modal" class="btn btn-link" data-toggle=modal data-target="#registerModal">ثبت نام</button></div>
-                <br>
+                <br ng-if="message.text!=null">
                 <div ng-if="message.text!=null"
                      ng-class="message.type=='error'?'alert alert-danger':'alert alert-success'"
                      style="text-align: center">{{message.text}}</div>
