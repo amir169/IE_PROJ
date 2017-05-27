@@ -51,7 +51,11 @@ public class QuestionService extends AbstractService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getQuestions(@DefaultValue("0")@QueryParam("start")Integer start,
                                  @DefaultValue("10")@QueryParam("len")Integer len,
-                                 @DefaultValue("submissionDate")@QueryParam("order_by")String order){
+                                 @DefaultValue("submissionDate")@QueryParam("order_by")String order,
+                                 @DefaultValue("content")@QueryParam("type")String queryType){
+
+        if(queryType.equals("count"))
+            return Response.ok(questionRepository.count()).build();
 
         List<Question> questions = questionRepository.findAll(new PageRequest(start,len,new Sort(Sort.Direction.DESC,order))).getContent();
 

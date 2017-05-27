@@ -25,8 +25,8 @@ angular.module("gameApp").controller("game_controller",function($scope,$http) {
 
         $scope.current_page = page_number;
         $scope.data = [];
-        $http.get($scope.context.data_url).then( function(response) {
-            $scope.data = response.data.slice(($scope.current_page - 1) * page_capacity, $scope.current_page * page_capacity);
+        $http.get($scope.context.data_url,{params:{start:$scope.current_page-1,len:page_capacity}}).then( function(response) {
+            $scope.data = response.data;
         });
     };
 
@@ -36,16 +36,20 @@ angular.module("gameApp").controller("game_controller",function($scope,$http) {
         $scope.record = {};
         $scope.template = $scope.context.template_url;
         $scope.current_page = 1;
-        $http.get($scope.context.data_url).then( function(response) {
+        $http.get($scope.context.data_url,{params:{start:$scope.current_page-1,len:page_capacity}}).then( function(response) {
 
             // console.log(response.data);
             if($scope.context.name == 'sch_ranking')       //a temporary spit. fix it later
                 $scope.data = response.data;
             else {
-                $scope.data = response.data.slice(($scope.current_page - 1) * page_capacity, $scope.current_page * page_capacity);
-                $scope.page_count = Math.ceil(response.data.length / page_capacity);
+                $scope.data = response.data;
             }
         });
+
+        $http.get($scope.context.data_url,{params:{type:"count"}}).then( function(response) {
+            $scope.page_count = Math.ceil(response.data / page_capacity);
+        });
+
     };
     
     $scope.game_document = function () {
