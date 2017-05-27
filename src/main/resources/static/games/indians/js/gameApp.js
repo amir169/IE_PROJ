@@ -10,8 +10,10 @@ angular.module("gameApp").controller("game_controller",function($scope,$http) {
             url: '/api/question/submit',
             method: "POST",
             data: data
-        });
-        $scope.change_context("comment");
+        }).then(function (response){
+            $scope.change_context("comment");
+        }
+        );
     };
 
 
