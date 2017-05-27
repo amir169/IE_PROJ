@@ -7,14 +7,15 @@ import ir.rendan.repository.UserRepository;
 import ir.rendan.services.base.AbstractService;
 import ir.rendan.services.dto.QuestionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.hateoas.PagedResources;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,7 +39,7 @@ public class QuestionService extends AbstractService {
 
         User user = userRepository.getOne(username);
 
-        Question question = new Question(body,null,user);
+        Question question = new Question(body,null,user,new Date());
 
         questionRepository.save(question);
 
@@ -48,9 +49,11 @@ public class QuestionService extends AbstractService {
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getQuestions(){
+    public Response getQuestions(@DefaultValue("0")@QueryParam("start")Integer start,
+                                 @DefaultValue("10")@QueryParam("len")Integer len,
+                                 @DefaultValue("submissionDate")@QueryParam("order_by")String order){
 
-        List<Question> questions = questionRepository.findAll();
+        List<Question> questions = questionRepository.findAll(new PageRequest(start,len,new Sort(Sort.Direction.DESC,order))).getContent();
 
         List<QuestionDTO> result = QuestionDTO.loadFrom(questions);
 
