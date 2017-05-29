@@ -17,6 +17,7 @@
 //
 ////
 //
+//
 //        userInit("user",5);
 //
 //        UserDAO UD = new UserDAO();
@@ -54,6 +55,5 @@
 //            UD.insert(ui);
 //        }
 //    }
-//
 //
 //}
