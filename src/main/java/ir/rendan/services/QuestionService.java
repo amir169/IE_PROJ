@@ -69,16 +69,16 @@ public class QuestionService extends AbstractService {
     @Path("reply")
     @Produces(MediaType.APPLICATION_JSON)
     public Response setReply(String body){
+        System.out.println(body);
         JSONObject obj = new JSONObject(body);
-        String answerText = obj.getString("answerText");
         Long qId = obj.getLong("qId");
-
+        String answerText = obj.getString("message");
         Question question = questionRepository.findOne(qId);
         question.setAns(answerText);
 
         questionRepository.save(question);
 
-        return Response.ok().build();
+        return Response.ok("ok").build();
     }
 
     @GET

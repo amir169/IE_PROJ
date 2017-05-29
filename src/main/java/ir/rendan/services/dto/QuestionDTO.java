@@ -20,7 +20,6 @@ public class QuestionDTO {
     @JsonProperty
     private String ans;
 
-
     @JsonProperty
     private Long qId;
 
