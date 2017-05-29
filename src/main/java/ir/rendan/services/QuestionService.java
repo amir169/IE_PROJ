@@ -6,6 +6,7 @@ import ir.rendan.repository.QuestionRepository;
 import ir.rendan.repository.UserRepository;
 import ir.rendan.services.base.AbstractService;
 import ir.rendan.services.dto.QuestionDTO;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -62,6 +63,34 @@ public class QuestionService extends AbstractService {
         List<QuestionDTO> result = QuestionDTO.loadFrom(questions);
 
         return Response.ok(result).build();
+    }
+
+    @POST
+    @Path("reply")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response setReply(String body){
+        JSONObject obj = new JSONObject(body);
+        String answerText = obj.getString("answerText");
+        Long qId = obj.getLong("qId");
+
+        Question question = questionRepository.findOne(qId);
+        question.setAns(answerText);
+
+        questionRepository.save(question);
+
+        return Response.ok().build();
+    }
+
+    @GET
+    @Path("remove-user")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response removeUser(@DefaultValue("")@QueryParam("userName")String userName){
+
+        User user = userRepository.getOne(userName);
+
+        userRepository.delete(user);
+
+        return Response.ok().build();
     }
 
 }

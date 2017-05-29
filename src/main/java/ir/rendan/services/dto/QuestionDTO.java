@@ -20,8 +20,14 @@ public class QuestionDTO {
     @JsonProperty
     private String ans;
 
+
+    @JsonProperty
+    private Long qId;
+
     @JsonProperty
     private Long date;
+
+
 
     public Long getDate() {
         return date;
@@ -29,6 +35,10 @@ public class QuestionDTO {
 
     public void setDate(Long date) {
         this.date = date;
+    }
+
+    public void setqId(Long qId) {
+        this.qId = qId;
     }
 
     public String getUsername() {
@@ -67,6 +77,7 @@ public class QuestionDTO {
             dto.setAns(q.getAns());
             dto.setBody(q.getBody());
             dto.setDate(q.getSubmissionDate().getTime());
+            dto.setqId(q.getId());
 
             result.add(dto);
         }
