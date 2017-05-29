@@ -16,8 +16,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    MyAppUserDetailsService myAppUserDetailsService;
+    private final MyAppUserDetailsService myAppUserDetailsService;
+
+    public SecurityConfig(MyAppUserDetailsService myAppUserDetailsService) {
+        this.myAppUserDetailsService = myAppUserDetailsService;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

@@ -2,6 +2,7 @@ package ir.rendan.services;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -17,6 +18,7 @@ import java.nio.file.Files;
  * Created by ABM on 5/17/2017.
  */
 @Path("team")
+@Component
 public class TeamService {
     @Path("upload")
     @POST

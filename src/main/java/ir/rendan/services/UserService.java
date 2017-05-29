@@ -1,26 +1,19 @@
 package ir.rendan.services;
-import com.google.common.collect.Lists;
 import ir.rendan.model.User;
 import ir.rendan.repository.UserRepository;
-import ir.rendan.services.base.AbstractService;
 import ir.rendan.services.dto.RegistrationDTO;
+import ir.rendan.util.ConstantReader;
 import ir.rendan.util.EmailSender;
+import ir.rendan.util.MessageTranslator;
 import ir.rendan.util.StringGenerator;
-import it.ozimov.springboot.mail.model.Email;
-import it.ozimov.springboot.mail.model.defaultimpl.DefaultEmail;
-import it.ozimov.springboot.mail.service.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.InternetAddress;
+import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -31,13 +24,20 @@ import java.util.List;
  * Created by Amir Shams on 5/20/2017.
  */
 @Path("api/user")
-public class UserService extends AbstractService{
+@Component
+public class UserService{
 
-    @Autowired
-    private EmailSender emailSender;
+    private final EmailSender emailSender;
+    private final UserRepository userRepository;
+    private final ConstantReader constants;
+    private final MessageTranslator translator;
 
-    @Autowired
-    private UserRepository userRepository;
+    public UserService(UserRepository userRepository, EmailSender emailSender,ConstantReader constants,MessageTranslator translator) {
+        this.userRepository = userRepository;
+        this.emailSender = emailSender;
+        this.constants = constants;
+        this.translator = translator;
+    }
 
     @GET
     @Path("test_user")
@@ -54,10 +54,10 @@ public class UserService extends AbstractService{
     public Response register(RegistrationDTO dto)
     {
         if(!validateDTO(dto))
-            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.incomplete")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.register.incomplete")).build();
 
         if(userRepository.exists(dto.getUsername()))
-            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.username_exists")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.register.username_exists")).build();
 
         User user = new User();
         user.setEnabled(new Short("0"));
@@ -71,7 +71,7 @@ public class UserService extends AbstractService{
             userRepository.save(user);
         }catch (Exception e)
         {
-            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.register.email_exists")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.register.email_exists")).build();
         }
 
         try {
@@ -79,10 +79,10 @@ public class UserService extends AbstractService{
             emailSender.send("Validation Link",link,user.getEmail());
         } catch (Exception e) {
             userRepository.delete(user);
-            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.email.invalid")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.email.invalid")).build();
         }
 
-        return Response.ok(translate("user.validation.sent")).build();
+        return Response.ok(translator.translate("user.validation.sent")).build();
     }
 
     @POST
@@ -94,14 +94,14 @@ public class UserService extends AbstractService{
 
         User user = userRepository.findOne(username);
         if(user == null || !user.getPassword().equals(password))
-            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.login.failed")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.login.failed")).build();
 
         if(user.getEnabled() == 0)
-            return Response.status(Response.Status.BAD_REQUEST).entity(translate("user.account.not_activated")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.account.not_activated")).build();
 
 
         loginUser(username,password);
-        return Response.ok(translate("user.login.successful")).build();
+        return Response.ok(translator.translate("user.login.successful")).build();
     }
 
     @GET
@@ -126,7 +126,7 @@ public class UserService extends AbstractService{
             e.printStackTrace();
         }
 
-        return Response.ok(translate("user.account.activated")).build();
+        return Response.ok(translator.translate("user.account.activated")).build();
     }
 
 

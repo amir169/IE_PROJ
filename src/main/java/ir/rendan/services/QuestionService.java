@@ -4,13 +4,12 @@ import ir.rendan.model.Question;
 import ir.rendan.model.User;
 import ir.rendan.repository.QuestionRepository;
 import ir.rendan.repository.UserRepository;
-import ir.rendan.services.base.AbstractService;
 import ir.rendan.services.dto.QuestionDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import ir.rendan.util.MessageTranslator;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.hateoas.PagedResources;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -22,13 +21,19 @@ import java.util.List;
  * Created by Amir Shams on 5/26/2017.
  */
 @Path("api/question")
-public class QuestionService extends AbstractService {
+@Component
+public class QuestionService{
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final MessageTranslator translator;
+    private final QuestionRepository questionRepository;
 
-    @Autowired
-    private QuestionRepository questionRepository;
+    public QuestionService(UserRepository userRepository, MessageTranslator translator, QuestionRepository questionRepository) {
+
+        this.userRepository = userRepository;
+        this.translator = translator;
+        this.questionRepository = questionRepository;
+    }
 
 
     @POST
@@ -43,7 +48,7 @@ public class QuestionService extends AbstractService {
 
         questionRepository.save(question);
 
-        return Response.ok(translate("question.added.successfully")).build();
+        return Response.ok(translator.translate("question.added.successfully")).build();
     }
 
     @GET
