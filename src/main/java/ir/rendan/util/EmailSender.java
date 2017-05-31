@@ -16,11 +16,14 @@ import javax.mail.internet.InternetAddress;
 @Component
 public class EmailSender {
 
-    @Autowired
-    private EmailService emailService;
+    private final EmailService emailService;
 
-    @Autowired
-    private ConstantReader constants;
+    private final ConstantReader constants;
+
+    public EmailSender(EmailService emailService, ConstantReader constants) {
+        this.emailService = emailService;
+        this.constants = constants;
+    }
 
     public void send(String subject,String body,String to) throws AddressException {
 

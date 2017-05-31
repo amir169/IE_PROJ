@@ -33,11 +33,10 @@
                         <button class="btn btn-default" style="border-color: #313d43;color: #313d43 ;width: 150px"> بلاگ</button>
                     </a>
                 </div>
-                <!--<form name='f' action='login.html' method='POST'>-->
                     <div class="col-sm-6 col-xs-12">
                         <br/>
                         <div class="form-group">
-                            <label> ایمیل</label>
+                            <label> نام کاربری</label>
                             <input type="text" name="username" ng-model="username" class="form-control">
                         </div>
                         <div class="form-group">
@@ -46,14 +45,12 @@
                         </div>
                         <div><button ng-click="login()" name="submit" type="submit" class="btn btn-primary form-control" value="submit"  >ورود</button></div>
                         <br/>
+                        <div class="text-center"><button name="modal" value="modal" class="btn btn-link" data-toggle=modal data-target="#registerModal">ثبت نام</button></div>
+                        <br/>
+                        <div ng-if="message.text!=null"
+                             ng-class="message.type=='error'?'alert alert-danger':'alert alert-success'"
+                             style="text-align: center">{{message.text}}</div>
                     </div>
-                <!--</form>-->
-                <div class="text-center"><button name="modal" value="modal" class="btn btn-link" data-toggle=modal data-target="#registerModal">ثبت نام</button></div>
-                <br ng-if="message.text!=null">
-                <div ng-if="message.text!=null"
-                     ng-class="message.type=='error'?'alert alert-danger':'alert alert-success'"
-                     style="text-align: center">{{message.text}}</div>
-
             </div>
         </div>
     </div>
@@ -84,7 +81,7 @@
                         <div class="col-md-6 col-xs-12">
                             <br/>
                             <div class="form-group">
-                                <label> نام</label>
+                                <label> نام کاربری</label>
                                 <input ng-change="username_changed()" type="text" class="form-control" ng-model="credentials.username">
                             </div>
                             <div ng-class="validation.email=='invalid'?'form-group has-error has-feedback':'form-group'">

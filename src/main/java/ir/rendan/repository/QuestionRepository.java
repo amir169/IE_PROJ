@@ -11,6 +11,6 @@ import java.util.List;
 /**
  * Created by Amir Shams on 5/26/2017.
  */
-public interface QuestionRepository extends PagingAndSortingRepository<Question,Long> {
+public interface QuestionRepository extends JpaRepository<Question,Long> {
 
 }

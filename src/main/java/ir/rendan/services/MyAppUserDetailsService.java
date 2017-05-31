@@ -15,8 +15,12 @@ import java.util.Collections;
 
 @Service
 public class MyAppUserDetailsService implements UserDetailsService {
-	@Autowired
-	private UserRepository repository;
+
+	private final UserRepository repository;
+	
+	public MyAppUserDetailsService(UserRepository repository) {
+		this.repository = repository;
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String userName)
