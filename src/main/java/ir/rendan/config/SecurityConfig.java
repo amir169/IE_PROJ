@@ -42,7 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         ,"/elements/**"
                         ,"/fonts/**"
                         ,"/templates/**").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/question/reply"
+                        ,"/games/**/admin.html").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
     }
 

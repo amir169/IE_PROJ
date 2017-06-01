@@ -9,6 +9,7 @@ import ir.rendan.util.StringGenerator;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
@@ -17,6 +18,7 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -100,7 +102,7 @@ public class UserService{
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.account.not_activated")).build();
 
 
-        loginUser(username,password);
+        loginUser(username,password,user.getRole());
         return Response.ok(translator.translate("user.login.successful")).build();
     }
 
@@ -118,7 +120,7 @@ public class UserService{
 
         userRepository.save(user);
 
-        loginUser(user.getUsername(),user.getPassword());
+        loginUser(user.getUsername(),user.getPassword(),user.getRole());
 
         try {
             return Response.seeOther(new URI("/")).build();
@@ -136,9 +138,9 @@ public class UserService{
                 (dto.getEmail() != null || dto.getEmail().isEmpty());
     }
 
-    private void loginUser(String username,String password){
+    private void loginUser(String username,String password,String authority){
 
-        List<GrantedAuthority> grantedAuths = new ArrayList<>();
+        List<GrantedAuthority> grantedAuths = Collections.singletonList(new SimpleGrantedAuthority(authority));
         Authentication a =  new UsernamePasswordAuthenticationToken(username, password, grantedAuths);
         SecurityContextHolder.getContext().setAuthentication(a);
 

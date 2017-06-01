@@ -4,11 +4,14 @@ import ir.rendan.model.Question;
 import ir.rendan.model.User;
 import ir.rendan.repository.QuestionRepository;
 import ir.rendan.repository.UserRepository;
+import ir.rendan.services.dto.AnswerDTO;
 import ir.rendan.util.MessageTranslator;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Date;
 
@@ -17,7 +20,7 @@ import java.util.Date;
  */
 @Path("api/question")
 @Component
-public class QuestionService{
+public class QuestionService {
 
     private final UserRepository userRepository;
     private final MessageTranslator translator;
@@ -32,17 +35,29 @@ public class QuestionService{
 
     @POST
     @Path("submit")
-    public Response submitQuestion(String body){
+    public Response submitQuestion(String body) {
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
         User user = userRepository.findOne(username);
 
-        Question question = new Question(body,null,user,new Date());
+        Question question = new Question(body, null, user, new Date());
 
         questionRepository.save(question);
 
         return Response.ok(translator.translate("question.added.successfully")).build();
     }
 
+    @POST
+    @Path("reply")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response setReply(AnswerDTO dto) {
+
+        Question q = questionRepository.findOne(dto.getQuestionId());
+        q.setAns(dto.getAnswerText());
+
+        questionRepository.save(q);
+
+        return Response.ok(translator.translate("question.answered.successfully")).build();
+    }
 }

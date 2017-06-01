@@ -30,7 +30,7 @@ public class MyAppUserDetailsService implements UserDetailsService {
 		if(activeUserInfo == null)
 			throw new UsernameNotFoundException("username and password did not matched");
 
-			GrantedAuthority authority = new SimpleGrantedAuthority(activeUserInfo.getRole());
+		GrantedAuthority authority = new SimpleGrantedAuthority("ADMIN");
 
 		return new org.springframework.security.core.userdetails.User(activeUserInfo.getUsername(),
 				activeUserInfo.getPassword(), Collections.singletonList(authority));

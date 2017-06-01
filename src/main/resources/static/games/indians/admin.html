@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>پنل پاسخ به سوالات</title>
+
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../bootstrap/css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="../../css/fonts.css" rel="stylesheet">
+    <link href="css/game.css" rel="stylesheet">
+    <link href="../../css/sticky-footer.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script src="js/adminPage.js"></script>
+</head>
+<body ng-app="adminPage" ng-controller="admin_controller">
+        <div class="container text-center">
+            <h3 class="page-header" style="margin-top:0px">پرسش ها</h3>
+            <div ng-repeat="record in data" class="panel panel-default">
+                <div class="panel-body" style="margin-top:  -15px;margin-bottom: -15px" >
+                    <h6>{{record.submissionDate}}</h6>
+                    <h6 style="color: #00594c">{{record.user.username}} :</h6>
+                    <p>{{record.body}}</p>
+                    <h6 style="color: #00594c"> پاسخ :</h6>
+                    <form>
+                        <textarea class="form-control" rows="3" ng-model="qMessage[record.id]"></textarea>
+                        <br/>
+                        <button ng-if="record.ans == null" type="submit" class="btn btn-primary center" ng-click="submitAnswer(record.id)">ارسال پاسخ</button>
+                        <button ng-if="record.ans != null" type="submit" class="btn btn-primary center" ng-click="submitAnswer(record.id)">اصلاح پاسخ</button>
+                    </form>
+                </div>
+
+            </div>
+            <div ng-include="pagination"></div>
+        </div>
+</body>
+</html>
