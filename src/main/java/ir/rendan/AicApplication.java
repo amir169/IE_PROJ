@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
-
 @SpringBootApplication
 @EnableEmailTools
 public class AicApplication extends SpringBootServletInitializer {
@@ -20,4 +19,6 @@ public class AicApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(AicApplication.class, args);
 	}
+
+
 }

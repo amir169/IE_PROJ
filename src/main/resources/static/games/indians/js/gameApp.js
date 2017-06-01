@@ -10,7 +10,7 @@ angular.module("gameApp").controller("game_controller",function($scope,$http) {
             url: '/api/question/submit',
             method: "POST",
             data: data
-        }).then(function (response){
+        }).then(function (){
             $scope.change_context("comment");
         }
         );
@@ -27,8 +27,8 @@ angular.module("gameApp").controller("game_controller",function($scope,$http) {
 
         $scope.current_page = page_number;
         $scope.data = [];
-        $http.get($scope.context.data_url,{params:{start:$scope.current_page-1,len:page_capacity}}).then( function(response) {
-            $scope.data = response.data;
+        $http.get($scope.context.data_url,{params:{page:$scope.current_page-1,sort:"submissionDate,desc"}}).then( function(response) {
+            $scope.data = response.data.content;
         });
     };
 
@@ -38,18 +38,15 @@ angular.module("gameApp").controller("game_controller",function($scope,$http) {
         $scope.record = {};
         $scope.template = $scope.context.template_url;
         $scope.current_page = 1;
-        $http.get($scope.context.data_url,{params:{start:$scope.current_page-1,len:page_capacity}}).then( function(response) {
+        $http.get($scope.context.data_url,{params:{page:$scope.current_page-1,sort:"submissionDate,desc"}}).then( function(response) {
 
             // console.log(response.data);
             if($scope.context.name == 'sch_ranking')       //a temporary spit. fix it later
                 $scope.data = response.data;
             else {
-                $scope.data = response.data;
+                $scope.data = response.data.content;
+                $scope.page_count = response.data.page.totalPages;
             }
-        });
-
-        $http.get($scope.context.data_url,{params:{type:"count"}}).then( function(response) {
-            $scope.page_count = Math.ceil(response.data / page_capacity);
         });
 
     };
@@ -60,13 +57,11 @@ angular.module("gameApp").controller("game_controller",function($scope,$http) {
     };
 
 });
-var page_capacity;
 var dict;
 function init($http,$scope) {
 
     $scope.page_count = 0;
     $scope.current_page= 0;
-    page_capacity = 8;
 
     $scope.pagination = "../../templates/pagination.html";
     $http.get("js/context_dictionary.json").then(function (response) {

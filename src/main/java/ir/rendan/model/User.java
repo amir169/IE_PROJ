@@ -11,7 +11,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
-@Proxy(lazy = false)
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -21,11 +20,13 @@ public class User implements Serializable {
 	@JsonIgnore
 	private String password;
 	@Column(unique = true)
+	@JsonIgnore
 	private String email;
 	@Column
 	@JsonIgnore
 	private short enabled;
 	@Column
+	@JsonIgnore
 	private String role;
 	@Column
 	@JsonIgnore
