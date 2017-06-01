@@ -1,4 +1,4 @@
-package ir.rendan.repository;
+package ir.rendan.repository.custom;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

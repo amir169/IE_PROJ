@@ -1,6 +1,7 @@
 package ir.rendan.repository;
 
 import ir.rendan.model.Question;
+import ir.rendan.repository.custom.PagingAndSortingRepositoryWithReadOnlyRestResource;
 
 
 /**
