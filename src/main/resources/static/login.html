@@ -97,7 +97,7 @@
                                 <input ng-change="re_password_changed()" type="password" class="form-control" ng-model="re_password">
                             </div>
 
-                            <button ng-click="register()" class="btn btn-primary form-control" data-dismiss="modal" >ثبت نام</button>
+                            <button ng-style="validate()?{'color':'black'}:{}" ng-disabled="validate()" ng-click="register()" class="btn btn-primary form-control" data-dismiss="modal" >ثبت نام</button>
                         </div>
                     </div>
                 </div>

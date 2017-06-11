@@ -20,17 +20,6 @@ angular.module("login").controller("register_modal",function($scope,$http) {
 
     $scope.register = function () {
 
-        if($scope.validation.strong_pass == 'invalid'
-            || $scope.validation.email == 'invalid'
-            || $scope.validation.strong_pass == 'invalid'
-            || $scope.credentials.email.length == 0
-            || $scope.re_password == 0
-            || $scope.credentials.password.length == 0)
-        {
-            $scope.message.text = "اطلاعات را اصلاح کنید و دوباره تلاش کنید."
-            $scope.message.type="error";
-            return;
-        }
         $scope.message.text="لطفا صبر کنید...";
         $scope.message.type="info";
         $http({
@@ -86,6 +75,18 @@ angular.module("login").controller("register_modal",function($scope,$http) {
             $scope.validation.re_pass = 'invalid';
         else
             $scope.validation.re_pass = 'valid';
+    };
+
+    $scope.validate = function ()
+    {
+        return $scope.validation.re_pass == 'invalid'
+            || $scope.validation.strong_pass == 'invalid'
+            || $scope.validation.email == 'invalid'
+            || $scope.validation.strong_pass == 'invalid'
+            || $scope.credentials.email.length == 0
+            || $scope.re_password == 0
+            || $scope.credentials.password.length == 0;
+
     };
 
 });
