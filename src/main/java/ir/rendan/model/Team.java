@@ -14,6 +14,10 @@ public class Team {
     @Id
     String teamname;
 
+
+    @Column
+    short authorized;// become true after all member accept invitation.
+
     @ManyToOne
     @JoinColumn(name = "USR_Name")
     User HeadUSer;
@@ -24,7 +28,7 @@ public class Team {
         joinColumns = @JoinColumn(name = "TM_Name",referencedColumnName = "teamname"),
         inverseJoinColumns = @JoinColumn(name = "USR_Name",referencedColumnName = "username")
     )
-    Set<User> members;
+    Set<User> members;//TODO this must be changed to map<User,short> wich save each member accept it's invitation or not
 
     public Team() {
     }
