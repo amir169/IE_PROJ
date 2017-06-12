@@ -2,6 +2,7 @@ package ir.rendan.repository;
 
 import ir.rendan.model.Question;
 import ir.rendan.repository.custom.PagingAndSortingRepositoryWithReadOnlyRestResource;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 
 /**
@@ -10,5 +11,6 @@ import ir.rendan.repository.custom.PagingAndSortingRepositoryWithReadOnlyRestRes
 
 public interface QuestionRepository extends PagingAndSortingRepositoryWithReadOnlyRestResource<Question,Long> {
 
-
+    @PreAuthorize("hasAuthority('ADMIN')")
+    void delete(Long id);
 }
