@@ -29,6 +29,7 @@
                         <br/>
                         <button ng-if="record.ans == null" type="submit" class="btn btn-primary center" ng-click="submitAnswer(record.id)">ارسال پاسخ</button>
                         <button ng-if="record.ans != null" type="submit" class="btn btn-primary center" ng-click="submitAnswer(record.id)">اصلاح پاسخ</button>
+                        <button type="submit" class="btn btn-danger" class="btn btn-primary center" ng-click="deleteQuestion(record.id)">حذف سوال</button>
                     </form>
                 </div>
 

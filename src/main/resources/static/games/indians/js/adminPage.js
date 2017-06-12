@@ -16,6 +16,24 @@ angular.module("adminPage").controller("admin_controller",function($scope,$http)
                 'Content-Type': 'application/json'
             }
         }).then(function () {
+            alert("پاسخ با موفقیت ثبت شد.");
+            init($scope,$http);
+        })
+
+    };
+
+    $scope.deleteQuestion = function(id)
+    {
+        if (!confirm('آیا مطمئنید میخواهید این سوال را حذف کنید؟')) {
+            return;
+        }
+
+        var url = "/items/questions/" + id;
+        $http({
+            url: url,
+            method: "DELETE"
+
+        }).then(function () {
             init($scope,$http);
         })
     };
