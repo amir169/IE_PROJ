@@ -1,6 +1,8 @@
 package ir.rendan.model;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,7 +27,15 @@ public class League {
     @JoinTable(name = "TM_GAME_SCORE",joinColumns = @JoinColumn(name = "id"))
     @MapKeyColumn(name = "TM_GAME_ID")
     @Column(name = "SCORES")
-    public Map<Integer,Float> scores;
+    public Map<Integer,Double> scores;
+
+    public League(Game game, String name) {
+        this.game = game;
+        Name = name;
+        matches = new HashSet<>();
+        scores = new HashMap<>();
+    }
+
 
     public int getId() {
         return id;
@@ -41,6 +51,10 @@ public class League {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    public void addTeamGame(TeamGame teamGame){
+        scores.put(teamGame.id,0.0);
     }
 
 }

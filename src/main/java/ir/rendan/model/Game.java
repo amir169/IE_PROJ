@@ -1,6 +1,7 @@
 package ir.rendan.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -19,4 +20,13 @@ public class Game {
 
     @OneToMany
     Set<League> leagues;
+
+    public Game(String name, String sourcePath, int leagueCount) {
+        this.name = name;
+        this.sourcePath = sourcePath;
+        leagues = new HashSet<>();
+        for (int i = 0; i < leagueCount; i++) {
+            leagues.add(new League(this,"لیگ "+i) );
+        }
+    }
 }
