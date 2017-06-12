@@ -53,8 +53,11 @@ public class League {
         Name = name;
     }
 
-    public void addTeamGame(TeamGame teamGame){
-        scores.put(teamGame.id,0.0);
+    public void addTeamGame(TeamGame teamGame, double initScore){
+        scores.put(teamGame.id,initScore);
     }
 
+    public Double removeTeamGame(TeamGame teamGame){
+        return scores.remove(teamGame);
+    }
 }

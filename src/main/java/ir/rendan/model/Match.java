@@ -17,11 +17,18 @@ public class Match {
     @Column
     long date;//the date fo running
 
+    @Column
+    short seen;//become true after changing league score based on this match results
+
+    @Column
+    short visible;//become false after league results reset(recommended)
+
+
     @ElementCollection
-    @JoinTable(name = "MATCH_SCORE",joinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "MATCH_SCORE",joinColumns = @JoinColumn(name = "MATCH_ID"))
     @MapKeyColumn(name = "TM_GAME_ID")
     @Column(name = "SCORES")
-    Map<Integer,Float> scores;
+    Map<Integer,Double> scores;
 
     @ManyToOne
     public League leagueOwner;
