@@ -15,7 +15,7 @@ public class Match {
     short played;
 
     @Column
-    long date;// the date fo running
+    long date;//the date fo running
 
     @ElementCollection
     @JoinTable(name = "MATCH_SCORE",joinColumns = @JoinColumn(name = "id"))
