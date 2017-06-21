@@ -12,6 +12,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -60,13 +63,27 @@ public class UserService{
 
         if(userRepository.exists(dto.getUsername()))
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.register.username_exists")).build();
-
+        // validate email
+        String email = "";
+        boolean isValid = true;
+        try {
+            InternetAddress emailAddr = new InternetAddress(dto.getEmail());
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            isValid = false;
+        }
+        if (!isValid)
+            return Response.ok().entity(translator.translate("user.email.invalid")).build();
+        else{
+            email = dto.getEmail().split("@")[0].replaceAll("\\.", "").split("\\+")[0]+ "@" + dto.getEmail().split("@")[1];
+            System.out.println(email);
+        }
         User user = new User();
         user.setEnabled(new Short("0"));
         user.setPassword(dto.getPassword());
         user.setRole("USER");
         user.setUsername(dto.getUsername());
-        user.setEmail(dto.getEmail());
+        user.setEmail(email);
         user.setActivationCode(StringGenerator.generateValidationCode());
 
         try {
@@ -78,7 +95,8 @@ public class UserService{
 
         try {
             String link = "http://" + constants.getServerAddress() + ":" + constants.getServerPort() +"/api/user/validate/" + user.getActivationCode();
-            emailSender.send("Validation Link",link,user.getEmail());
+            String body = link + "\n\n\n" + "user:  "+ user.getUsername()+ "\n" + "password:  "+ user.getPassword();
+            emailSender.send("Validation Link",body,user.getEmail());
         } catch (Exception e) {
             userRepository.delete(user);
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.email.invalid")).build();
