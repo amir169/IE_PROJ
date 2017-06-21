@@ -1,6 +1,7 @@
 package ir.rendan.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import ir.rendan.util.StringGenerator;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.Column;
@@ -75,5 +76,24 @@ public class User implements Serializable {
 	}
 	public void setEnabled(short enabled) {
 		this.enabled = enabled;
+	}
+
+	public void validate()
+	{
+		this.setActivationCode(null);
+		this.setEnabled(new Short("1"));
+	}
+
+	public User(){}
+
+	public User(String username,String password,String email)
+	{
+		this.email = email;
+		this.username = username;
+		this.password = password;
+
+		this.enabled = new Short("0");
+		this.role = "USER";
+		this.activationCode = StringGenerator.generateValidationCode();
 	}
 }
