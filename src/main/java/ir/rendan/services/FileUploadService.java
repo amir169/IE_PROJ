@@ -1,5 +1,6 @@
 package ir.rendan.services;
 
+import ir.rendan.util.ConstantReader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,12 +20,20 @@ import java.nio.file.Paths;
 @Controller
 @Path("api/files")
 public class FileUploadService {
+
+    private final ConstantReader constants;
+
+    public FileUploadService(ConstantReader constants) {
+        this.constants = constants;
+    }
+
     @PostMapping("api/files/upload")
     public ResponseEntity singleFileUpload(@RequestParam("file") MultipartFile file) {
 
         try {
 
-        Files.write(Paths.get("F:/temp/" + file.getOriginalFilename()), file.getBytes());
+        Files.createDirectories(Paths.get(constants.getFolderPath()));
+        Files.write(Paths.get(constants.getFolderPath() +"/" + file.getOriginalFilename()), file.getBytes());
 
     } catch (IOException e) {
         e.printStackTrace();
@@ -38,7 +47,7 @@ public class FileUploadService {
     public Response getFile(
             @PathParam("file_name") String fileName) {
 
-        return Response.ok().entity(new File("F:/temp/" + fileName)).build();
+        return Response.ok().entity(new File(constants.getFolderPath()+"/" + fileName)).build();
 
     }
 

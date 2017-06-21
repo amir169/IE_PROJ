@@ -27,6 +27,6 @@
   {
     "name" : "profile",
     "template_url" : "templates/profile.html",
-    "data_url" : "test_data/user.json"
+    "data_url" : "api/user/whoami"
   }
 }
