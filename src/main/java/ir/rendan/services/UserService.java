@@ -2,6 +2,7 @@ package ir.rendan.services;
 import ir.rendan.model.User;
 import ir.rendan.repository.UserRepository;
 import ir.rendan.services.dto.RegistrationDTO;
+import ir.rendan.services.dto.WhoAmIDTO;
 import ir.rendan.util.ConstantReader;
 import ir.rendan.util.EmailSender;
 import ir.rendan.util.MessageTranslator;
@@ -143,6 +144,16 @@ public class UserService{
         Authentication a =  new UsernamePasswordAuthenticationToken(username, password, grantedAuths);
         SecurityContextHolder.getContext().setAuthentication(a);
 
+    }
+
+    @GET
+    @Path("whoami")
+    public Response profile()
+    {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findOne(username);
+
+        return Response.ok(WhoAmIDTO.loadFrom(user)).build();
     }
 
 }

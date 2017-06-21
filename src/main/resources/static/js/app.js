@@ -48,7 +48,7 @@ function init($http,$scope) {
 
     $scope.pagination = "templates/pagination.html";
 
-    $http.get("test_data/user.json").then(function (response) {
+    $http.get("api/user/whoami").then(function (response) {
         $scope.user = response.data;
     });
 
