@@ -18,6 +18,16 @@ public class ConstantReader {
     @Value("${spring.mail.username}")
     private String emailAddress;
 
+    @Value("${application.folder_path}")
+    private String folderPath;
+
+    public String getFolderPath() {
+        return folderPath;
+    }
+
+    public void setFolderPath(String folderPath) {
+        this.folderPath = folderPath;
+    }
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;

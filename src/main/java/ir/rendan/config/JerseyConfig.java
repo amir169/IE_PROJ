@@ -20,6 +20,7 @@ public class JerseyConfig extends ResourceConfig {
         register(ir.rendan.services.QuestionService.class);
 
         register(ir.rendan.services.UserService.class);
+        register(ir.rendan.services.FileUploadService.class);
 
         property(ServletProperties.FILTER_FORWARD_ON_404, true);
     }

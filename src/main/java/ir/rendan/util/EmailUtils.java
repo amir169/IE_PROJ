@@ -1,6 +1,7 @@
 package ir.rendan.util;
 
 import com.google.common.collect.Lists;
+import ir.rendan.model.User;
 import it.ozimov.springboot.mail.model.Email;
 import it.ozimov.springboot.mail.model.defaultimpl.DefaultEmail;
 import it.ozimov.springboot.mail.service.EmailService;
@@ -14,13 +15,13 @@ import javax.mail.internet.InternetAddress;
  * Created by Amir Shams on 5/27/2017.
  */
 @Component
-public class EmailSender {
+public class EmailUtils {
 
     private final EmailService emailService;
 
     private final ConstantReader constants;
 
-    public EmailSender(EmailService emailService, ConstantReader constants) {
+    public EmailUtils(EmailService emailService, ConstantReader constants) {
         this.emailService = emailService;
         this.constants = constants;
     }

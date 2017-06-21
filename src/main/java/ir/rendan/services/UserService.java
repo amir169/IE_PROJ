@@ -2,25 +2,21 @@ package ir.rendan.services;
 import ir.rendan.model.User;
 import ir.rendan.repository.UserRepository;
 import ir.rendan.services.dto.RegistrationDTO;
+import ir.rendan.services.dto.WhoAmIDTO;
 import ir.rendan.util.ConstantReader;
-import ir.rendan.util.EmailSender;
+import ir.rendan.util.EmailUtils;
 import ir.rendan.util.MessageTranslator;
-import ir.rendan.util.StringGenerator;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,14 +28,14 @@ import java.util.List;
 @Component
 public class UserService{
 
-    private final EmailSender emailSender;
+    private final EmailUtils emailUtils;
     private final UserRepository userRepository;
     private final ConstantReader constants;
     private final MessageTranslator translator;
 
-    public UserService(UserRepository userRepository, EmailSender emailSender,ConstantReader constants,MessageTranslator translator) {
+    public UserService(UserRepository userRepository, EmailUtils emailUtils, ConstantReader constants, MessageTranslator translator) {
         this.userRepository = userRepository;
-        this.emailSender = emailSender;
+        this.emailUtils = emailUtils;
         this.constants = constants;
         this.translator = translator;
     }
@@ -63,40 +59,25 @@ public class UserService{
 
         if(userRepository.exists(dto.getUsername()))
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.register.username_exists")).build();
-        // validate email
-        String email = "";
-        boolean isValid = true;
-        try {
-            InternetAddress emailAddr = new InternetAddress(dto.getEmail());
-            emailAddr.validate();
-        } catch (AddressException ex) {
-            isValid = false;
-        }
-        if (!isValid)
-            return Response.ok().entity(translator.translate("user.email.invalid")).build();
-        else{
-            email = dto.getEmail().split("@")[0].replaceAll("\\.", "").split("\\+")[0]+ "@" + dto.getEmail().split("@")[1];
-            System.out.println(email);
-        }
-        User user = new User();
-        user.setEnabled(new Short("0"));
-        user.setPassword(dto.getPassword());
-        user.setRole("USER");
-        user.setUsername(dto.getUsername());
-        user.setEmail(email);
-        user.setActivationCode(StringGenerator.generateValidationCode());
+
+        if(userRepository.findByEmail(dto.getEmail()) != null)
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.register.email_exists")).build();
+
+        User user = new User(dto.getUsername(),dto.getPassword(),dto.getEmail());
 
         try {
             userRepository.save(user);
         }catch (Exception e)
         {
-            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.register.email_exists")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("system.error")).build();
         }
 
         try {
             String link = "http://" + constants.getServerAddress() + ":" + constants.getServerPort() +"/api/user/validate/" + user.getActivationCode();
-            String body = link + "\n\n\n" + "user:  "+ user.getUsername()+ "\n" + "password:  "+ user.getPassword();
-            emailSender.send("Validation Link",body,user.getEmail());
+            link += "\n\n";
+            link += "user: " + user.getUsername();
+            link += "\npass: " + user.getPassword();
+            emailUtils.send("Validation Link",link,user.getEmail());
         } catch (Exception e) {
             userRepository.delete(user);
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.email.invalid")).build();
@@ -120,7 +101,7 @@ public class UserService{
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.account.not_activated")).build();
 
 
-        loginUser(username,password,user.getRole());
+        loginUser(user);
         return Response.ok(translator.translate("user.login.successful")).build();
     }
 
@@ -133,12 +114,11 @@ public class UserService{
         if(user == null)
             return Response.status(Response.Status.NOT_FOUND).build();
 
-        user.setActivationCode(null);
-        user.setEnabled(new Short("1"));
+        user.validate();
 
         userRepository.save(user);
 
-        loginUser(user.getUsername(),user.getPassword(),user.getRole());
+        loginUser(user);
 
         try {
             return Response.seeOther(new URI("/")).build();
@@ -156,12 +136,22 @@ public class UserService{
                 (dto.getEmail() != null || dto.getEmail().isEmpty());
     }
 
-    private void loginUser(String username,String password,String authority){
+    private void loginUser(User user){
 
-        List<GrantedAuthority> grantedAuths = Collections.singletonList(new SimpleGrantedAuthority(authority));
-        Authentication a =  new UsernamePasswordAuthenticationToken(username, password, grantedAuths);
+        List<GrantedAuthority> grantedAuths = Collections.singletonList(new SimpleGrantedAuthority(user.getRole()));
+        Authentication a =  new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), grantedAuths);
         SecurityContextHolder.getContext().setAuthentication(a);
 
     }
-    
+
+    @GET
+    @Path("whoami")
+    public Response profile()
+    {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findOne(username);
+
+        return Response.ok(WhoAmIDTO.loadFrom(user)).build();
+    }
+
 }
