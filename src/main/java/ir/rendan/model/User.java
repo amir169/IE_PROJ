@@ -1,6 +1,7 @@
 package ir.rendan.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import ir.rendan.util.StringGenerator;
 import org.hibernate.annotations.Proxy;
 
@@ -32,6 +33,70 @@ public class User implements Serializable {
 	@Column
 	@JsonIgnore
 	private String activationCode;
+	@Column
+	private String name;
+	@Column
+	private String university;
+	@Column
+	private String studentCode;
+	@Column
+	private String major;
+	@Column
+	private String studentLevel;
+	@Column
+	private String imageAddress;
+
+	public String getImageAddress() {
+		return imageAddress;
+	}
+
+	public void setImageAddress(String imageAddress) {
+		this.imageAddress = imageAddress;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getUniversity() {
+		return university;
+	}
+
+	public void setUniversity(String university) {
+		this.university = university;
+	}
+
+	public String getStudentCode() {
+		return studentCode;
+	}
+
+	public void setStudentCode(String studentCode) {
+		this.studentCode = studentCode;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+	public String getStudentLevel() {
+		return studentLevel;
+	}
+
+	public void setStudentLevel(String studentLevel) {
+		this.studentLevel = studentLevel;
+	}
 
 	public String getUsername() {
 		return username;
