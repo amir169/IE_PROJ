@@ -13,8 +13,18 @@ public class TeamRegistrationDTO {
 
     @JsonProperty
     private String name;
-    @JsonProperty("members_array")
-    private List<User> members;
+    @JsonProperty
+    private List<String> members;
+    @JsonProperty
+    private WhoAmIDTO manager;
+
+    public WhoAmIDTO getManager() {
+        return manager;
+    }
+
+    public void setManager(WhoAmIDTO manager) {
+        this.manager = manager;
+    }
 
     public String getName() {
         return name;
@@ -24,11 +34,11 @@ public class TeamRegistrationDTO {
         this.name = name;
     }
 
-    public List<User> getMembers() {
+    public List<String> getMembers() {
         return members;
     }
 
-    public void setMembers(List<User> members) {
+    public void setMembers(List<String> members) {
         this.members = members;
     }
 }

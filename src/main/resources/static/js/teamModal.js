@@ -13,7 +13,7 @@ angular.module("app").controller("team_modal",function($scope,$http) {
     };
 
     $scope.create_team = function () {
-        var new_team = new Object();
+        var new_team = {};
         new_team.manager = $scope.user;
         new_team.members_array = [];
         new_team.members_array[0] = $scope.user;
@@ -22,10 +22,20 @@ angular.module("app").controller("team_modal",function($scope,$http) {
     };
 
     $scope.team_register = function () {
+        var dto = {
+            name : $scope.selected_team.name,
+            manager : $scope.selected_team.manager,
+            members : []
+        };
+
+        for (var i = 0, len = $scope.selected_team.members_array.length; i < len; i++) {
+            dto.members.push($scope.selected_team.members_array[i].email);
+        }
+
         $http({
             url: 'api/team/register',
             method: "POST",
-            data: $scope.selected_team,
+            data: dto,
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -45,7 +55,7 @@ angular.module("app").controller("team_modal",function($scope,$http) {
                     }
                     if(response.status = 200){
                         $scope.selected_team.members_array[index].name = response.data.name;
-                        $scope.selected_team.members_array[index].name = response.data.name;
+                        $scope.selected_team.members_array[index].username = response.data.username;
                     }
             });
 

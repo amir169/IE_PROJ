@@ -9,6 +9,7 @@ import ir.rendan.util.EmailUtils;
 import ir.rendan.util.MessageTranslator;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.internet.AddressException;
 import javax.ws.rs.Consumes;
@@ -46,26 +47,33 @@ public class TeamService {
 
         String name = dto.getName();
 
-        if(teamRepository.exists(name))
+        if(name == null || teamRepository.exists(name))
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.name.found")).build();
 
+        Set<User> invitedMembers = new HashSet<>();
         Set<User> members = new HashSet<>();
-        for(User u : dto.getMembers())
+        members.add(userRepository.findByEmail(dto.getManager().getEmail()));
+        for(String email : dto.getMembers())
         {
-            User member = userRepository.findByEmail(u.getEmail());
+            User member = userRepository.findByEmail(email);
             if(member == null)
                 return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.failed")).build();
-            members.add(member);
+
+            if(!member.getEmail().equals(dto.getManager().getEmail()))
+                if(!invitedMembers.add(member))
+                    return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.repeated.email")).build();
         }
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User manager = userRepository.findOne(username);
 
-        Team team = new Team(name, manager, members);
+        Team team = new Team(name, manager, invitedMembers,members);
+
+        team.validate();
 
         try {
             teamRepository.save(team);
-            for(User user : members)
+            for(User user : invitedMembers)
                 emailUtils.sendTeamInvitationMail(user,team);
         }
         catch (AddressException e)

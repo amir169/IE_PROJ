@@ -17,7 +17,7 @@ public class Team {
     private short validated; //becomes true after all member accept invitation.
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "manager_id")
     private User manager;
 
     @ManyToMany
@@ -71,10 +71,11 @@ public class Team {
     public Team() {
     }
 
-    public Team(String name, User manager, Set<User> members) {
+    public Team(String name, User manager, Set<User> invitedMembers,Set<User> members) {
         this.name = name;
         this.manager = manager;
-        this.invitedMembers = members;
+        this.members = members;
+        this.invitedMembers = invitedMembers;
         this.validated = new Short("0");
     }
 
@@ -97,4 +98,11 @@ public class Team {
     }
 
 
+    public Set<User> getInvitedMembers() {
+        return invitedMembers;
+    }
+
+    public void setInvitedMembers(Set<User> invitedMembers) {
+        this.invitedMembers = invitedMembers;
+    }
 }
