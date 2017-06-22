@@ -63,8 +63,15 @@
                                     <label> ایمیل نفر
                                         {{sequence[$index]}}
                                     </label>
-                                    <input ng-if="$index > 0" type="email" class="form-control "
-                                           value="{{selected_team.members_array[$index].email}}" ng-model="selected_team.members_array[$index].email">
+                                    <div  ng-if ="$index > 0">
+                                        <input type="email" class="form-control "
+                                               value="{{selected_team.members_array[$index].email}}"
+                                               ng-model="selected_team.members_array[$index].email"
+                                               ng-model-options='{ debounce: 3000 }'
+                                               ng-change = "check_email_exist($index)">
+                                        <label ng-if='selected_team.members_array[$index].name == "" ' class="has-error">کاربری با این ایمیل وجود ندارد.</label>
+                                        <label ng-if='selected_team.members_array[$index].name != "" ' class="has-error">{{selected_team.members_array[$index].name}}</label>
+                                    </div>
                                     <p ng-if="$index == 0" class="form-control-static">{{selected_team.members_array[$index].email}}</p>
                                     <br/>
                                 </div>

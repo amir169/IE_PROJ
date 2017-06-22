@@ -35,4 +35,20 @@ angular.module("app").controller("team_modal",function($scope,$http) {
     $scope.add_new_member = function () {
         $scope.selected_team.members_array.push({});
     }
+
+    $scope.check_email_exist = function (index) {
+        if ($scope.selected_team.members_array[index].email!==""){
+            $http.get("/api/user/exists",{params:{email:$scope.selected_team.members_array[index].email}})
+                .then( function(response) {
+                    if(response.status = 400){
+                        $scope.selected_team.members_array[index].name="";
+                    }
+                    if(response.status = 200){
+                        $scope.selected_team.members_array[index].name = response.data.name;
+                        $scope.selected_team.members_array[index].name = response.data.name;
+                    }
+            });
+
+        }
+    }
 });
