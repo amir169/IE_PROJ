@@ -32,8 +32,8 @@ public class FileUploadService {
 
         try {
 
-        Files.createDirectories(Paths.get(constants.getFolderPath()));
-        Files.write(Paths.get(constants.getFolderPath() +"/" + file.getOriginalFilename()), file.getBytes());
+//        Files.createDirectories(Paths.get(constants.getFolderPath()));
+        Files.write(Paths.get(file.getOriginalFilename()), file.getBytes());
 
     } catch (IOException e) {
         e.printStackTrace();
@@ -47,7 +47,7 @@ public class FileUploadService {
     public Response getFile(
             @PathParam("file_name") String fileName) {
 
-        return Response.ok().entity(new File(constants.getFolderPath()+"/" + fileName)).build();
+        return Response.ok().entity(new File(fileName)).build();
 
     }
 

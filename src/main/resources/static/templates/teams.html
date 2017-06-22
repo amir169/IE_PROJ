@@ -41,7 +41,7 @@
                             <h4>قوانین</h4>
                             <p>
                             <ul>
-                                <li>قبل از اقدام به ثبت تیم حتما قوانین مسابقه ای که قصذ شرکت در آن دارید را مطالعه فرمایید</li>
+                                <li>قبل از اقدام به ثبت تیم حتما قوانین مسابقه ای که قصد شرکت در آن دارید را مطالعه فرمایید</li>
                                 <li>در صورتی که تیم خود را برای مسابقه ای ثبت میکنید که نیاز به اطلاعات تحصیلی شما دارد، تمامی افراد ملزم هستند اطلاعات تحصیلی خود را در بخش اکانت کاربری خود تکمیل کنند</li>
                                 <li>در صورتی که تعداد افراد تیم با محدودیت مسابقه مورد نظر همخوانی نداشته باشد تیم شما اجازه شرکت در آن مسابقعه را نخواهد داشت</li>
                                 <li>در صورتی که نام تیم شما بر خلاف قوانین مسابقه و نامانساب باشد تیم شما حذف خواهد شد و تمام اطلاعات آن دست خواهد رفت </li>
@@ -52,7 +52,7 @@
                         <div class="col-md-6 col-xs-12">
                             <div class="form-group">
                                 <label> اسم تیم</label>
-                                <input type="text" class="form-control" value="{{selected_team.name}}">
+                                <input type="text" class="form-control" value="{{selected_team.name}}"  ng-model="selected_team.name">
                             </div>
                             <p>
                                 <label> سرگروه:</label>
@@ -63,15 +63,17 @@
                                     <label> ایمیل نفر
                                         {{sequence[$index]}}
                                     </label>
-                                    <input type="email" class="form-control" value="{{selected_team.members_array[$index].email}}">
+                                    <input ng-if="$index > 0" type="email" class="form-control "
+                                           value="{{selected_team.members_array[$index].email}}" ng-model="selected_team.members_array[$index].email">
+                                    <p ng-if="$index == 0" class="form-control-static">{{selected_team.members_array[$index].email}}</p>
                                     <br/>
                                 </div>
-                                <div ng-if="selected_team.members_array.length < 3">
-                                    <a ng-click="selected_team.members_array[selected_team.members_array.length]={}" href="#">اضافه کردن نفر جدید +</a>
+                                <div ng-if="selected_team.members_array.length < 5">
+                                    <a ng-click="add_new_member()" href="#">اضافه کردن نفر جدید +</a>
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button data-dismiss="modal" class="btn btn-primary">ثبت تیم</button>
+                                <button ng-click = "team_register()" data-dismiss="modal" class="btn btn-primary">ثبت تیم</button>
                             </div>
                         </div>
 
