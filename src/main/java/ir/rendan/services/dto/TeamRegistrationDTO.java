@@ -1,8 +1,6 @@
 package ir.rendan.services.dto;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ir.rendan.model.User;
 
 import java.util.List;
 
@@ -13,8 +11,18 @@ public class TeamRegistrationDTO {
 
     @JsonProperty
     private String name;
-    @JsonProperty("members_array")
-    private List<User> members;
+    @JsonProperty
+    private List<String> members;
+    @JsonProperty
+    private UserLightDTO manager;
+
+    public UserLightDTO getManager() {
+        return manager;
+    }
+
+    public void setManager(UserLightDTO manager) {
+        this.manager = manager;
+    }
 
     public String getName() {
         return name;
@@ -24,11 +32,11 @@ public class TeamRegistrationDTO {
         this.name = name;
     }
 
-    public List<User> getMembers() {
+    public List<String> getMembers() {
         return members;
     }
 
-    public void setMembers(List<User> members) {
+    public void setMembers(List<String> members) {
         this.members = members;
     }
 }

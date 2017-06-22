@@ -2,7 +2,7 @@ package ir.rendan.services;
 import ir.rendan.model.User;
 import ir.rendan.repository.UserRepository;
 import ir.rendan.services.dto.RegistrationDTO;
-import ir.rendan.services.dto.WhoAmIDTO;
+import ir.rendan.services.dto.UserLightDTO;
 import ir.rendan.util.ConstantReader;
 import ir.rendan.util.EmailUtils;
 import ir.rendan.util.MessageTranslator;
@@ -42,13 +42,13 @@ public class UserService{
 
     @GET
     @Path("exists")
-    @Produces(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
     public Response userExists(@QueryParam("email") String email)
     {
         User user = userRepository.findByEmail(email);
         if(user == null)
-            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.not_exist")).build();
-        return Response.ok(WhoAmIDTO.loadFrom(user)).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.login.failed")).build();
+        return Response.ok(UserLightDTO.loadFrom(user)).build();
     }
 
     @POST
@@ -76,11 +76,7 @@ public class UserService{
         }
 
         try {
-            String link = "http://" + constants.getServerAddress() + ":" + constants.getServerPort() +"/api/user/validate/" + user.getActivationCode();
-            link += "\n\n";
-            link += "user: " + user.getUsername();
-            link += "\npass: " + user.getPassword();
-            emailUtils.send("Validation Link",link,user.getEmail());
+            emailUtils.sendActivationMail(user);
         } catch (Exception e) {
             userRepository.delete(user);
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.email.invalid")).build();
@@ -154,7 +150,7 @@ public class UserService{
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findOne(username);
 
-        return Response.ok(WhoAmIDTO.loadFrom(user)).build();
+        return Response.ok(UserLightDTO.loadFrom(user)).build();
     }
 
 }

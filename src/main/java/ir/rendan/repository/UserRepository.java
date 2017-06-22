@@ -15,7 +15,7 @@ public interface UserRepository extends CrudRepository<User, String>
     User findByActivationCode(String activationCode);
 
     @Query("select u from User u where u.email = ?1")
-    User findByEmail(String eamil);
+    User findByEmail(String email);
 
 
 }
