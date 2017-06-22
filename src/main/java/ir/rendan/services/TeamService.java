@@ -50,6 +50,9 @@ public class TeamService {
         if(name == null || teamRepository.exists(name))
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.name.found")).build();
 
+        if(dto.getMembers().size() > 4)
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.failed")).build();
+
         Set<User> invitedMembers = new HashSet<>();
         Set<User> members = new HashSet<>();
         members.add(userRepository.findByEmail(dto.getManager().getEmail()));
@@ -59,9 +62,11 @@ public class TeamService {
             if(member == null)
                 return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.failed")).build();
 
-            if(!member.getEmail().equals(dto.getManager().getEmail()))
-                if(!invitedMembers.add(member))
-                    return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.repeated.email")).build();
+            if(member.getEmail().equals(dto.getManager().getEmail()))
+                return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.repeated.email")).build();
+
+            if(!invitedMembers.add(member))
+                return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.repeated.email")).build();
         }
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();

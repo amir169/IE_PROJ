@@ -2,6 +2,7 @@ package ir.rendan.model;
 
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -16,6 +17,9 @@ public class Team {
     @Column
     private short validated; //becomes true after all member accept invitation.
 
+    @Column
+    private Date registrationDate;
+
     @ManyToOne
     @JoinColumn(name = "manager_id")
     private User manager;
@@ -28,13 +32,23 @@ public class Team {
     )
     private Set<User> members;
 
+
     @ManyToMany
     @JoinTable(
             name = "team_invitation",
             joinColumns = @JoinColumn(name = "team_name",referencedColumnName = "name"),
             inverseJoinColumns = @JoinColumn(name = "username",referencedColumnName = "username")
     )
+
     private Set<User> invitedMembers;
+
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
 
     public String getName() {
         return name;
@@ -77,6 +91,7 @@ public class Team {
         this.members = members;
         this.invitedMembers = invitedMembers;
         this.validated = new Short("0");
+        this.registrationDate = new Date();
     }
 
     public void validate()
