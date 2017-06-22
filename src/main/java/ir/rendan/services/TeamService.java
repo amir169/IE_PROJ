@@ -116,9 +116,9 @@ public class TeamService {
 
         List<Team> teams = teamRepository.findByUser(username);
         for (Team t : teams) {
-            System.out.println(t.getMembers());
-            System.out.println(t.getInvitedMembers());
-            System.out.println(t.getManager());
+            t.getMembers().size();
+            t.getInvitedMembers().size();
+            t.getManager().getName();
         }
 
         return Response.ok(teams).build();
