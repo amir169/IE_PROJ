@@ -34,16 +34,22 @@ public class User implements Serializable {
 	@JsonIgnore
 	private String activationCode;
 	@Column
+	@JsonIgnore
 	private String name;
 	@Column
+	@JsonIgnore
 	private String university;
 	@Column
+	@JsonIgnore
 	private String studentCode;
 	@Column
+	@JsonIgnore
 	private String major;
 	@Column
+	@JsonIgnore
 	private String studentLevel;
 	@Column
+	@JsonIgnore
 	private String imageAddress;
 
 	public String getImageAddress() {
