@@ -12,12 +12,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.internet.AddressException;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -100,6 +99,24 @@ public class TeamService {
     public Response selectCode(String name){
 
         return Response.ok().build();
+    }
+
+    @Path("/get-team")
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    @Transactional
+    public Response getUserTeams(){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+       // User user = userRepository.findOne(username);
+
+        List<Team> teams = teamRepository.findByUser(username);
+        for (Team t : teams) {
+            System.out.println(t.getMembers());
+            System.out.println(t.getInvitedMembers());
+            System.out.println(t.getManager());
+        }
+
+        return Response.ok(teams).build();
     }
 
 }
