@@ -42,7 +42,7 @@ public class UserService{
 
     @GET
     @Path("exists")
-    @Produces(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
     public Response userExists(@QueryParam("email") String email)
     {
         User user = userRepository.findByEmail(email);
