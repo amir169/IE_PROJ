@@ -51,9 +51,11 @@ angular.module("app").controller("team_modal",function($scope,$http) {
             $http.get("/api/user/exists",{params:{email:$scope.selected_team.members_array[index].email}})
                 .then( function(response) {
                     if(response.status = 400){
-                        $scope.selected_team.members_array[index].name="";
+                        $scope.selected_team.members_array[index].is_valid=false;
+                        $scope.selected_team.members_array[index].name=response.data;
                     }
                     if(response.status = 200){
+                        $scope.selected_team.members_array[index].is_valid = true;
                         $scope.selected_team.members_array[index].name = response.data.name;
                         $scope.selected_team.members_array[index].username = response.data.username;
                     }

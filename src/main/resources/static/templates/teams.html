@@ -67,10 +67,10 @@
                                         <input type="email" class="form-control "
                                                value="{{selected_team.members_array[$index].email}}"
                                                ng-model="selected_team.members_array[$index].email"
-                                               ng-model-options='{ debounce: 3000 }'
+                                               ng-model-options='{ debounce: 1000 }'
                                                ng-change = "check_email_exist($index)">
-                                        <label ng-if='selected_team.members_array[$index].name == "" ' class="has-error">کاربری با این ایمیل وجود ندارد.</label>
-                                        <label ng-if='selected_team.members_array[$index].name != "" ' class="has-error">{{selected_team.members_array[$index].name}}</label>
+                                        <p ng-class='selected_team.members_array[$index].is_valid==true?"has-success":"has-error" ' >
+                                            {{selected_team.members_array[$index].name}}</p>
                                     </div>
                                     <p ng-if="$index == 0" class="form-control-static">{{selected_team.members_array[$index].email}}</p>
                                     <br/>
