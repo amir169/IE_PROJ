@@ -35,6 +35,17 @@ public class UserFullDTO {
     @JsonProperty
     private String imageAddress;
 
+    @JsonProperty
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getImageAddress() {
         return imageAddress;
     }
@@ -116,6 +127,8 @@ public class UserFullDTO {
         result.setStudentCode(user.getStudentCode());
         result.setStudentLevel(user.getStudentLevel());
         result.setUniversity(user.getUniversity());
+        result.setImageAddress(user.getImageAddress());
+        result.setEmail(user.getEmail());
 
         return result;
     }
