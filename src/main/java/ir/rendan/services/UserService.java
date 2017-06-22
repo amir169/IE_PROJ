@@ -2,6 +2,7 @@ package ir.rendan.services;
 import ir.rendan.model.User;
 import ir.rendan.repository.UserRepository;
 import ir.rendan.services.dto.RegistrationDTO;
+import ir.rendan.services.dto.UserFullDTO;
 import ir.rendan.services.dto.UserLightDTO;
 import ir.rendan.util.ConstantReader;
 import ir.rendan.util.EmailUtils;
@@ -42,7 +43,6 @@ public class UserService{
 
     @GET
     @Path("exists")
-//    @Produces(MediaType.APPLICATION_JSON)
     public Response userExists(@QueryParam("email") String email)
     {
         User user = userRepository.findByEmail(email);
@@ -145,12 +145,56 @@ public class UserService{
 
     @GET
     @Path("whoami")
-    public Response profile()
+    public Response profile(@DefaultValue("light")@QueryParam("extent") String extent)
     {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findOne(username);
 
-        return Response.ok(UserLightDTO.loadFrom(user)).build();
+        if(extent.equals("light"))
+            return Response.ok(UserLightDTO.loadFrom(user)).build();
+        else
+            return Response.ok(UserFullDTO.loadFrom(user)).build();
     }
+
+    @POST
+    @Path("edit-profile")
+    public Response edit(UserFullDTO dto)
+    {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findOne(username);
+
+        if(dto.getNewPassword()!= null && !dto.getPreviousPassword().equals(user.getPassword()))
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.edit.password.incorrect")).build();
+
+        String password = dto.getNewPassword();
+        String university = dto.getUniversity();
+        String studentLevel = dto.getStudentLevel();
+        String studentNumber = dto.getStudentCode();
+        String imageAddress = dto.getImageAddress();
+        String major = dto.getMajor();
+
+        if(password != null)
+            user.setPassword(password);
+        if(major != null)
+            user.setMajor(major);
+        if(imageAddress != null)
+            user.setImageAddress(imageAddress);
+        if(studentLevel != null)
+            user.setStudentLevel(studentLevel);
+        if(studentNumber != null)
+            user.setStudentCode(studentNumber);
+        if(university != null)
+            user.setUniversity(university);
+
+        try {
+            userRepository.save(user);
+        }catch (Exception e){
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.edit.failed")).build();
+        }
+
+        return Response.ok(translator.translate("user.edit.successful")).build();
+
+    }
+
 
 }

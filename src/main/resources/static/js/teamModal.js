@@ -7,6 +7,8 @@ angular.module("app").controller("team_modal",function($scope,$http) {
 
     $scope.selected_team = $scope.data[0];
     $scope.teams = $scope.data;
+    $scope.is_registration_failed = false;
+    $scope.message = "";
 
     $scope.init_modal = function (index) {
         $scope.selected_team = $scope.teams[index];
@@ -19,6 +21,7 @@ angular.module("app").controller("team_modal",function($scope,$http) {
         new_team.members_array[0] = $scope.user;
 
         $scope.selected_team = new_team;
+        $scope.selected_team.members_array[0].is_valid = true;
     };
 
     $scope.team_register = function () {
@@ -39,6 +42,11 @@ angular.module("app").controller("team_modal",function($scope,$http) {
             headers: {
                 'Content-Type': 'application/json'
             }
+        }).then(function (response) {
+                $scope.is_registration_failed = false;
+        },function (response) {
+            $scope.is_registration_failed = true;
+            $scope.message = response.data;
         });
     };
 
@@ -53,17 +61,25 @@ angular.module("app").controller("team_modal",function($scope,$http) {
                 method: "GET",
                 params: {email: $scope.selected_team.members_array[index].email}
             }).then(function (response) {
-                        $scope.selected_team.members_array[index].is_valid = true;
-                        $scope.selected_team.members_array[index].name = response.data.name;
-                        $scope.selected_team.members_array[index].username = response.data.username;
-                    },
-                    function (response) {
-                        if (response.status == 400) {
-                            $scope.selected_team.members_array[index].is_valid = false;
-                            $scope.selected_team.members_array[index].name = response.data;
-                        }
-            });
+                    $scope.selected_team.members_array[index].is_valid = true;
+                    $scope.selected_team.members_array[index].name = response.data.name;
+                    $scope.selected_team.members_array[index].username = response.data.username;
+                },
+                function (response) {
+                    if (response.status == 400) {
+                        $scope.selected_team.members_array[index].is_valid = false;
+                        $scope.selected_team.members_array[index].name = response.data;
+                    }
+                });
         }
+    }
+
+    $scope.validate = function () {
+        var valid = true;
+        for (var i = 0, len = $scope.selected_team.members_array.length; i < len; i++) {
+            valid = valid & $scope.selected_team.members_array[i].is_valid;
+        }
+        return valid;
     }
 
 });

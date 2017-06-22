@@ -1,6 +1,8 @@
 <div ng-controller="team_modal as team">
     <div class=" container-fluid">
         <h3 class="page-header" style=" margin-top:0px">تیم&nbspها</h3>
+        <div ng-if="is_registration_failed"
+             class="alert alert-danger">{{message}}</div>
         <div class="panel panel-default col-md-12">
             <div class="panel-body">
                 <span class="pull-left">
@@ -13,7 +15,7 @@
             <thead>
             <tr>
                 <th>نام تیم</th>
-                <th>تاریخ ثبت</th>
+                <!--<th>تاریخ ثبت</th>-->
                 <th>اعضا</th>
                 <th>ویرایش</th>
                 <th>حذف</th>
@@ -70,16 +72,16 @@
                                                ng-model-options='{ debounce: 1000 }'
                                                ng-change = "check_email_exist($index)">
                                         <p ng-class="selected_team.members_array[$index].is_valid==true?'text-success':'text-danger' " >
-                                            </br>{{selected_team.members_array[$index].name}}</p></div>
+                                            {{selected_team.members_array[$index].name}}</p></div>
                                     <p ng-if="$index == 0" class="form-control-static">{{selected_team.members_array[$index].email}}</p>
-                                    <br/>
                                 </div>
                                 <div ng-if="selected_team.members_array.length < 5">
                                     <a ng-click="add_new_member()" href="#">اضافه کردن نفر جدید +</a>
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button ng-click = "team_register()" data-dismiss="modal" class="btn btn-primary">ثبت تیم</button>
+                                <button ng-click = "team_register()" data-dismiss="modal" class="btn btn-primary"
+                                        ng-disabled="!validate()">ثبت تیم</button>
                             </div>
                         </div>
 
