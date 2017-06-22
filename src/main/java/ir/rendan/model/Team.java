@@ -29,6 +29,14 @@ public class Team {
     )
     private Set<User> members;
 
+    @ManyToMany
+    @JoinTable(
+            name = "team_invitation",
+            joinColumns = @JoinColumn(name = "team_name",referencedColumnName = "name"),
+            inverseJoinColumns = @JoinColumn(name = "username",referencedColumnName = "username")
+    )
+    private Set<User> invitedMembers;
+
     public String getName() {
         return name;
     }
