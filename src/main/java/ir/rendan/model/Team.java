@@ -9,49 +9,86 @@ import java.util.Set;
  * Created by SalehJFZ on 11/05/2017.
  */
 @Entity
-@Table(name = "TEAM")
+@Table(name = "teams")
 public class Team {
     @Id
-    String teamname;
-
+    private String name;
 
     @Column
-    short authorized;// become true after all member accept invitation.
+    private short authorized; //becomes true after all member accept invitation.
 
     @ManyToOne
-    @JoinColumn(name = "USR_Name")
-    User HeadUSer;
+    @JoinColumn(name = "user_id")
+    private User manager;
 
     @ManyToMany
     @JoinTable(
-        name = "TM_USR",
-        joinColumns = @JoinColumn(name = "TM_Name",referencedColumnName = "teamname"),
-        inverseJoinColumns = @JoinColumn(name = "USR_Name",referencedColumnName = "username")
+        name = "team_user",
+        joinColumns = @JoinColumn(name = "team_name",referencedColumnName = "name"),
+        inverseJoinColumns = @JoinColumn(name = "username",referencedColumnName = "username")
     )
-    Set<User> members;//TODO this must be changed to map<User,short> wich save each member accept it's invitation or not
+    private Set<User> members;
+
+    @ManyToMany
+    @JoinTable(
+            name = "team_invitation",
+            joinColumns = @JoinColumn(name = "team_name",referencedColumnName = "name"),
+            inverseJoinColumns = @JoinColumn(name = "username",referencedColumnName = "username")
+    )
+    private Set<User> invitedMembers;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public short getAuthorized() {
+        return authorized;
+    }
+
+    public void setAuthorized(short authorized) {
+        this.authorized = authorized;
+    }
+
+    public User getManager() {
+        return manager;
+    }
+
+    public void setManager(User manager) {
+        this.manager = manager;
+    }
+
+    public Set<User> getMembers() {
+        return members;
+    }
+
+    public void setMembers(Set<User> members) {
+        this.members = members;
+    }
 
     public Team() {
     }
 
-    public Team(String teamname, User headUSer) {
-        this.teamname = teamname;
-        HeadUSer = headUSer;
+    public Team(String name, User manager) {
+        this.name = name;
+        this.manager = manager;
         this.members = new HashSet<>();
+        this.authorized = new Short("0");
     }
 
-    public int addMembers(Set<User> newMembers){
-        members.addAll(members);
-        return members.size();
+    public void addMembers(Set<User> newMembers){
+        this.members = newMembers;
     }
 
-    public int addMember(User newMember){
+    public void addMember(User newMember){
         members.add(newMember);
-        return members.size();
     }
 
-    public int deleteMember(User member){
+    public void deleteMember(User member){
         members.remove(member);
-        return members.size();
     }
 
 

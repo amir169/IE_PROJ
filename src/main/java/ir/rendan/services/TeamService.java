@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ABM on 5/17/2017.
@@ -44,30 +46,34 @@ public class TeamService {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response teamRegister(TeamRegistrationDTO dto){
-        try {
-            String name = dto.getRegDetails().get("name");
-            int memberNo = Integer.getInteger(dto.getRegDetails().get("number"));
 
-            String username = SecurityContextHolder.getContext().getAuthentication().getName();
-            User headUser = userRepository.findOne(username);
-
-            Team team = new Team(name, headUser);
-
-            /** code below doesn't needed for phase1*/
-            for (int i = 0; i < memberNo; i++) {
-                String mail = dto.getRegDetails().get("mem" + i);
-                //TODO if user with this mail exist
-                User mem = userRepository.findByEmail(mail);
-                //TODO send invitation to member
-                team.addMember(mem);
-            }
-
-            teamRepository.save(team);
-            return Response.ok(translator.translate("team.register.successfully")).build();
+        String name = dto.getName();
+        List<User> members = new ArrayList<>();
+        for(User u : dto.getMembers())
+        {
+            User member = userRepository.findByEmail(u.getEmail());
+            if(member == null)
+                return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.failed")).build();
+            members.add(member);
         }
-        catch (Exception e){
-            return Response.status(Response.Status.BAD_REQUEST).entity("team.register.failed").build();
-        }
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User manager = userRepository.findOne(username);
+
+        Team team = new Team(name, manager);
+
+//        for (int i = 0; i < memberNo; i++) {
+//            String mail = dto.getRegDetails().get("mem" + i);
+//            //TODO if user with this mail exist
+//            User mem = userRepository.findByEmail(mail);
+//            //TODO send invitation to member
+//            team.addMember(mem);
+//        }
+
+        teamRepository.save(team);
+        return Response.ok(translator.translate("team.register.successfully")).build();
+
+
     }
 
     @Path("/get-code")
