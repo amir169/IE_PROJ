@@ -76,11 +76,7 @@ public class UserService{
         }
 
         try {
-            String link = "http://" + constants.getServerAddress() + ":" + constants.getServerPort() +"/api/user/validate/" + user.getActivationCode();
-            link += "\n\n";
-            link += "user: " + user.getUsername();
-            link += "\npass: " + user.getPassword();
-            emailUtils.send("Validation Link",link,user.getEmail());
+            emailUtils.sendActivationMail(user);
         } catch (Exception e) {
             userRepository.delete(user);
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.email.invalid")).build();
