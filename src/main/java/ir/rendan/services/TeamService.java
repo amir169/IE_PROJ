@@ -58,11 +58,10 @@ public class TeamService {
         }
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User headUser = userRepository.findOne(username);
+        User manager = userRepository.findOne(username);
 
-        Team team = new Team(name, headUser);
+        Team team = new Team(name, manager);
 
-        /** code below doesn't needed for phase1*/
 //        for (int i = 0; i < memberNo; i++) {
 //            String mail = dto.getRegDetails().get("mem" + i);
 //            //TODO if user with this mail exist
