@@ -47,10 +47,7 @@ angular.module("app").controller("team_modal",function($scope,$http) {
     };
 
     $scope.check_email_exist = function (index) {
-        console.log(1);
         if ($scope.selected_team.members_array[index].email !== "") {
-            console.log(2);
-
             $http({
                 url: 'api/user/exists',
                 method: "GET",

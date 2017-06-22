@@ -69,9 +69,8 @@
                                                ng-model="selected_team.members_array[$index].email"
                                                ng-model-options='{ debounce: 1000 }'
                                                ng-change = "check_email_exist($index)">
-                                        <p ng-class='selected_team.members_array[$index].is_valid==true?"has-success":"has-error" ' >
-                                            {{selected_team.members_array[$index].name}}</p>
-                                    </div>
+                                        <p ng-class="selected_team.members_array[$index].is_valid==true?'text-success':'text-danger' " >
+                                            </br>{{selected_team.members_array[$index].name}}</p></div>
                                     <p ng-if="$index == 0" class="form-control-static">{{selected_team.members_array[$index].email}}</p>
                                     <br/>
                                 </div>
