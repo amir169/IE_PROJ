@@ -8,7 +8,6 @@ angular.module("app").controller("team_modal",function($scope,$http) {
     $scope.selected_team = $scope.data[0];
     $scope.teams = $scope.data;
 
-
     $scope.init_modal = function (index) {
         $scope.selected_team = $scope.teams[index];
     };
@@ -20,5 +19,20 @@ angular.module("app").controller("team_modal",function($scope,$http) {
         new_team.members_array[0] = $scope.user;
 
         $scope.selected_team = new_team;
+    };
+
+    $scope.team_register = function () {
+        $http({
+            url: 'api/team/register',
+            method: "POST",
+            data: $scope.selected_team,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    };
+
+    $scope.add_new_member = function () {
+        $scope.selected_team.members_array.push({});
     }
 });
