@@ -2,7 +2,7 @@ package ir.rendan.services;
 import ir.rendan.model.User;
 import ir.rendan.repository.UserRepository;
 import ir.rendan.services.dto.RegistrationDTO;
-import ir.rendan.services.dto.WhoAmIDTO;
+import ir.rendan.services.dto.UserLightDTO;
 import ir.rendan.util.ConstantReader;
 import ir.rendan.util.EmailUtils;
 import ir.rendan.util.MessageTranslator;
@@ -48,7 +48,7 @@ public class UserService{
         User user = userRepository.findByEmail(email);
         if(user == null)
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.not_exist")).build();
-        return Response.ok(WhoAmIDTO.loadFrom(user)).build();
+        return Response.ok(UserLightDTO.loadFrom(user)).build();
     }
 
     @POST
@@ -150,7 +150,7 @@ public class UserService{
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findOne(username);
 
-        return Response.ok(WhoAmIDTO.loadFrom(user)).build();
+        return Response.ok(UserLightDTO.loadFrom(user)).build();
     }
 
 }

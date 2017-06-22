@@ -4,7 +4,6 @@ import ir.rendan.model.Team;
 import ir.rendan.model.User;
 import ir.rendan.repository.TeamRepository;
 import ir.rendan.util.MessageTranslator;
-import org.hibernate.Hibernate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

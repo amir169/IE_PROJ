@@ -6,8 +6,7 @@ import ir.rendan.model.User;
 /**
  * Created by Amir Shams on 6/21/2017.
  */
-//TODO: must be removed after user model completed
-public class WhoAmIDTO {
+public class UserLightDTO {
 
     @JsonProperty
     private String name;
@@ -42,9 +41,9 @@ public class WhoAmIDTO {
         this.email = email;
     }
 
-    public static WhoAmIDTO loadFrom(User user)
+    public static UserLightDTO loadFrom(User user)
     {
-        WhoAmIDTO dto = new WhoAmIDTO();
+        UserLightDTO dto = new UserLightDTO();
         dto.setName(user.getUsername());
         dto.setEmail(user.getEmail());
         dto.setUsername(user.getUsername());
