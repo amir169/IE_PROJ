@@ -7,7 +7,6 @@ import ir.rendan.services.dto.UserLightDTO;
 import ir.rendan.util.ConstantReader;
 import ir.rendan.util.EmailUtils;
 import ir.rendan.util.MessageTranslator;
-import org.springframework.security.access.method.P;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -196,5 +195,6 @@ public class UserService{
         return Response.ok(translator.translate("user.edit.successful")).build();
 
     }
+
 
 }
