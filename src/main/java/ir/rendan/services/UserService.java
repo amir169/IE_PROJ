@@ -41,11 +41,14 @@ public class UserService{
     }
 
     @GET
-    @Path("test_user")
-    public Response userExists(@QueryParam("username") String username)
+    @Path("exists")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response userExists(@QueryParam("email") String email)
     {
-        //TODO check if user exists
-        return Response.ok().build();
+        User user = userRepository.findByEmail(email);
+        if(user == null)
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.not_exist")).build();
+        return Response.ok(WhoAmIDTO.loadFrom(user)).build();
     }
 
     @POST

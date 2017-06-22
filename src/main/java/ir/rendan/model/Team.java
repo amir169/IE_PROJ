@@ -12,15 +12,14 @@ import java.util.Set;
 @Table(name = "TEAM")
 public class Team {
     @Id
-    String teamname;
-
+    private String name;
 
     @Column
-    short authorized;// become true after all member accept invitation.
+    private short authorized; //becomes true after all member accept invitation.
 
     @ManyToOne
     @JoinColumn(name = "USR_Name")
-    User HeadUSer;
+    private User HeadUSer;
 
     @ManyToMany
     @JoinTable(
@@ -34,7 +33,7 @@ public class Team {
     }
 
     public Team(String teamname, User headUSer) {
-        this.teamname = teamname;
+        this.name = teamname;
         HeadUSer = headUSer;
         this.members = new HashSet<>();
     }
