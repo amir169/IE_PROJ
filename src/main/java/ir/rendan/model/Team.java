@@ -2,7 +2,6 @@ package ir.rendan.model;
 
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,7 +14,7 @@ public class Team {
     private String name;
 
     @Column
-    private short authorized; //becomes true after all member accept invitation.
+    private short validated; //becomes true after all member accept invitation.
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -45,12 +44,12 @@ public class Team {
         this.name = name;
     }
 
-    public short getAuthorized() {
-        return authorized;
+    public short getValidated() {
+        return validated;
     }
 
-    public void setAuthorized(short authorized) {
-        this.authorized = authorized;
+    public void setValidated(short validated) {
+        this.validated = validated;
     }
 
     public User getManager() {
@@ -72,11 +71,17 @@ public class Team {
     public Team() {
     }
 
-    public Team(String name, User manager) {
+    public Team(String name, User manager, Set<User> members) {
         this.name = name;
         this.manager = manager;
-        this.members = new HashSet<>();
-        this.authorized = new Short("0");
+        this.invitedMembers = members;
+        this.validated = new Short("0");
+    }
+
+    public void validate()
+    {
+        if(invitedMembers.isEmpty())
+            validated = new Short("1");
     }
 
     public void addMembers(Set<User> newMembers){
