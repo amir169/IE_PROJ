@@ -6,6 +6,7 @@ import ir.rendan.repository.QuestionRepository;
 import ir.rendan.repository.TeamRepository;
 import ir.rendan.repository.UserRepository;
 import ir.rendan.services.dto.TeamRegistrationDTO;
+import ir.rendan.util.EmailUtils;
 import ir.rendan.util.MessageTranslator;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
@@ -22,7 +23,9 @@ import java.io.InputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by ABM on 5/17/2017.
@@ -48,7 +51,7 @@ public class TeamService {
     public Response teamRegister(TeamRegistrationDTO dto){
 
         String name = dto.getName();
-        List<User> members = new ArrayList<>();
+        Set<User> members = new HashSet<>();
         for(User u : dto.getMembers())
         {
             User member = userRepository.findByEmail(u.getEmail());
@@ -60,20 +63,21 @@ public class TeamService {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User manager = userRepository.findOne(username);
 
-        Team team = new Team(name, manager);
+        Team team = new Team(name, manager, members);
 
-//        for (int i = 0; i < memberNo; i++) {
-//            String mail = dto.getRegDetails().get("mem" + i);
-//            //TODO if user with this mail exist
-//            User mem = userRepository.findByEmail(mail);
-//            //TODO send invitation to member
-//            team.addMember(mem);
-//        }
+        try {
+            teamRepository.save(team);
+        }catch (Exception e)
+        {
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.failed")).build();
+        }
 
-        teamRepository.save(team);
+        for(User u : members)
+        {
+            //send email
+        }
+
         return Response.ok(translator.translate("team.register.successfully")).build();
-
-
     }
 
     @Path("/get-code")
