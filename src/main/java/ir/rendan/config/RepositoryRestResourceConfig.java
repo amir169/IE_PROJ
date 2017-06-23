@@ -1,5 +1,6 @@
 package ir.rendan.config;
 
+import ir.rendan.model.Game;
 import ir.rendan.model.Question;
 import ir.rendan.model.Team;
 import ir.rendan.model.User;
@@ -17,7 +18,7 @@ import org.springframework.http.MediaType;
 public class RepositoryRestResourceConfig extends RepositoryRestConfigurerAdapter {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-        config.exposeIdsFor(Question.class,User.class, Team.class);
+        config.exposeIdsFor(Question.class,User.class, Team.class, Game.class);
         config.setDefaultMediaType(MediaType.APPLICATION_JSON);
         config.setBasePath("items");
         config.setRepositoryDetectionStrategy(RepositoryDetectionStrategy.RepositoryDetectionStrategies.ANNOTATED);
