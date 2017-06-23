@@ -17,6 +17,7 @@
                 <th>نام تیم</th>
                 <th>تاریخ ثبت</th>
                 <th>اعضا</th>
+                <th>در انتظار تایید</th>
                 <!--<th>ویرایش</th>-->
                 <th>حذف</th>
             </tr>
@@ -25,9 +26,10 @@
             <tr ng-repeat="record in data track by $index">
                 <td>{{record.name}}</td>
                 <td>{{record.registrationDate}}</td>
-                <td>{{record.member_names}}</td>
+                <td>{{getMembersName(record)}}</td>
+                <td>{{getInvitedMembersName(record)}}</td>
                 <!--<td><a data-toggle="modal" data-target="#registerTeamModal" ng-click="init_modal($index)" href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>-->
-                <td ng-if="record.validated == 0"><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                <td><a href="#" ng-if="record.validated == 0"><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
             </tbody>
         </table>
@@ -72,7 +74,7 @@
                                                ng-model-options='{ debounce: 1000 }'
                                                ng-change = "check_email_exist($index)">
                                         <p ng-class="selected_team.members[$index].is_valid==true?'text-success':'text-danger' " >
-                                            {{selected_team.emails[$index].name}}</p></div>
+                                            {{selected_team.members[$index].username}}</p></div>
                                     <p ng-if="$index == 0" class="form-control-static">{{selected_team.members[$index].email}}</p>
                                 </div>
                                 <div ng-if="selected_team.members.length < 5">

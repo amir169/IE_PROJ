@@ -52,6 +52,27 @@ angular.module("app").controller("main_controller",function($scope,$http) {
             ($scope.user.newPassword == null || $scope.user.newPassword=="") && $scope.rePass21.text=="";
     }
 
+    $scope.getMembersName = function (record) {
+        var ret = record.members[0].username;
+        for (var i = 1, len = record.members.length; i < len; i++) {
+           ret = ret +", "+record.members[i].username;
+        }
+        return ret;
+    }
+
+    $scope.getInvitedMembersName = function (record) {
+        var ret ="";
+        for (var i = 0, len = record.invitedMembers.length; i < len; i++) {
+            if(i == len-1) {
+                ret = ret+ record.invitedMembers[i].username;
+            }
+            else{
+                ret = ret + record.invitedMembers[i].username+ ", "
+            }
+        }
+        return ret;
+    }
+
     $scope.change_context = function (context_name) {
         $scope.editResponse = {
             type : null,
@@ -70,27 +91,6 @@ angular.module("app").controller("main_controller",function($scope,$http) {
         });
     };
 
-    $scope.teams = function () {
-        var context_name="teams";
-        $scope.context = dict[context_name];
-        $scope.data = [];
-        $scope.record = {};
-        $scope.template = $scope.context.template_url;
-        $scope.current_page = 1;
-        $http.get($scope.context.data_url).then(function(response) {
-            $scope.data = response.data.slice(($scope.current_page - 1) * page_capacity, $scope.current_page * page_capacity);
-            console.log($scope.data);
-            for (var i = 0, len = $scope.data.length; i < len; i++) {
-                var name = "";
-                for(var j = 0, members_len = $scope.data[i].members.length; j < members_len; j++)
-                    name += ($scope.data[i].members[j].username + "  ");
-                $scope.data[i].member_names = name;
-            }
-
-            $scope.page_count = Math.ceil(response.data.length / page_capacity);
-        });
-    };
-
     $scope.profile = function() {
         $scope.data = [];
         $scope.context = dict['profile'];
@@ -104,8 +104,6 @@ function init($http,$scope) {
     $scope.page_count = 0;
     $scope.current_page= 0;
     page_capacity = 6;
-
-    $scope
 
     $scope.pagination = "templates/pagination.html";
 
