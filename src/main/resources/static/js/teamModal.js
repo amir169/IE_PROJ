@@ -52,8 +52,14 @@ angular.module("app").controller("team_modal",function($scope,$http) {
                 $scope.is_registration_failed = false;
         },function (response) {
             $scope.is_registration_failed = true;
-            $scope.message = response.data;
+            if(response.status == 400) {
+                $scope.message = response.data;
+             }
+            else{
+                $scope.message = "ثبت تیم با موفقیت انجام نشد."
+            }
         });
+        $scope.change_context("teams");
     };
 
     $scope.add_new_member = function () {
@@ -74,7 +80,11 @@ angular.module("app").controller("team_modal",function($scope,$http) {
                 function (response) {
                     if (response.status == 400) {
                         $scope.selected_team.members[index].is_valid = false;
-                        $scope.selected_team.members[index].name = response.data;
+                        $scope.selected_team.members[index].username = response.data;
+                    }
+                    else {
+                        $scope.selected_team.members[index].is_valid = false;
+                        $scope.selected_team.members[index].usernaname = "کاربری با این ایمیل وجود ندارد.";
                     }
                 });
         }

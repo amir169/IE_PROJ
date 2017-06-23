@@ -3,25 +3,25 @@
   {
     "name" : "document",
     "template_url" : "templates/game-document.html",
-    "data_url" : "test_data/game_document.json"
+    "data_url" : "test_data/game_document.json" //TODO must be place somewher elese
   },
   "sch_ranking" :
   {
     "name" : "sch_ranking",
     "template_url" : "templates/schedule-ranking.html",
-    "data_url" : "test_data/sch_ranking.json"
+    "data_url" : "test_data/sch_ranking.json" //TODO should be service
   },
   "upload_code" :
   {
     "name" : "upload_code",
     "template_url" : "templates/upload_code.html",
-    "data_url" : "test_data/uploaded_codes.json"
+    "data_url" : "test_data/uploaded_codes.json" //TODO should be service
   },
   "games" :
   {
     "name" : "games",
     "template_url" : "templates/games_list.html",
-    "data_url" : "test_data/games.json"
+    "data_url" : "test_data/games.json" //TODO should be service
   },
   "comment" :
   {
