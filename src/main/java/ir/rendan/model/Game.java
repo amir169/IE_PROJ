@@ -1,5 +1,7 @@
 package ir.rendan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -41,6 +43,7 @@ public class Game {
     private String descriptionAddress;
 
     @OneToMany
+    @JsonIgnore
     private Set<League> leagues;
 
     public String getConductor() {
