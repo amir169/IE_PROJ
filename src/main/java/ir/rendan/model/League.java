@@ -10,30 +10,31 @@ import java.util.Set;
  * Created by SalehJFZ on 15/05/2017.
  */
 @Entity
-@Table
+@Table(name="leagues")
 public class League {
-    @Id @GeneratedValue int id;
+    @Id @GeneratedValue private int id;
 
     @ManyToOne
-    Game game;
+    @JoinColumn(name = "game_id")
+    private Game game;
 
     @Column
-    String Name;
+    private String name;
 
     @OneToMany
-    public Set<Match> matches;
+    private Set<Match> matches;
 
     @ElementCollection
     @JoinTable(name = "TM_GAME_SCORE",joinColumns = @JoinColumn(name = "id"))
     @MapKeyColumn(name = "TM_GAME_ID")
     @Column(name = "SCORES")
-    public Map<Integer,Double> scores;
+    private Map<Integer,Double> scores;
 
     public League(Game game, String name) {
         this.game = game;
-        Name = name;
-        matches = new HashSet<>();
-        scores = new HashMap<>();
+        this.name = name;
+        this.matches = new HashSet<>();
+        this.scores = new HashMap<>();
     }
 
 
@@ -46,15 +47,15 @@ public class League {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public void addTeamGame(TeamGame teamGame, double initScore){
-        scores.put(teamGame.id,initScore);
+        scores.put(teamGame.getId(),initScore);
     }
 
     public Double removeTeamGame(TeamGame teamGame){

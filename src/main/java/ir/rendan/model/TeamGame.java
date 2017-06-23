@@ -9,21 +9,21 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "TEAM_GAME")
+@Table(name = "team_game")
 public class TeamGame {
-    @Id @GeneratedValue int id;
+    @Id @GeneratedValue private int id;
 
     @ManyToOne
-    Team team;
+    private Team team;
 
     @ManyToOne
-    Game game;
+    private Game game;
 
     @OneToMany
-    Set<Code> codes;
+    private Set<Code> codes;
 
     @OneToOne
-    Code selectedCode;
+    private Code selectedCode;
 
     public TeamGame(Team team, Game game) {
         this.team = team;
@@ -32,16 +32,36 @@ public class TeamGame {
         selectedCode = null;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Team getTeam() {
         return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public Game getGame() {
         return game;
     }
 
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
     public Set<Code> getCodes() {
         return codes;
+    }
+
+    public void setCodes(Set<Code> codes) {
+        this.codes = codes;
     }
 
     public Code getSelectedCode() {
@@ -50,14 +70,6 @@ public class TeamGame {
 
     public void setSelectedCode(Code selectedCode) {
         this.selectedCode = selectedCode;
-    }
-
-    public void addCode(Code code){
-        codes.add(code);
-    }
-
-    public boolean removeCode(Code code){
-        return codes.remove(code);
     }
 }
 

@@ -17,14 +17,11 @@ public class Code {
     private String name;
 
     @Column
-    private long date; // date added
+    private long date;
 
     public int getId() {
         return id;
     }
-
-    @ManyToOne
-    TeamGame teamGame;
 
     public void setId(int id) {
         this.id = id;
