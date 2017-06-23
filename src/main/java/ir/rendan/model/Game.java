@@ -21,12 +21,14 @@ public class Game {
     @OneToMany
     private Set<League> leagues;
 
+
+
     public Game(String name, String sourcePath, int leagueCount) {
         this.name = name;
         this.sourcePath = sourcePath;
         leagues = new HashSet<>();
         for (int i = 0; i < leagueCount; i++) {
-            leagues.add(new League(this,"لیگ "+i) );
+            leagues.add(new League(this,"League " + i + 1));
         }
     }
 

@@ -12,7 +12,7 @@ public class TeamRegistrationDTO {
     @JsonProperty
     private String name;
     @JsonProperty
-    private List<String> members;
+    private List<String> emails;
     @JsonProperty
     private UserLightDTO manager;
 
@@ -32,11 +32,11 @@ public class TeamRegistrationDTO {
         this.name = name;
     }
 
-    public List<String> getMembers() {
-        return members;
+    public List<String> getEmails() {
+        return emails;
     }
 
-    public void setMembers(List<String> members) {
-        this.members = members;
+    public void setEmails(List<String> emails) {
+        this.emails = emails;
     }
 }
