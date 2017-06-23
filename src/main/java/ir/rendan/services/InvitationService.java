@@ -37,6 +37,9 @@ public class InvitationService {
     {
         Team team = teamRepository.getByCode(code);
 
+        if(team == null)
+            return Response.status(Response.Status.NOT_FOUND).build();
+
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
         for(User user : team.getInvitedMembers())
@@ -55,6 +58,6 @@ public class InvitationService {
             }
         }
 
-        return Response.ok(translator.translate("team.invitation.accept.failed")).build();
+        return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.invitation.accept.failed")).build();
     }
 }

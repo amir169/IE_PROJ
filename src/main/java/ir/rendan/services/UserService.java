@@ -1,5 +1,7 @@
 package ir.rendan.services;
+import ir.rendan.model.Team;
 import ir.rendan.model.User;
+import ir.rendan.repository.TeamRepository;
 import ir.rendan.repository.UserRepository;
 import ir.rendan.services.dto.RegistrationDTO;
 import ir.rendan.services.dto.UserFullDTO;
@@ -7,6 +9,7 @@ import ir.rendan.services.dto.UserLightDTO;
 import ir.rendan.util.ConstantReader;
 import ir.rendan.util.EmailUtils;
 import ir.rendan.util.MessageTranslator;
+import javafx.scene.effect.SepiaTone;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +22,9 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -33,12 +38,14 @@ public class UserService{
     private final UserRepository userRepository;
     private final ConstantReader constants;
     private final MessageTranslator translator;
+    private final TeamRepository teamRepository;
 
-    public UserService(UserRepository userRepository, EmailUtils emailUtils, ConstantReader constants, MessageTranslator translator) {
+    public UserService(UserRepository userRepository, EmailUtils emailUtils, ConstantReader constants, MessageTranslator translator,TeamRepository teamRepository) {
         this.userRepository = userRepository;
         this.emailUtils = emailUtils;
         this.constants = constants;
         this.translator = translator;
+        this.teamRepository = teamRepository;
     }
 
     @GET
@@ -115,6 +122,8 @@ public class UserService{
 
         user.validate();
 
+        createDefaultTeamForUser(user);
+
         userRepository.save(user);
 
         loginUser(user);
@@ -126,6 +135,13 @@ public class UserService{
         }
 
         return Response.ok(translator.translate("user.account.activated")).build();
+    }
+
+    private void createDefaultTeamForUser(User user) {
+        Set<User> members = new HashSet<>();
+        Team team = new Team(user.getUsername(),user,new HashSet<>(),members);
+
+        teamRepository.save(team);
     }
 
 
@@ -150,6 +166,8 @@ public class UserService{
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findOne(username);
 
+        if(user == null)
+            return Response.status(Response.Status.FORBIDDEN).build();
         if(extent.equals("light"))
             return Response.ok(UserLightDTO.loadFrom(user)).build();
         else
