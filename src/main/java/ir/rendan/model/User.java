@@ -166,7 +166,6 @@ public class User implements Serializable {
 		this.enabled = new Short("0");
 		this.role = "USER";
 		this.activationCode = StringGenerator.generateValidationCode();
-		this.imageAddress = "elements\\default_profile_picture.png";
 		this.name = username;
 	}
 }

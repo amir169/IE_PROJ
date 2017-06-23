@@ -1,4 +1,6 @@
           <h3 class="page-header" style=" margin-top:0px" > صفحه کاربری</h3>
+          <div ng-if="editResponse.message!=null"
+               ng-class="editResponse.type=='error'?'alert alert-danger':'alert alert-success'">{{editResponse.message}}</div>
           <a class="collapse-header" data-toggle="collapse" href="#collapsePersonal" aria-expanded="true" aria-controls="collapsePersonal">
             <h4 class="page-header" style=" margin-top:0px">
                 اطلاعات شخصی 
@@ -7,8 +9,8 @@
           </a>
           <div class="collapse in fluid-container" id="collapsePersonal">
               <div class="col-sm-3 col-sm-offset-0 col-xs-6 col-xs-offset-3 text-center">
-                  <div class="profile-pic-place"> 
-                  <img src="elements\default_profile_picture.png" alt="profile-pic" id="profile-picture" class="profile-picture img-circle"><br/>
+                  <div class="profile-pic-place">
+                  <img ng-src="data:image/png;base64,{{profile_pic}}" id="profile-picture" class="profile-picture img-circle">
                   </div>
                   <button class="btn btn-default">تغییر عکس کاربری</button>  
               </div>
@@ -16,20 +18,20 @@
               
                 <div class="form-group col-md-6">
                     <label for="userName" >نام کاربری</label>
-                    <input type="text" class="form-control" id="userName" value="{{user.name}}">
+                    <p class="form-control-static" id="userName">{{user.username}}</p>
                     <label for="email">ایمیل</label>
-                    <input type="email" class="form-control" id="email" value="{{user.email}}">
+                    <p class="form-control-static" id="email">{{user.email}}</p>
                     <br/>
-                    <a href="#">درخواست تایید ایمیل</a>
-                    <p class="help-box">برای ثبت نام در بعضی از مسابقه ها لازم است اکانت ایمیل خود را تایید نمایید</p>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="lastPass">رمز عبور قبلی</label>
-                    <input type="password" class="form-control" id="lastPass" value="{{user.password}}">
+                    <input type="password" class="form-control" id="lastPass" ng-model="user.previousPassword">
                     <label for="newPass">رمز عبور جدید</label>
-                    <input type="password" class="form-control" id="newPass" value="{{user.newPassword}}">
-                    <label for="re-newPass">تکرار رمز عبور جدید</label>
-                    <input type="password" class="form-control" id="re-newPass" value="{{user.reNewPassword}}">
+                    <input type="password" class="form-control" id="newPass" ng-model="user.newPassword">
+                    <div class="form-group" ng-class="passwordIsSame()?'':'has-error'">
+                        <label for="re-newPass">تکرار رمز عبور جدید</label>
+                        <input type="password" class="form-control " id="re-newPass" ng-model="rePass21.text">
+                    </div>
                </div>
               </div>
           </div>
@@ -44,15 +46,15 @@
               
                 <div class="form-group col-md-6">
                     <label for="uniName" >نام دانشگاه(دبیرستان)</label>
-                    <input type="text" class="form-control" id="uniName" value="{{user.university}}">
+                    <input type="text" class="form-control" id="uniName" value="{{user.university}}" ng-model = "user.university">
                     <label for="studentNo">شماره دانشجویی</label>
-                    <input type="email" class="form-control" id="studentNo" value="{{user.student_number}}">
+                    <input type="text" class="form-control" id="studentNo" value="{{user.studentCode}}" ng-model = "user.studentCode">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="eduLevel">مقطع تحصیلی</label>
-                    <input type="text" class="form-control" id="eduLevel" value="{{user.st_level}}">
+                    <input type="text" class="form-control" id="eduLevel" value="{{user.studentLevel}}" ng-model = "user.studentLevel">
                     <label for="eduMajor">رشته تحصیلی</label>
-                    <input type="text" class="form-control" id="eduMajor" value="{{user.st_major}}">
+                    <input type="text" class="form-control" id="eduMajor" value="{{user.major}}" ng-model = "user.major">
                </div>
 
               </div>
@@ -62,5 +64,5 @@
           &nbsp
           <br/>
           <div class="text-center">
-              <button class="btn btn-primary">اعمل تغییرات</button>
+              <button class="btn btn-primary" ng-disabled="!passwordIsSame()" ng-click = "edit_profile()">اعمال تغییرات</button>
           </div>

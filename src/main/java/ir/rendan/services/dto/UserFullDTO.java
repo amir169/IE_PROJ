@@ -47,6 +47,8 @@ public class UserFullDTO {
     }
 
     public String getImageAddress() {
+        if(imageAddress == null)
+            return "default_profile_picture.png";
         return imageAddress;
     }
 
