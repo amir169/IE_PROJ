@@ -1,6 +1,8 @@
 package ir.rendan.model;
 
 
+import ir.rendan.util.StringGenerator;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -19,6 +21,9 @@ public class Team {
 
     @Column
     private Date registrationDate;
+
+    @Column
+    private String code;
 
     @ManyToOne
     @JoinColumn(name = "manager_id")
@@ -92,6 +97,7 @@ public class Team {
         this.invitedMembers = invitedMembers;
         this.validated = new Short("0");
         this.registrationDate = new Date();
+        this.code = StringGenerator.generateValidationCode();
     }
 
     public void validate()
@@ -112,6 +118,13 @@ public class Team {
         members.remove(member);
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public Set<User> getInvitedMembers() {
         return invitedMembers;

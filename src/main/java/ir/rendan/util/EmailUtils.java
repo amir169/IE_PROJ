@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by Amir Shams on 5/27/2017.
@@ -37,9 +39,9 @@ public class EmailUtils {
         send("Validation Link",link,user.getEmail());
     }
 
-    public void sendTeamInvitationMail(User user, Team team) throws AddressException {
+    public void sendTeamInvitationMail(User user, Team team) throws AddressException, NoSuchAlgorithmException {
 
-        String body = "http://" + constants.getServerAddress() + ":" + constants.getServerPort() +"/api/invitation/accept/" + team.getName();
+        String body = "http://" + constants.getServerAddress() + ":" + constants.getServerPort() +"/api/invitation/accept/" + team.getCode();
 
         send("Team Invitation",body,user.getEmail());
     }

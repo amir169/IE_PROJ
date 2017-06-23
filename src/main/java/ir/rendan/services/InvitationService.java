@@ -31,11 +31,11 @@ public class InvitationService {
     }
 
     @GET
-    @Path("accept/{name}")
+    @Path("accept/{code}")
     @Transactional
-    public Response validate(@PathParam("name") String name)
+    public Response validate(@PathParam("code") String code)
     {
-        Team team = teamRepository.findOne(name);
+        Team team = teamRepository.getByCode(code);
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 

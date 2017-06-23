@@ -14,4 +14,7 @@ public interface TeamRepository extends CrudRepository<Team,String> {
     @Query("select t from Team t join t.members user " +
             "where user.username = ?1 and (t.validated = 1 or user = t.manager)")
     List<Team> findByUser(String username);
+
+    @Query("select t from Team t where t.code = ?1")
+    Team getByCode(String code);
 }
