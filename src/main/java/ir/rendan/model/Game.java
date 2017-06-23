@@ -42,9 +42,9 @@ public class Game {
     @Column
     private String descriptionAddress;
 
-    @OneToMany
-    @JsonIgnore
-    private Set<League> leagues;
+//    @OneToMany
+//    @JsonIgnore
+//    private Set<League> leagues;
 
     public String getConductor() {
         return conductor;
@@ -105,10 +105,10 @@ public class Game {
     public Game(String name, String sourcePath, int leagueCount) {
         this.name = name;
         this.sourcePath = sourcePath;
-        leagues = new HashSet<>();
-        for (int i = 0; i < leagueCount; i++) {
-            leagues.add(new League(this,"League " + i + 1));
-        }
+//        leagues = new HashSet<>();
+//        for (int i = 0; i < leagueCount; i++) {
+//            leagues.add(new League(this,"League " + i + 1));
+//        }
     }
 
     public int getId() {
@@ -135,11 +135,11 @@ public class Game {
         this.sourcePath = sourcePath;
     }
 
-    public Set<League> getLeagues() {
-        return leagues;
-    }
-
-    public void setLeagues(Set<League> leagues) {
-        this.leagues = leagues;
-    }
+//    public Set<League> getLeagues() {
+//        return leagues;
+//    }
+//
+//    public void setLeagues(Set<League> leagues) {
+//        this.leagues = leagues;
+//    }
 }
