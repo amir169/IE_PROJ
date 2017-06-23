@@ -49,7 +49,7 @@ public class TeamService {
         if(name == null || teamRepository.exists(name))
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.name.found")).build();
 
-        if(dto.getMembers().size() > 4)
+        if(dto.getMembers() != null && dto.getMembers().size() > 4)
             return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("team.register.failed")).build();
 
         Set<User> invitedMembers = new HashSet<>();
@@ -106,7 +106,7 @@ public class TeamService {
         return Response.ok().build();
     }
 
-    @Path("/get-team")
+    @Path("/get-teams")
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     @Transactional

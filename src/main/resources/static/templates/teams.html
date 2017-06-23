@@ -15,19 +15,19 @@
             <thead>
             <tr>
                 <th>نام تیم</th>
-                <!--<th>تاریخ ثبت</th>-->
+                <th>تاریخ ثبت</th>
                 <th>اعضا</th>
-                <th>ویرایش</th>
+                <!--<th>ویرایش</th>-->
                 <th>حذف</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="record in data track by $index">
                 <td>{{record.name}}</td>
-                <td>{{record.registration_time}}</td>
-                <td>{{record.members}}</td>
-                <td><a data-toggle="modal" data-target="#registerTeamModal" ng-click="init_modal($index)" href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
-                <td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                <td>{{record.registrationDate}}</td>
+                <td>{{record.member_names}}</td>
+                <!--<td><a data-toggle="modal" data-target="#registerTeamModal" ng-click="init_modal($index)" href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>-->
+                <td ng-if="record.validated == 0"><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
             </tbody>
         </table>
@@ -61,21 +61,21 @@
                                 {{selected_team.manager.name}}
                             </p>
                             <div class="form-group">
-                                <div ng-repeat="team_member in selected_team.members_array track by $index">
+                                <div ng-repeat="team_member in selected_team.members track by $index">
                                     <label> ایمیل نفر
                                         {{sequence[$index]}}
                                     </label>
                                     <div  ng-if ="$index > 0">
                                         <input type="email" class="form-control "
-                                               value="{{selected_team.members_array[$index].email}}"
-                                               ng-model="selected_team.members_array[$index].email"
+                                               value="{{selected_team.members[$index].email}}"
+                                               ng-model="selected_team.members[$index].email"
                                                ng-model-options='{ debounce: 1000 }'
                                                ng-change = "check_email_exist($index)">
-                                        <p ng-class="selected_team.members_array[$index].is_valid==true?'text-success':'text-danger' " >
-                                            {{selected_team.members_array[$index].name}}</p></div>
-                                    <p ng-if="$index == 0" class="form-control-static">{{selected_team.members_array[$index].email}}</p>
+                                        <p ng-class="selected_team.members[$index].is_valid==true?'text-success':'text-danger' " >
+                                            {{selected_team.members[$index].name}}</p></div>
+                                    <p ng-if="$index == 0" class="form-control-static">{{selected_team.members[$index].email}}</p>
                                 </div>
-                                <div ng-if="selected_team.members_array.length < 5">
+                                <div ng-if="selected_team.members.length < 5">
                                     <a ng-click="add_new_member()" href="#">اضافه کردن نفر جدید +</a>
                                 </div>
                             </div>

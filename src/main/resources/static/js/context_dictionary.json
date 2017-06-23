@@ -15,7 +15,7 @@
   {
     "name" : "teams",
     "template_url" : "templates/teams.html",
-    "data_url" : "test_data/team_data.json"
+    "data_url" : "api/team/get-teams"
   },
   "announcements" :
   {

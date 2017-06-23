@@ -22,7 +22,6 @@ public class User implements Serializable {
 	@JsonIgnore
 	private String password;
 	@Column(unique = true)
-	@JsonIgnore
 	private String email;
 	@Column
 	@JsonIgnore
@@ -34,7 +33,6 @@ public class User implements Serializable {
 	@JsonIgnore
 	private String activationCode;
 	@Column
-	@JsonIgnore
 	private String name;
 	@Column
 	@JsonIgnore

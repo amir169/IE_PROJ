@@ -57,7 +57,7 @@
           <ul class="nav navbar-nav">
             <li ng-class="context.name=='games'?'active':''" ng-click="change_context('games')"><a href="#">لیست مسابقات</a></li>
             <li ng-class="context.name=='scores'?'active':''" ng-click="change_context('scores')"><a href="#">رکورد ها و نتیاج</a></li>
-            <li ng-class="context.name=='teams'?'active':''" ng-click="change_context('teams')"><a href="#">تیم ها</a></li>
+            <li ng-class="context.name=='teams'?'active':''" ng-click="teams()"><a href="#">تیم ها</a></li>
             <li ng-class="context.name=='announcements'?'active':''" ng-click="change_context('announcements')"><a href="#">اطلاعیه ها</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-left">
@@ -85,7 +85,7 @@
             <ul>
               <li ng-class="context.name=='games'?'sidebar-selected':''" ng-click="change_context('games')"><a href="#">لیست مسابقات</a></li>
               <li ng-class="context.name=='scores'?'sidebar-selected':''" ng-click="change_context('scores')"><a href="#">رکورد ها و نتایج </a></li>
-              <li ng-class="context.name=='teams'?'sidebar-selected':''" ng-click="change_context('teams')"><a href="#">تیم ها</a></li>
+              <li ng-class="context.name=='teams'?'sidebar-selected':''" ng-click="teams()"><a href="#">تیم ها</a></li>
               <li ng-class="context.name=='announcements'?'sidebar-selected':''" ng-click="change_context('announcements')"><a href="#">اطلاعیه ها</a></li>
             </ul>
           </div>

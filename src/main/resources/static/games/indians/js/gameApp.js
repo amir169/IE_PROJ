@@ -27,7 +27,7 @@ angular.module("gameApp").controller("game_controller",function($scope,$http) {
 
         $scope.current_page = page_number;
         $scope.data = [];
-        $http.get($scope.context.data_url,{params:{page:$scope.current_page-1,sort:"submissionDate,desc"}}).then( function(response) {
+            $http.get($scope.context.data_url,{params:{page:$scope.current_page-1,sort:"submissionDate,desc"}}).then( function(response) {
             $scope.data = response.data.content;
         });
     };
