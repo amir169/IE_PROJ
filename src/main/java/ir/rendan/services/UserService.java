@@ -47,7 +47,7 @@ public class UserService{
     {
         User user = userRepository.findByEmail(email);
         if(user == null)
-            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.login.failed")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("user.not_exist")).build();
         return Response.ok(UserLightDTO.loadFrom(user)).build();
     }
 
