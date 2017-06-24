@@ -2,7 +2,7 @@
  * Created by Amir Shams on 3/30/2017.
  */
 angular.module("app", []);
-angular.module("app").controller("main_controller",function($scope,$http) {
+angular.module("app").controller("main_controller",function($scope,$http,$window) {
 
     $scope.game_profiles = [];
 
@@ -44,13 +44,14 @@ angular.module("app").controller("main_controller",function($scope,$http) {
                 });
 
     };
-    
-    $scope.isRegistered = function (game) {
-        //TODO
-    };
-    
+
     $scope.enterGame = function (game) {
-        
+        $window.location.href = "/" + game.sourcePath + "/index.html";
+    };
+
+    $scope.init_modal = function(game)
+    {
+         $scope.selected_game = game;
     };
 
     $scope.edit_profile = function () {

@@ -24,8 +24,8 @@
                 <!--<div class="col-md-9 col-md-offset-9 col-xs-12 col-xs-offset-0">{{$scope.game_profiles[$game_index].image}}</div>-->
             </div>
             <div class="panel-footer text-left">
-                <button ng-if="isRegistered(record)" class="btn btn-primary" ng-click="enterGame(record)">ورود به محیط مسابقه</button>
-                <button ng-if="!isRegistered(record)" class="btn btn-primary" data-toggle="modal" data-target="#registerComptModal">ثبت نام در مسابقه</button>
+                <button ng-if="record.permitted == true" class="btn btn-primary" ng-click="enterGame(record)">ورود به محیط مسابقه</button>
+                <button ng-if="record.permitted == false" class="btn btn-primary" ng-click="init_modal(record)" data-toggle="modal" data-target="#registerComptModal">ثبت نام در مسابقه</button>
             </div>
         </div> <!-- panel -->
     </div>
@@ -54,20 +54,20 @@
                 <br/>
                 <div class="form-group">
                     <label> انتخاب تیم</label>
-                    <select class="form-control">
-                        <option>-شما تیمی ثبت نکردید-</option><!-- این برای وقتی هست که طرف تیمی ثبت نکرده -->
-                        <option ng-repeat="record in teams">{{record.name}}</option>
+                    <select class="form-control" ng-model="selectedTeam" ng-change="changedValue(selectedTeam)"
+                            data-ng-options="team as team.name for team in teams">
+                        <option value="">تیم خود را انتخاب کنید</option>
                     </select>
                 </div>
                 <div class="form-group" style="margin-top: 10px"  >
-                    <h5><span>هزینه ی ثبت نام</span><span class="pull-left">100 هزار تومان</span></h5>
+                    <h5><span>هزینه ی ثبت نام</span><span class="pull-left">{{selected_game.price}} هزار تومان</span></h5>
                     <button class="btn btn-default form-control" style="border-color: #008e77;color: #008e77" >پرداخت هزینه</button>
                 </div>
                 <br/>
                 <br/>
-                <a href="games/indians/index.html">
-                    <button class="btn btn-primary form-control"  >ثبت نام در مسابقه</button>
-                </a>
+                <!--<a href="games/indians/index.html">-->
+                    <button ng-click="register_game()" class="btn btn-primary form-control"  >ثبت نام در مسابقه</button>
+                <!--</a>-->
             </div>
 
         </div>

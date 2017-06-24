@@ -8,8 +8,12 @@ angular.module("app").controller("game_modal",function($scope,$http) {
     });
 
     $scope.changedValue = function (s) {
-        console.log("hi");
-        console.log(s);
-    }
+        $scope.selected_team = s;
+    };
+
+    $scope.register_game = function () {
+        console.log($scope.selected_team);
+        console.log($scope.selected_game);
+    };
 
 });
