@@ -3,7 +3,7 @@
   {
     "name" : "games",
     "template_url" : "templates/game-introducer.html",
-    "data_url" : "/items/games"
+    "data_url" : "/api/games/list"
   },
   "scores" :
   {

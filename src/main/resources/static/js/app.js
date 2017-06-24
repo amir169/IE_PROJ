@@ -17,19 +17,15 @@ angular.module("app").controller("main_controller",function($scope,$http) {
         text:""
     };
 
-    $scope.temp2 = null;
-
     $scope.getImage = function(index,adr){
         $http({
-            url: 'api/files/download/'+$scope.user.imageAddress,
+            url: 'api/files/download/'+adr,
             method: "GET",
             responseType: 'arraybuffer'
         })
             .then(function(response) {
                     var temp = $scope.arrayBufferToBase64(response.data);
                     $scope.game_profiles[index].image=temp;
-                    $scope.temp2=temp;
-                    console.log("##"+$scope.game_profiles[index].image+":"+temp);
             },
                 function(response) {
                 });
@@ -127,14 +123,14 @@ angular.module("app").controller("main_controller",function($scope,$http) {
         $scope.current_page = 1;
         $http.get($scope.context.data_url).then( function(response) {
 
-            $scope.data = response.data.content.slice(($scope.current_page - 1) * page_capacity, $scope.current_page * page_capacity);
-            $scope.page_count = Math.ceil(response.data.content.length / page_capacity);
+            $scope.data = response.data.slice(($scope.current_page - 1) * page_capacity, $scope.current_page * page_capacity);
+            $scope.page_count = Math.ceil(response.data.length / page_capacity);
 
             if(context_name == 'games'){
-                for(var i=0,len = response.data.content.length;i<len;i++){
+                for(var i=0,len = response.data.length;i<len;i++){
                     $scope.game_profiles[i]={image:null,html:""};
-                    $scope.getImage(i,response.data.content[i].logoAddress);
-                    // $scope.getHTML(i,response.data.content[i].descriptionAddress);
+                    $scope.getImage(i,response.data[i].logoAddress);
+                    // $scope.getHTML(i,response.data[i].descriptionAddress);
                     console.log("#"+$scope.game_profiles[i].image);
                 }
             }
