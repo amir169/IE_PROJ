@@ -131,7 +131,7 @@ angular.module("app").controller("main_controller",function($scope,$http,$window
                 for(var i=0,len = response.data.length;i<len;i++){
                     $scope.game_profiles[i]={image:null,html:""};
                     $scope.getImage(i,response.data[i].logoAddress);
-                    // $scope.getHTML(i,response.data[i].descriptionAddress);
+                    $scope.getHTML(i,response.data[i].descriptionAddress);
                     console.log("#"+$scope.game_profiles[i].image);
                 }
             }

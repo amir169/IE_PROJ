@@ -26,26 +26,28 @@ public class GameTestService {
     @GET
     public Response test()
     {
-        Game game = new Game("سرخپوست ها","C:\\Users\\SalehJFZ\\Desktop\\Desktop\\Net Eng\\net eng\\IE_PROJ\\src\\main\\resources\\static\\games\\indians",3);
+        Game game = new Game("سرخپوست ها","indians_logo.png",3);
 
         game.setAvailableUntil(new Date());
 
         game.setConductor("دانشگاه شهید بهشتی");
         game.setPlace("آنلاین");
-        game.setLogoAddress("C:\\Users\\SalehJFZ\\Desktop\\Desktop\\Net Eng\\net eng\\IE_PROJ\\src\\main\\resources\\static\\games\\indians\\elements\\Game_logo.png");
+        game.setLogoAddress("indians_logo.png");
         game.setMaxTeamSize(3);
         game.setPrice(-1);
+        game.setDescriptionAddress("indians_intro.html");
         gameRepository.save(game);
 
-        Game game2 = new Game("سرخپوست ها2","games/indians",3);
+        Game game2 = new Game("مسابقه","game_logo.png",3);
 
         game2.setAvailableUntil(new Date());
 
         game2.setConductor("دانشگاه شهید بهشتی");
-        game2.setPlace("آنلاین");
-        game2.setLogoAddress("elements/Game_logo.png");
-        game2.setMaxTeamSize(3);
+        game2.setPlace("دانشکده مهندسی کامپیوتر");
+        game2.setLogoAddress("game_logo.png");
+        game2.setMaxTeamSize(1);
         game2.setPrice(15000);
+        game2.setDescriptionAddress("game_intro.html");
         gameRepository.save(game2);
 
         return Response.ok().build();
