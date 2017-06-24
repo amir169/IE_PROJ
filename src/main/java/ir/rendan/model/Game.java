@@ -102,6 +102,8 @@ public class Game {
         this.descriptionAddress = descriptionAddress;
     }
 
+    public Game(){}
+
     public Game(String name, String sourcePath, int leagueCount) {
         this.name = name;
         this.sourcePath = sourcePath;
