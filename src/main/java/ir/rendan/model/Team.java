@@ -44,7 +44,6 @@ public class Team {
             joinColumns = @JoinColumn(name = "team_name",referencedColumnName = "name"),
             inverseJoinColumns = @JoinColumn(name = "username",referencedColumnName = "username")
     )
-
     private Set<User> invitedMembers;
 
     public Date getRegistrationDate() {

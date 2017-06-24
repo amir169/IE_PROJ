@@ -23,6 +23,7 @@ public class JerseyConfig extends ResourceConfig {
         register(ir.rendan.services.TeamService.class);
         register(ir.rendan.services.InvitationService.class);
         register(ir.rendan.services.GameTestService.class);
+        register(ir.rendan.services.TeamGameService.class);
 
         property(ServletProperties.FILTER_FORWARD_ON_404, true);
     }

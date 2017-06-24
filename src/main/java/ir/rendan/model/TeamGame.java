@@ -9,14 +9,16 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "team_game")
+@Table(name = "team_games")
 public class TeamGame {
     @Id @GeneratedValue private int id;
 
     @ManyToOne
+    @JoinColumn(name="team_id")
     private Team team;
 
     @ManyToOne
+    @JoinColumn(name="game_id")
     private Game game;
 
     @OneToMany
@@ -28,8 +30,8 @@ public class TeamGame {
     public TeamGame(Team team, Game game) {
         this.team = team;
         this.game = game;
-        codes = new HashSet<>();
-        selectedCode = null;
+        this.codes = new HashSet<>();
+        this.selectedCode = null;
     }
 
     public int getId() {

@@ -33,6 +33,7 @@ public class GameTestService {
         game.setConductor("دانشگاه شهید بهشتی");
         game.setPlace("آنلاین");
         game.setLogoAddress("elements/Game_logo.png");
+
         game.setMaxTeamSize(3);
 
         gameRepository.save(game);
