@@ -1,26 +1,31 @@
 <div class=" container-fluid">
     <h3 class="page-header" style=" margin-top:0px"  > لیست مسابقلات</h3>
 
-    <div ng-repeat="record in data" class="col-md-6 col-sm-12" id="game-intoducer">
+    <div ng-repeat="record in data track by $games_index" class="col-md-12" id="game-intoducer">
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="col-md-6 col-xs-6">
-                    <img src="{{record.logo_address}}" class="img-rounded" style=" max-width:  100% ; max-height:  auto"  >
-                </div>
-                <div class="col-md-6 col-xs-6">
-                    <h4 class=" page-header" style=" margin-top:0px; margin-right:-10px;"><span id="compt-name">{{record.name}}</span></h4>
-                    <span id="other-info">
-                    برگزار کننده: {{record.conductor}}<br/>
-                    تیمی: {{record.max_members}}<br/>
-                    زمان:{{record.time}}<br/>
-                    مکان: {{record.place}}<br/>
-                    هزینه: {{record.price}}
-                    </span>
-                </div>
+                <row>
+                    <div class="col-md-3 col-xs-6">
+                        <img ng-src="data:image/png;base64,{{temp2}}" class="img-rounded"
+                             style=" max-width:  100% ; max-height: auto"  >
+                    </div>
+                    <div class="col-md-6 col-xs-6">
+                        <h4 class=" page-header" style=" margin-top:0px; margin-right:-10px;"><span id="compt-name">{{record.name}}</span></h4>
+                        <span id="other-info">
+                            برگزار کننده: {{record.conductor}}<br/>
+                            تیمی: {{record.maxTeamSize}}<br/>
+                        مهلت:{{record.availableUntil}}<br/>
+                        مکان: {{record.place}}<br/>
+                        هزینه: {{record.price}}
+                        </span>
+                    </div>
+                    <div>{{$scope.game_profiles[games_index].html}}</div>
+                </row>
+                <!--<div class="col-md-9 col-md-offset-9 col-xs-12 col-xs-offset-0">{{$scope.game_profiles[$game_index].image}}</div>-->
             </div>
             <div class="panel-footer text-left">
-                <button class="btn btn-link">توضیجات بیشتر</button>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#registerComptModal">شرکت در مسابقه</button>
+                <button ng-if="isRegistered(record)" class="btn btn-primary" ng-click="enterGame(record)">ورود به محیط مسابقه</button>
+                <button ng-if="!isRegistered(record)" class="btn btn-primary" data-toggle="modal" data-target="#registerComptModal">ثبت نام در مسابقه</button>
             </div>
         </div> <!-- panel -->
     </div>
