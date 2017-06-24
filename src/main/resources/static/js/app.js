@@ -33,7 +33,7 @@ angular.module("app").controller("main_controller",function($scope,$http,$window
     
     $scope.getHTML = function (index,adr) {
         $http({
-            url:adr,
+            url:'api/files/download/'+adr,
             method: "GET"
         })
             .then(function(response) {
