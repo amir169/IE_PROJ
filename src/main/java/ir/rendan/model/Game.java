@@ -50,9 +50,6 @@ public class Game {
         return conductor;
     }
 
-    public Game() {
-    }
-
     public void setConductor(String conductor) {
         this.conductor = conductor;
     }

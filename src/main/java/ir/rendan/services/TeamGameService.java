@@ -55,6 +55,9 @@ public class TeamGameService {
         if(team == null || game == null)
             return Response.status(Response.Status.BAD_REQUEST).build();
 
+        if(team.getMembers().size() > game.getMaxTeamSize())
+            return Response.status(Response.Status.BAD_REQUEST).build();
+
         if(!team.getManager().getUsername().equals(username) || team.getValidated() == 0)
             return Response.status(Response.Status.FORBIDDEN).build();
 

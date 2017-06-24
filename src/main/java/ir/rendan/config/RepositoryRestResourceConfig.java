@@ -1,6 +1,5 @@
 package ir.rendan.config;
 
-import ir.rendan.model.Game;
 import ir.rendan.model.Question;
 import ir.rendan.model.Team;
 import ir.rendan.model.User;
