@@ -9,23 +9,22 @@
                         <img ng-src="data:image/png;base64,{{game_profiles[$index].image}}" class="img-rounded"
                              style=" max-width:  100% ; max-height: auto"  >
                     </div>
-                    <div class="col-md-6 col-xs-6">
+                    <div class="col-md-7 col-xs-6">
                         <h4 class=" page-header" style=" margin-top:0px; margin-right:-10px;"><span id="compt-name">{{record.name}}</span></h4>
                         <span id="other-info">
                             برگزار کننده: {{record.conductor}}<br/>
-                            تیمی: {{record.maxTeamSize}}<br/>
+                            تیمی: {{record.maxTeamSize}} نفره<br/>
                         مهلت:{{record.availableUntil}}<br/>
                         مکان: {{record.place}}<br/>
-                        هزینه: {{record.price}}
+                        هزینه: {{(record.price == -1)?'رایگان':record.price+'تومان'}}
                         </span>
                     </div>
-                    <div>{{$scope.game_profiles[games_index].html}}</div>
+                    <div class="col-md-2 col-xs-12">
+                        <button ng-if="record.permitted == true" class="btn btn-primary" ng-click="enterGame(record)" style="width: 100%">ورود به محیط مسابقه</button>
+                        <button ng-if="record.permitted == false" class="btn btn-primary" ng-click="init_modal(record)" data-toggle="modal" data-target="#registerComptModal" style="width: 100%">ثبت نام در مسابقه</button>
+                    </div>
                 </row>
-                <!--<div class="col-md-9 col-md-offset-9 col-xs-12 col-xs-offset-0">{{$scope.game_profiles[$game_index].image}}</div>-->
-            </div>
-            <div class="panel-footer text-left">
-                <button ng-if="record.permitted == true" class="btn btn-primary" ng-click="enterGame(record)">ورود به محیط مسابقه</button>
-                <button ng-if="record.permitted == false" class="btn btn-primary" ng-click="init_modal(record)" data-toggle="modal" data-target="#registerComptModal">ثبت نام در مسابقه</button>
+                <div class="col-md-12">{{$scope.game_profiles[$game_index].html}}</div>
             </div>
         </div> <!-- panel -->
     </div>
