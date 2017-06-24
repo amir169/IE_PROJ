@@ -67,7 +67,16 @@ public class FileUploadService {
     public Response getFile(
             @PathParam("file_name") String fileName) {
 
-        return Response.ok().entity(new File(fileName)).build();
+        File file;
+
+        try{
+            file = new File(fileName);
+        }catch (Exception e)
+        {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        return Response.ok().entity(file).build();
 
     }
 
