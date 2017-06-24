@@ -21,13 +21,14 @@
                         هزینه: {{(record.price == -1)?'رایگان':record.price+'تومان'}}
                         </span>
                     </div>
-                    <div class="col-md-2 col-xs-12">
-                        <button ng-if="record.permitted == true" class="btn btn-primary" ng-click="enterGame(record)" style="width: 100%">ورود به محیط مسابقه</button>
+                    <div class="col-md-2 col-xs-12" style="padding-top: 10px">
+                        <button ng-if="record.permitted == true" class="btn btn-primary" ng-click="enterGame(record)" style="width: 100%">ورود به مسابقه</button>
                         <button ng-if="record.permitted == false" class="btn btn-primary" ng-click="init_modal(record)" data-toggle="modal" data-target="#registerComptModal" style="width: 100%">ثبت نام در مسابقه</button>
+
                     </div>
                 </row>
                 <row>
-                 <div class="col-md-12">{{game_profiles[$index].html}}</div>
+                    <div class="col-md-12 col-xs-12" style="padding-top: 10px"><p>{{game_profiles[$index].html}}</p> </div>
                 </row>
             </div>
         </div> <!-- panel -->

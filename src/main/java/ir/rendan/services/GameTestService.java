@@ -26,7 +26,7 @@ public class GameTestService {
     @GET
     public Response test()
     {
-        Game game = new Game("سرخپوست ها","indians_logo.png",3);
+        Game game = new Game("سرخپوست ها","/games/indians",3);
 
         game.setAvailableUntil(new Date());
 
@@ -38,7 +38,7 @@ public class GameTestService {
         game.setDescriptionAddress("indians_intro.html");
         gameRepository.save(game);
 
-        Game game2 = new Game("مسابقه","game_logo.png",3);
+        Game game2 = new Game("مسابقه","/games/indians",3);
 
         game2.setAvailableUntil(new Date());
 
