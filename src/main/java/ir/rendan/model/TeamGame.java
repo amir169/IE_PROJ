@@ -27,6 +27,8 @@ public class TeamGame {
     @OneToOne
     private Code selectedCode;
 
+    public TeamGame(){}
+
     public TeamGame(Team team, Game game) {
         this.team = team;
         this.game = game;

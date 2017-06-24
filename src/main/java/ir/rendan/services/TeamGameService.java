@@ -3,10 +3,12 @@ package ir.rendan.services;
 import ir.rendan.model.Game;
 import ir.rendan.model.Team;
 import ir.rendan.model.TeamGame;
+import ir.rendan.model.User;
 import ir.rendan.repository.GameRepository;
 import ir.rendan.repository.TeamGameRepository;
 import ir.rendan.repository.TeamRepository;
 import ir.rendan.services.dto.GameRegistrationDTO;
+import ir.rendan.util.MessageTranslator;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,16 +29,19 @@ public class TeamGameService {
     private final TeamRepository teamRepository;
     private final TeamGameRepository teamGameRepository;
     private final GameRepository gameRepository;
+    private final MessageTranslator translator;
 
-    public TeamGameService(TeamRepository teamRepository, TeamGameRepository teamGameRepository, GameRepository gameRepository) {
+    public TeamGameService(TeamRepository teamRepository, TeamGameRepository teamGameRepository, GameRepository gameRepository,MessageTranslator translator) {
         this.teamRepository = teamRepository;
         this.teamGameRepository = teamGameRepository;
         this.gameRepository = gameRepository;
+        this.translator = translator;
     }
 
     @POST
     @Path("register")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response register(GameRegistrationDTO dto)
     {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -52,6 +57,12 @@ public class TeamGameService {
 
         if(!team.getManager().getUsername().equals(username) || team.getValidated() == 0)
             return Response.status(Response.Status.FORBIDDEN).build();
+
+        for(User u : team.getMembers())
+        {
+            if(!teamGameRepository.isRegistered(u.getUsername(),game.getId()).isEmpty())
+                return Response.status(Response.Status.BAD_REQUEST).entity(translator.translate("game.register.member.already.exists")).build();
+        }
 
         TeamGame teamGame = new TeamGame(team,game);
 

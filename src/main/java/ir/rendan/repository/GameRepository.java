@@ -1,11 +1,11 @@
 package ir.rendan.repository;
 
 import ir.rendan.model.Game;
-import ir.rendan.repository.custom.PagingAndSortingRepositoryWithReadOnlyRestResource;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * Created by Amir Shams on 6/23/2017.
  */
-public interface GameRepository extends PagingAndSortingRepositoryWithReadOnlyRestResource<Game,Integer> {
+public interface GameRepository extends CrudRepository<Game,Integer> {
 
 }

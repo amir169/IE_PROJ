@@ -18,7 +18,7 @@ import org.springframework.http.MediaType;
 public class RepositoryRestResourceConfig extends RepositoryRestConfigurerAdapter {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-        config.exposeIdsFor(Question.class,User.class, Team.class, Game.class);
+        config.exposeIdsFor(Question.class,User.class, Team.class);
         config.setDefaultMediaType(MediaType.APPLICATION_JSON);
         config.setBasePath("items");
         config.setRepositoryDetectionStrategy(RepositoryDetectionStrategy.RepositoryDetectionStrategies.ANNOTATED);
