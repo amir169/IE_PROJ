@@ -22,7 +22,13 @@
     </head>
     <body ng-app="leagueMgr" ng-controller="league_controller" class="yekan-font repeated-bg ease-tr">
         <div class="container" style="margin-top: 20px">
-            <div class="col-md-12">
+
+            <div ng-if="message.text!=null"
+                 ng-class="message.type=='error'?'alert alert-danger':'alert alert-success'"
+                 style="text-align: center">{{message.text}}</div>
+            </div>
+
+        <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <input type="text" id="newListName" placeholder="name">
@@ -35,12 +41,16 @@
                     <div class="panel-body">
                         <row>
                             <h4>{{record.name}}</h4>
-                            <button type="button" class="btn btn-info">تغییر نام</button>
+                            <div>
+                                <input class=text" placeholder = "اسم جدید" ng-model="record.newLeagueName">
+                                <button type="button" class="btn btn-info" ng-click="changeLeagueName($index)">تغییر نام</button>
+                            </div>
                             <button type="button" class="btn btn-warning">برنامه ریز بازی ها</button>
-                            <button type="button" class="btn btn-success">اضافه کردن تیم</button>
-                            <button type="button" class="btn btn-danger">حذف لیگ</button>
-                        </row>
-                        <row>
+                            <button type="button" class="btn btn-danger" ng-click="leagueScheduler($index)">حذف لیگ</button>
+                            <div>
+                                <input class=text" placeholder = "اسم تیم" ng-model="record.newTeamName">
+                                <button type="button" class="btn btn-success" ng-click="addNewTeamLeague($index)">اضافه کردن تیم</button>
+                            </div>
                             <table class="table col-md-12 table-hover">
                                 <thead>
                                 <tr>
@@ -49,9 +59,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="record2 in list.teams">
+                                <tr ng-repeat="record2 in record.teams ">
                                     <td>{{record2.name}}</td>
-                                    <td><a href="#" ng-if="record.validated == 0"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                    <td><a href="#" ng-click="removeTeamFromLeague(record.name,$index)">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a></td>
                                 </tr>
                                 </tbody>
                             </table>
