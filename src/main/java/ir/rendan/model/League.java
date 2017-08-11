@@ -24,20 +24,34 @@ public class League {
     @OneToMany
     private Set<Match> matches;
 
+    @Column(nullable = false)
+    private boolean deleted = false;
+
+
     @ElementCollection
     @JoinTable(name = "TM_GAME_SCORE",joinColumns = @JoinColumn(name = "id"))
     @MapKeyColumn(name = "TM_GAME_ID")
     @Column(name = "SCORES")
-    private Map<Integer,Double> scores;
+    private Map<TeamGame,Double> scores;
 
     public League(Game game, String name) {
         this.game = game;
         this.name = name;
         this.matches = new HashSet<>();
         this.scores = new HashMap<>();
+        this.deleted = false;
     }
 
+    public League() {
+    }
 
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
     public int getId() {
         return id;
     }
@@ -55,10 +69,14 @@ public class League {
     }
 
     public void addTeamGame(TeamGame teamGame, double initScore){
-        scores.put(teamGame.getId(),initScore);
+        scores.put(teamGame,initScore);
     }
 
     public Double removeTeamGame(TeamGame teamGame){
         return scores.remove(teamGame);
+    }
+
+    public Map<TeamGame, Double> getScores() {
+        return scores;
     }
 }
