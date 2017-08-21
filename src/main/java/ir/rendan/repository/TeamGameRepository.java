@@ -15,4 +15,8 @@ public interface TeamGameRepository extends CrudRepository<TeamGame,Integer> {
             "where g.id = ?2 and mem.username = ?1 and t.validated = 1")
     List<TeamGame> isRegistered(String username, int gameId);
 
+    @Query("select tg from TeamGame tg join tg.game g join tg.team t " +
+            "where g.id = ?2 and t.id=?1")
+    TeamGame findByTeamAndGame(String teamID,int game_id);
+
 }

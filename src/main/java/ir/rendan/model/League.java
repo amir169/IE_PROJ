@@ -1,6 +1,7 @@
 package ir.rendan.model;
 
 import javax.persistence.*;
+import javax.persistence.criteria.Fetch;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -21,14 +22,14 @@ public class League {
     @Column
     private String name;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Match> matches;
 
     @Column(nullable = false)
     private boolean deleted = false;
 
 
-    @ElementCollection
+    @ElementCollection (fetch = FetchType.EAGER)
     @JoinTable(name = "TM_GAME_SCORE",joinColumns = @JoinColumn(name = "id"))
     @MapKeyColumn(name = "TM_GAME_ID")
     @Column(name = "SCORES")
@@ -78,5 +79,13 @@ public class League {
 
     public Map<TeamGame, Double> getScores() {
         return scores;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

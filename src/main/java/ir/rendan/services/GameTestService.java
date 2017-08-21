@@ -38,17 +38,6 @@ public class GameTestService {
         game.setDescriptionAddress("indians_intro.html");
         gameRepository.save(game);
 
-        Game game2 = new Game("مسابقه","games/indians",3);
-
-        game2.setAvailableUntil(new Date());
-
-        game2.setConductor("دانشگاه شهید بهشتی");
-        game2.setPlace("دانشکده مهندسی کامپیوتر");
-        game2.setLogoAddress("game_logo.png");
-        game2.setMaxTeamSize(1);
-        game2.setPrice(15000);
-        game2.setDescriptionAddress("game_intro.html");
-        gameRepository.save(game2);
 
         return Response.ok().build();
     }

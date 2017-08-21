@@ -31,27 +31,63 @@ angular.module("leagueMgr").controller("league_controller",function($scope,$http
                     $scope.message.type="error";
                 }
             });
+    };
+
+    $scope.addNewTeamLeague= function(index){
+        $http({
+            url : '/api/leagues/add_team/'+list[index].id,
+            method : 'POST',
+            data : list[index].newTeamName
+        }).
+        then(function(response) {
+                $window.location.href = "/";
+
+                $scope.message.text="تیم با موفقیت اضافه شد";
+                $scope.message.type="";
+            },
+            function(response) {
+                if(response.status == 400)
+                {
+                    $scope.message.text=response.data;
+                    $scope.message.type="error";
+                }
+            });
+    };
+
+    $scope.addLeague = function () {
+        $http({
+            url : '/api/leagues/add_league?'+
+                "league="+$scope.newLeagueName+"&gid="+$scope.gameID,
+            method : 'POST'
+        }).
+        then(function(response) {
+                $window.location.href = "/games/indians/leaguesMgr.html";
+
+                $scope.message.text="لیگ با موفقیت اضافه شد";
+                $scope.message.type="";
+            },
+            function(response) {
+                if(response.status == 400)
+                {
+                    $scope.message.text=response.data;
+                    $scope.message.type="error";
+                }
+            });
+
     }
 
 
 });
 
 function init($http,$scope) {
-    // $http.get( "/api/leagues/list/indians").then(function (response) {
-    $http.get("test_data/leagues.json").then(function (response) {
-
+    $scope.gameID = 15;
+    $http.get( "/api/leagues/list/"+15).then(function (response) {
         $scope.list = response.data;
-    });
-}
-/*
- "/api/leagues/list/indians"
-then(function() {
-        $window.location.href = "/";
-    },
-    function(response) {
+    },function(response) {
         if(response.status == 400)
         {
             $scope.message.text=response.data;
             $scope.message.type="error";
         }
-    });*/
+    });
+}
