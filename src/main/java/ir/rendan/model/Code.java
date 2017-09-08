@@ -26,6 +26,10 @@ public class Code {
         this.creationDate = new Date();
     }
 
+    public Code(){
+
+    }
+
     public int getId() {
         return id;
     }
