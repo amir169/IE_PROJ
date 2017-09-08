@@ -1,6 +1,8 @@
 package ir.rendan.model;
 
+
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by SalehJFZ on 15/05/2017.
@@ -17,7 +19,12 @@ public class Code {
     private String name;
 
     @Column
-    private long date;
+    private Date creationDate;
+
+    public Code(String address) {
+        this.address = address;
+        this.creationDate = new Date();
+    }
 
     public int getId() {
         return id;
@@ -43,11 +50,11 @@ public class Code {
         this.name = name;
     }
 
-    public long getDate() {
-        return date;
+    public Date getDate() {
+        return creationDate;
     }
 
-    public void setDate(long date) {
-        this.date = date;
+    public void setDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 }

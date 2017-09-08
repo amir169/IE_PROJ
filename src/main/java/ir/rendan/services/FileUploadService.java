@@ -1,6 +1,9 @@
 package ir.rendan.services;
 
+import ir.rendan.model.DataFile;
+import ir.rendan.repository.DataFileRepository;
 import ir.rendan.util.ConstantReader;
+import ir.rendan.util.StringGenerator;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,52 +28,67 @@ import java.util.HashMap;
 public class FileUploadService {
 
     private final ConstantReader constants;
+    private final DataFileRepository dataFileRepository;
 
-    public FileUploadService(ConstantReader constants) {
+    public FileUploadService(ConstantReader constants,DataFileRepository dataFileRepository) {
         this.constants = constants;
+        this.dataFileRepository = dataFileRepository;
     }
 
     @PostMapping("api/files/upload-image")
-
-    public ResponseEntity<String> singleImageUpload(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> publicFileUpload(@RequestParam("file") MultipartFile file) {
         JSONObject jObj = new JSONObject();
         try {
 
-            System.out.println(file.getName());
-//        Files.createDirectories(Paths.get(constants.getFolderPath()));
-        Files.write(Paths.get(file.getOriginalFilename()), file.getBytes());
+            DataFile dataFile = new DataFile(file.getOriginalFilename(),constants.getPublicFolderPath());
 
-            jObj.put("data" , file.getOriginalFilename());
+            dataFileRepository.save(dataFile);
+
+            Files.createDirectories(Paths.get(constants.getPublicFolderPath()));
+            Files.write(Paths.get(dataFile.getAddress()), file.getBytes());
+            jObj.put("key" , dataFile.getKey());
+
     } catch (IOException e) {
         e.printStackTrace();
     }
         return new ResponseEntity<>(jObj.toString(),HttpStatus.OK);
     }
 
-    @PostMapping("api/files/upload-code")
-    public ResponseEntity<String> singleCodeUpload(@RequestParam("file") MultipartFile file) {
+    @PostMapping("api/files/upload")
+    public ResponseEntity<String> privateFileUpload(@RequestParam("file") MultipartFile file) {
         JSONObject jObj = new JSONObject();
         try {
 
-//        Files.createDirectories(Paths.get(constants.getFolderPath()));
-            Files.write(Paths.get(file.getOriginalFilename()), file.getBytes());
-            jObj.put("data" , file.getOriginalFilename());
+            DataFile dataFile = new DataFile(file.getOriginalFilename(),constants.getPrivateFolderPath());
+
+            dataFileRepository.save(dataFile);
+
+            Files.createDirectories(Paths.get(constants.getPrivateFolderPath()));
+
+//            if(file.getSize() > 100000)
+//                return new ResponseEntity<>("",HttpStatus.BAD_REQUEST);
+
+            Files.write(Paths.get(dataFile.getAddress()), file.getBytes());
+            jObj.put("key" , dataFile.getKey());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new ResponseEntity(jObj.toString(),HttpStatus.OK);
+        return new ResponseEntity<>(jObj.toString(),HttpStatus.OK);
     }
 
     @GET
-    @Path("download/{file_name}")
+    @Path("download/{file_key}")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public Response getFile(
-            @PathParam("file_name") String fileName) {
+            @PathParam("file_key") String key) {
 
         File file;
 
+        DataFile dataFile = dataFileRepository.getByKey(key);
+
         try{
-            file = new File(fileName);
+            file = new File(dataFile.getAddress());
         }catch (Exception e)
         {
             return Response.status(Response.Status.NOT_FOUND).build();

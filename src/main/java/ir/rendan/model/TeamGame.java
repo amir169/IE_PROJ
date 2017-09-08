@@ -36,6 +36,11 @@ public class TeamGame {
         this.selectedCode = null;
     }
 
+    public void addToCodes(Code code)
+    {
+        this.codes.add(code);
+    }
+
     public int getId() {
         return id;
     }

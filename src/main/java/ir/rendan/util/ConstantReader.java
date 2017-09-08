@@ -18,15 +18,27 @@ public class ConstantReader {
     @Value("${spring.mail.username}")
     private String emailAddress;
 
-    @Value("${application.folder_path}")
-    private String folderPath;
+    @Value("${application.folder_path.public}")
+    private String publicFolderPath;
 
-    public String getFolderPath() {
-        return folderPath;
+    @Value("${application.folder_path.private}")
+    private String privateFolderPath;
+
+
+    public String getPublicFolderPath() {
+        return publicFolderPath;
     }
 
-    public void setFolderPath(String folderPath) {
-        this.folderPath = folderPath;
+    public void setPublicFolderPath(String publicFolderPath) {
+        this.publicFolderPath = publicFolderPath;
+    }
+
+    public String getPrivateFolderPath() {
+        return privateFolderPath;
+    }
+
+    public void setPrivateFolderPath(String privateFolderPath) {
+        this.privateFolderPath = privateFolderPath;
     }
 
     public void setEmailAddress(String emailAddress) {

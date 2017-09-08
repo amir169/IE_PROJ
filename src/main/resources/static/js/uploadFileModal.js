@@ -25,13 +25,12 @@
                                     transformRequest: angular.identity,
                                     headers: {'Content-Type': undefined},
                                     params: {
-                                                  fd
+
                                             }
 
                                  })
                                  .success(function(response){
-                                    console.log(response.data);
-                                     scope.user.imageAddress  = response.data;
+                                    scope.user.imageAddress  = response.data;
                                     scope.notif = "فایل با موفقیت بارگذاری شد";
                                  })
                                  .error(function(){

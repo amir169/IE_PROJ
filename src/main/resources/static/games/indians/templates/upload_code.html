@@ -23,7 +23,7 @@
             </select>
         </div>
         &nbsp
-        <button class="btn btn-primary">ارسال کد</button>
+        <button class="btn btn-primary"  data-toggle="modal" data-target="#uploadCModal">ارسال کد</button>
     </form>
     <table class="table table-hover">
         <thead>
@@ -50,5 +50,25 @@
     <button class="btn btn-primary pull-left">ذخیره</button>
 
 </div>
+
+<div ng-controller="codeUploadCtrl" class="modal fade"  id="uploadCodeModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <h3> لطفا فایل مورد نظر را بارگذاری کنید</h3>
+                    <div >
+                        <input type ="file" file-model = "myFile"/>
+                        </br>
+                        <div class="text-center">
+                            <button class="btn btn-primary" ng-click ="uploadFile()">آپلود فایل</button>
+                        </div>
+                        <p ng-bind="notif"></p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
         
