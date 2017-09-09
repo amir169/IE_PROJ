@@ -2,7 +2,7 @@
  * Created by Amir Shams on 4/2/2017.
  */
 angular.module("gameApp", []);
-angular.module("gameApp").controller("game_controller",function($scope,$http) {
+angular.module("gameApp").controller('game_controller',function($scope,$http) {
 
     $scope.submitComment = function () {
         var data = ""+$scope.qMessage;
@@ -15,8 +15,6 @@ angular.module("gameApp").controller("game_controller",function($scope,$http) {
         }
         );
     };
-
-
 
     init($http,$scope);
 

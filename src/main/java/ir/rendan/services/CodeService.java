@@ -94,6 +94,7 @@ public class CodeService {
             return Response.status(Response.Status.BAD_REQUEST).build();
 
         Code code = new Code(dataFile.getAddress());
+        code.setName(dataFile.getName());
 
         codeRepository.save(code);
         code.setAddress(dto.getCode());
@@ -106,6 +107,7 @@ public class CodeService {
         TeamGame teamGame = teamGameList.get(0);
 
         teamGame.addToCodes(code);
+        teamGame.setSelectedCode(code);
 
         teamGameRepository.save(teamGame);
 
